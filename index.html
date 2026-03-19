@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>&lt;lup vision&gt; — Web Design & Development Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── PALETTE ── */
+:root {
+  --dk:   #040400;
+  --dk2:  #090900;
+  --dk3:  #0F0F03;
+  --bl:   #4ECDC4;
+  --bld:  rgba(78,205,196,0.11);
+  --blg:  rgba(78,205,196,0.25);
+  --mt:   #4ECDC4;
+  --mtd:  rgba(78,205,196,0.11);
+  --mtg:  rgba(78,205,196,0.25);
+  --yw:   #F2C94C;
+  --ywd:  rgba(242,201,76,0.12);
+  --or:   #F2994A;
+  --cr:   #F0E6D2;
+  --cr2:  #A89E96;
+  --gl:   #6E6860;
+  --gd:   #48443E;
+  --bdk:  rgba(255,255,255,0.07);
+  --expo: cubic-bezier(0.16,1,0.3,1);
+  --btn-mt:  #1F9590;
+  --btn-mt-h:#157872;
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--dk);color:var(--cr);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;font:inherit;cursor:pointer}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* ── BRACKET CORNER SYSTEM ──
+   L-shaped corner marks on interactive containers.
+   ::before = top-left opening mark
+   ::after  = bottom-right closing mark
+   Creates abstract [ … ] framing tension — code syntax as geometry.
+*/
+.hdr-pill::before,.hdr-pill::after,
+.btn-blue::before,.btn-blue::after,
+.hchip::before,.hchip::after,
+.btn-bl-lg::before,.btn-bl-lg::after,
+.btn-gh-dk::before,.btn-gh-dk::after,
+.btn-gh-lt::before,.btn-gh-lt::after,
+.hw::before,.hw::after,
+.hw-lnk::before,.hw-lnk::after,
+.spec-main-btn::before,.spec-main-btn::after,
+.see-all::before,.see-all::after,
+.lang-b::before,.lang-b::after,
+.ft-nl-form button::before,.ft-nl-form button::after{
+  content:'';position:absolute;border-style:solid;
+  transition:border-color .25s,transform .25s;
+}
+
+/* ── CHEVRON LABEL SYSTEM ──
+   Small > chevron before eyebrow labels: geometric, abstract,
+   inspired by angle bracket direction — not literal </> symbols.
+*/
+.lbl-chev{display:flex;align-items:center;gap:7px}
+.lbl-chev::before{
+  content:'';display:inline-block;flex-shrink:0;
+  width:5px;height:5px;
+  border-right:1.5px solid currentColor;
+  border-top:1.5px solid currentColor;
+  transform:rotate(45deg);
+}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;
+  height:70px;z-index:1000;
+  padding:0 40px;
+  background:var(--dk);
+  border-bottom:1px solid var(--bdk);
+}
+.hdr-in{
+  max-width:1280px;width:100%;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;height:100%;
+}
+.logo{
+  font-family:'Cascadia Code',monospace;
+  font-size:17px;font-weight:500;
+  letter-spacing:-.02em;
+  color:var(--cr);
+  display:flex;align-items:center;
+}
+
+nav{
+  display:flex;align-items:center;gap:28px;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+nav a{font-size:13.5px;font-weight:400;color:var(--gl);transition:color .2s}
+nav a:hover,nav a.act{color:var(--cr)}
+
+.hdr-r{display:flex;align-items:center;gap:10px}
+.hdr-pill{
+  position:relative;
+  display:flex;align-items:center;gap:7px;
+  padding:7px 16px;
+  background:var(--dk2);
+  border:1px solid var(--bdk);
+  font-size:13px;font-weight:500;
+  color:var(--gl);
+  transition:border-color .2s,color .2s;
+}
+.hdr-pill::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.35)}
+.hdr-pill::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.35)}
+.hdr-pill:hover{border-color:var(--bl);color:var(--cr)}
+.hdr-pill:hover::before,.hdr-pill:hover::after{border-color:rgba(78,205,196,0.55)}
+.hdr-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--mt)}
+
+.btn-blue{
+  position:relative;
+  padding:8px 20px;
+  background:var(--btn-mt);
+  font-size:13px;font-weight:700;
+  color:#fff;
+  transition:background .2s,transform .15s;
+}
+.btn-blue::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(255,255,255,0.3)}
+.btn-blue::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(255,255,255,0.3)}
+.btn-blue:hover{background:var(--btn-mt-h);transform:translateY(-1px)}
+.btn-blue:hover::before,.btn-blue:hover::after{border-color:rgba(255,255,255,0.65)}
+.mbar{display:none;flex-direction:column;gap:5px;width:36px;padding:6px}
+.mbar span{display:block;height:1.5px;background:var(--gl);border-radius:2px;transition:transform .3s,opacity .3s}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:110px 40px 80px;
+  background:var(--dk);
+  border-bottom:1px solid var(--bdk);
+  position:relative;overflow:hidden;
+}
+.hero-in{
+  max-width:1280px;width:100%;margin:0 auto;
+  display:grid;grid-template-columns:1fr 460px;
+  gap:80px;align-items:center;
+}
+
+/* social chips row */
+.hero-chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:36px;opacity:0;animation:fu .7s var(--expo) .2s forwards}
+.hchip{
+  position:relative;
+  display:flex;align-items:center;gap:6px;
+  padding:4px 11px;
+  background:var(--dk2);
+  border:1px solid var(--bdk);
+  font-size:12px;font-weight:500;
+  color:var(--gl);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.hchip::before{top:2px;left:2px;width:5px;height:5px;border-width:1px 0 0 1px;border-color:rgba(163,154,146,0.2)}
+.hchip::after{bottom:2px;right:2px;width:5px;height:5px;border-width:0 1px 1px 0;border-color:rgba(163,154,146,0.2)}
+.hchip:hover{border-color:var(--bl);color:var(--cr);background:var(--bld)}
+.hchip svg{flex-shrink:0;opacity:.6}
+.hchip.avail{color:var(--mt);border-color:rgba(78,205,196,.28);background:var(--mtd)}
+.hchip.avail::before,.hchip.avail::after{border-color:rgba(78,205,196,0.35)}
+
+/* headline */
+.hero-h1{
+  font-size:clamp(2.4rem,4.5vw,3.9rem);
+  font-weight:800;line-height:1.12;
+  letter-spacing:-.035em;
+  color:var(--cr);
+  margin-bottom:22px;
+}
+.hero-h1 .ln{overflow:hidden;display:block}
+.hero-h1 .ln span{display:block;opacity:0;transform:translateY(106%);animation:su .9s var(--expo) forwards}
+.hero-h1 .ln:nth-child(1) span{animation-delay:.28s}
+.hero-h1 .ln:nth-child(2) span{animation-delay:.38s}
+.hero-h1 .ln:nth-child(3) span{animation-delay:.48s}
+.hero-h1 .acc{color:var(--bl)}
+
+.hero-sub{
+  font-size:1.05rem;font-weight:300;
+  color:var(--gl);line-height:1.8;
+  max-width:500px;margin-bottom:38px;
+  opacity:0;animation:fu .7s var(--expo) .58s forwards;
+}
+
+.hero-btns{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:52px;
+  opacity:0;animation:fu .7s var(--expo) .72s forwards;
+}
+.btn-bl-lg{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;
+  background:var(--btn-mt);
+  font-size:14px;font-weight:700;color:#fff;
+  transition:background .2s,transform .2s,filter .2s;
+}
+.btn-bl-lg::before{top:4px;left:4px;width:10px;height:10px;border-width:1.5px 0 0 1.5px;border-color:rgba(255,255,255,0.28)}
+.btn-bl-lg::after{bottom:4px;right:4px;width:10px;height:10px;border-width:0 1.5px 1.5px 0;border-color:rgba(255,255,255,0.28)}
+.btn-bl-lg:hover{background:var(--btn-mt-h);transform:translateY(-2px);filter:drop-shadow(0 8px 20px rgba(78,205,196,0.4))}
+.btn-bl-lg:hover::before,.btn-bl-lg:hover::after{border-color:rgba(255,255,255,0.6);transform:scale(1.1)}
+
+.btn-gh-dk{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 24px;
+  border:1px solid var(--bdk);
+  font-size:14px;font-weight:500;color:var(--gl);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.btn-gh-dk::before{top:4px;left:4px;width:10px;height:10px;border-width:1.5px 0 0 1.5px;border-color:rgba(163,154,146,0.2)}
+.btn-gh-dk::after{bottom:4px;right:4px;width:10px;height:10px;border-width:0 1.5px 1.5px 0;border-color:rgba(163,154,146,0.2)}
+.btn-gh-dk:hover{border-color:var(--bl);color:var(--cr);background:var(--bld)}
+.btn-gh-dk:hover::before,.btn-gh-dk:hover::after{border-color:rgba(78,205,196,0.38)}
+
+/* service icons row below buttons */
+.hero-icons{
+  display:flex;align-items:center;gap:0;
+  border-top:1px solid var(--bdk);
+  opacity:0;animation:fu .7s var(--expo) .88s forwards;
+}
+.hico{
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:20px 28px;
+  border-right:1px solid var(--bdk);
+  font-size:11px;font-weight:500;color:var(--gl);
+  letter-spacing:.02em;
+  transition:background .2s,color .2s;
+}
+.hico:last-child{border-right:none}
+.hico:hover{background:var(--dk2);color:var(--cr)}
+.hico .ico{display:flex;align-items:center;justify-content:center;width:22px;height:22px}
+.hico .ico svg{width:100%;height:100%}
+
+/* ── HERO ANIMATION RIGHT ── */
+.hero-r{
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;animation:fu .9s var(--expo) .5s forwards;
+}
+.hani{
+  position:relative;
+  width:100%;max-width:420px;
+  animation:floatY 6s ease-in-out 1.8s infinite;
+}
+.hani-glow{
+  position:absolute;
+  width:360px;height:360px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(78,205,196,0.13) 0%,transparent 66%);
+  pointer-events:none;z-index:0;
+}
+/* browser frame */
+.hani-br{
+  position:relative;z-index:1;
+  background:#060604;
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 28px 64px rgba(0,0,0,0.6),0 0 0 1px rgba(78,205,196,0.04);
+}
+.hani-br::before{content:'';position:absolute;top:8px;left:8px;width:13px;height:13px;border-top:1.5px solid rgba(78,205,196,0.55);border-left:1.5px solid rgba(78,205,196,0.55)}
+.hani-br::after{content:'';position:absolute;bottom:8px;right:8px;width:13px;height:13px;border-bottom:1.5px solid rgba(78,205,196,0.55);border-right:1.5px solid rgba(78,205,196,0.55)}
+/* top bar */
+.hani-bar{
+  display:flex;align-items:center;gap:5px;
+  padding:10px 14px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  background:#040402;
+}
+.hd{display:block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hd-r{background:#FF5F57}.hd-y{background:#FEBC2E}.hd-g{background:#28C840}
+.hani-url{
+  flex:1;margin-left:8px;
+  display:flex;align-items:center;gap:5px;
+  font-family:'Cascadia Code',monospace;font-size:10px;
+  color:rgba(255,255,255,0.28);
+  background:rgba(255,255,255,0.05);
+  padding:4px 10px;
+}
+.hani-url svg{opacity:.5;flex-shrink:0}
+.hani-cur{font-size:12px;color:var(--mt);animation:blink .85s step-end infinite;margin-left:1px}
+/* screen */
+.hani-screen{padding:16px;display:flex;flex-direction:column;gap:11px}
+/* mock nav */
+.hn{
+  height:26px;display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:0 10px;
+}
+.hn-logo{width:58px;height:7px;background:var(--mt);opacity:.55;border-radius:1px}
+.hn-links{display:flex;gap:7px;margin-left:auto}
+.hn-l{width:26px;height:5px;background:rgba(255,255,255,0.12);border-radius:1px}
+.hn-btn{width:48px;height:16px;background:var(--btn-mt);opacity:.85}
+/* mock hero content */
+.mh{padding:20px 14px 14px;display:flex;flex-direction:column;gap:9px}
+.mh-h{
+  height:13px;background:rgba(255,255,255,0.85);border-radius:1px;
+  transform:scaleX(0);transform-origin:left;
+  animation:revX .8s var(--expo) .1s forwards;
+}
+.mh-h2{width:70%;animation:revX .8s var(--expo) .22s forwards}
+.mh-p{
+  height:6px;background:rgba(255,255,255,0.2);border-radius:1px;
+  transform:scaleX(0);transform-origin:left;
+  animation:revX .65s var(--expo) .34s forwards;
+}
+.mh-p2{width:80%;animation:revX .65s var(--expo) .44s forwards}
+.mh-btns{
+  display:flex;gap:7px;margin-top:5px;
+  opacity:0;animation:fu .5s ease .58s forwards;
+}
+.mh-bp{width:70px;height:20px;background:var(--btn-mt)}
+.mh-bg{width:60px;height:20px;border:1px solid rgba(255,255,255,0.14)}
+/* mock section cards */
+.mc-row{display:flex;gap:6px}
+.mc{
+  flex:1;height:54px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.06);
+  opacity:0;animation:fu .5s ease forwards;
+}
+.mc:nth-child(1){animation-delay:.72s}
+.mc:nth-child(2){animation-delay:.84s}
+.mc:nth-child(3){animation-delay:.96s}
+/* floating cards */
+.hfc{
+  position:absolute;z-index:2;
+  background:rgba(8,8,2,0.95);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(16px);
+  padding:13px 16px;
+  opacity:0;
+}
+.hfc1{
+  top:-24px;right:-56px;min-width:148px;
+  animation:fu .7s var(--expo) 1.05s forwards, floatY2 5s ease-in-out 2.2s infinite;
+}
+.hfc2{
+  bottom:-24px;left:-56px;
+  animation:fu .7s var(--expo) 1.2s forwards, floatY2 4.5s ease-in-out 2.8s infinite;
+}
+.hfc3{
+  top:36%;right:-68px;
+  animation:fu .7s var(--expo) 1.35s forwards, floatY2 6s ease-in-out 3.2s infinite;
+}
+.hfc-top{display:flex;align-items:center;gap:5px;margin-bottom:5px;color:var(--gl);font-size:10px;letter-spacing:.07em;text-transform:uppercase}
+.hfc-top svg{stroke:var(--mt);flex-shrink:0}
+.hfc-score{font-family:'Cascadia Code',monospace;font-size:28px;font-weight:700;color:var(--mt);line-height:1}
+.hfc-bar{height:2px;background:rgba(255,255,255,0.08);margin-top:7px}
+.hfc-fill{height:100%;width:98%;background:linear-gradient(90deg,var(--mt),rgba(78,205,196,0.5));transform:scaleX(0);transform-origin:left;animation:revX 1.3s var(--expo) 1.9s forwards}
+/* code card */
+.hcc{font-family:'Cascadia Code',monospace;font-size:10px;line-height:1.78;white-space:nowrap;color:rgba(255,255,255,0.4)}
+.ck{color:var(--mt)}.cs{color:var(--yw)}.cn{color:var(--or)}.cg{color:rgba(255,255,255,0.22)}
+/* tech stack card */
+.hfc-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:8px}
+.hts{display:flex;flex-direction:column;gap:4px}
+.hts span{font-size:10px;color:var(--cr);padding:3px 8px;background:rgba(78,205,196,0.06);border:1px solid rgba(78,205,196,0.16)}
+
+/* ── WHY LUP VISION ── */
+.why{background:var(--dk2);border-bottom:1px solid var(--bdk);padding:100px 40px}
+.why-in{max-width:1280px;margin:0 auto}
+.why-top{display:flex;align-items:flex-start;justify-content:space-between;gap:60px;margin-bottom:56px;flex-wrap:wrap}
+.why-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bl);margin-bottom:18px}
+.why-h{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.22;color:var(--cr);margin-bottom:18px}
+.why-p{font-size:.93rem;font-weight:300;color:var(--gl);line-height:1.82;max-width:460px}
+.why-more{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--bl);margin-top:20px;transition:gap .2s}
+.why-more:hover{gap:10px}
+.why-right{max-width:340px;font-size:.9rem;font-weight:300;color:var(--gl);line-height:1.8;padding-top:40px}
+
+/* 4 stats row */
+.why-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:1px solid var(--bdk);overflow:hidden;
+}
+.wst{
+  padding:36px 32px;
+  border-right:1px solid var(--bdk);
+  transition:background .25s;
+}
+.wst:last-child{border-right:none}
+.wst:hover{background:var(--dk3)}
+.wst-n{
+  font-size:1.9rem;font-weight:800;
+  letter-spacing:-.03em;line-height:1;
+  color:var(--bl);margin-bottom:8px;
+}
+.wst-l{font-size:.85rem;font-weight:600;color:var(--cr);line-height:1.4;margin-bottom:4px}
+.wst-s{font-size:.78rem;font-weight:300;color:var(--gl);line-height:1.5}
+
+/* ── SERVICES ── */
+.srvs{background:var(--dk);border-bottom:1px solid var(--bdk);padding:100px 40px}
+.srvs-in{max-width:1280px;margin:0 auto}
+.srvs-hd{text-align:center;margin-bottom:56px}
+.sec-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bl);margin-bottom:18px;display:inline-flex;align-items:center;gap:7px}
+.sec-h-dk{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.22;color:var(--cr);margin-bottom:14px}
+.sec-p-dk{font-size:.93rem;font-weight:300;color:var(--gl);line-height:1.8;max-width:580px;margin:0 auto}
+
+.srvs-g{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--bdk);overflow:hidden;
+}
+.srv{
+  background:var(--dk2);
+  padding:44px 40px;
+  position:relative;
+  transition:background .25s;
+}
+.srv:hover{background:var(--dk3)}
+.srv-ico{
+  position:relative;
+  width:52px;height:52px;
+  background:var(--bld);
+  border:1px solid rgba(78,205,196,.18);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:26px;
+  transition:background .25s,filter .25s;
+}
+/* bracket corners on service icon box */
+.srv-ico::before{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;border-top:1px solid rgba(78,205,196,0.45);border-left:1px solid rgba(78,205,196,0.45);transition:border-color .25s}
+.srv-ico::after{content:'';position:absolute;bottom:3px;right:3px;width:7px;height:7px;border-bottom:1px solid rgba(78,205,196,0.45);border-right:1px solid rgba(78,205,196,0.45);transition:border-color .25s}
+.srv-ico svg{color:var(--mt);stroke:var(--mt)}
+.srv:hover .srv-ico{background:rgba(78,205,196,.2);filter:drop-shadow(0 0 10px rgba(78,205,196,0.32))}
+.srv:hover .srv-ico::before,.srv:hover .srv-ico::after{border-color:rgba(78,205,196,0.8)}
+.srv-h{font-size:1.05rem;font-weight:700;color:var(--cr);margin-bottom:10px;letter-spacing:-.02em}
+.srv-p{font-size:.85rem;font-weight:300;color:var(--gl);line-height:1.75}
+.srv-more{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--bl);
+  margin-top:18px;opacity:0;transform:translateY(4px);
+  transition:opacity .25s,transform .25s,gap .2s;
+}
+.srv:hover .srv-more{opacity:1;transform:none}
+.srv.all{background:var(--bld);border:1px solid rgba(78,205,196,.15)}
+.srv.all:hover{background:rgba(78,205,196,.18)}
+.srv.all .srv-h{color:var(--bl)}
+.srv.all .srv-p{color:rgba(78,205,196,.65)}
+
+/* ── WORK WITH US ── */
+.how{background:var(--dk3);border-bottom:1px solid var(--bdk);padding:100px 40px}
+
+/* ── PRICING ── */
+.pr-sep{margin-top:64px;padding-top:64px;border-top:1px solid var(--bdk)}
+.pr-sep-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.pr-sep-h{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:700;letter-spacing:-.025em;color:var(--cr)}
+.pr-sep-note{font-size:.8rem;color:var(--gl)}
+.pr-g{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--bdk);overflow:hidden;
+}
+.pr{
+  position:relative;
+  background:var(--dk);
+  padding:40px 36px;
+  transition:background .25s;
+}
+.pr.feat{background:var(--dk2)}
+.pr:hover{background:var(--dk2)}
+.pr::before,.pr::after{content:'';position:absolute;border-style:solid;transition:border-color .25s}
+.pr::before{top:10px;left:10px;width:12px;height:12px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.12)}
+.pr::after{bottom:10px;right:10px;width:12px;height:12px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.12)}
+.pr:hover::before,.pr:hover::after,.pr.feat::before,.pr.feat::after{border-color:rgba(78,205,196,0.35)}
+.pr-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mt);background:rgba(78,205,196,0.1);
+  border:1px solid rgba(78,205,196,0.25);
+  padding:3px 10px;margin-bottom:20px;
+}
+.pr-name{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:16px}
+.pr-price{
+  font-size:2.6rem;font-weight:800;
+  color:var(--cr);letter-spacing:-.04em;
+  line-height:1;margin-bottom:4px;
+}
+.pr-price em{font-style:normal;font-size:.9rem;font-weight:400;color:var(--gl);letter-spacing:0;margin-left:2px}
+.pr-from{font-size:.75rem;color:var(--gl);margin-bottom:24px}
+.pr-divider{height:1px;background:var(--bdk);margin-bottom:24px}
+.pr-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:32px}
+.pr-list li{font-size:.82rem;color:var(--cr2);display:flex;align-items:flex-start;gap:9px;line-height:1.55}
+.pr-list li::before{content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--mt);opacity:.7;margin-top:5px}
+.pr-list li.muted::before{background:var(--gl)}
+.pr-list li.muted{color:var(--gl)}
+@media(max-width:1099px){.pr-g{grid-template-columns:1fr}}
+@media(max-width:767px){.pr-sep{margin-top:40px;padding-top:40px}.pr{padding:32px 24px}}
+.how-in{max-width:1280px;margin:0 auto}
+.how-eyebrow{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gl);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.how-top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:52px;flex-wrap:wrap}
+.how-h{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.22;color:var(--cr)}
+.how-p{font-size:.9rem;font-weight:300;color:var(--gl);max-width:340px;line-height:1.8;align-self:flex-end}
+.how-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hw{
+  position:relative;
+  background:var(--dk2);
+  border:1px solid var(--bdk);
+  padding:40px;
+  transition:border-color .3s,background .3s,transform .3s var(--expo),filter .3s;
+}
+.hw::before{top:10px;left:10px;width:13px;height:13px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.25)}
+.hw::after{bottom:10px;right:10px;width:13px;height:13px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.25)}
+.hw:hover{border-color:rgba(78,205,196,.35);background:var(--dk);transform:translateY(-4px);filter:drop-shadow(0 14px 32px rgba(78,205,196,0.08))}
+.hw:hover::before,.hw:hover::after{border-color:rgba(78,205,196,0.65);transform:scale(1.12)}
+.hw.feat{border-color:rgba(78,205,196,.25);background:linear-gradient(145deg,rgba(78,205,196,.06) 0%,var(--dk2) 100%)}
+.hw.feat::before,.hw.feat::after{border-color:rgba(78,205,196,0.3)}
+.hw.feat:hover{border-color:rgba(78,205,196,.55)}
+.hw.feat:hover::before,.hw.feat:hover::after{border-color:rgba(78,205,196,0.7)}
+.hw-h{font-size:1.05rem;font-weight:700;letter-spacing:-.02em;color:var(--cr);margin-bottom:12px}
+.hw-p{font-size:.86rem;font-weight:300;color:var(--gl);line-height:1.75;margin-bottom:24px}
+.hw-lnk{
+  position:relative;
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 20px;
+  background:var(--btn-mt);
+  font-size:13px;font-weight:600;color:#fff;
+  transition:background .2s,gap .2s;
+}
+.hw-lnk::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(255,255,255,0.3)}
+.hw-lnk::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(255,255,255,0.3)}
+.hw-lnk:hover{background:var(--btn-mt-h);gap:10px}
+.hw-lnk:hover::before,.hw-lnk:hover::after{border-color:rgba(255,255,255,0.6)}
+/* yellow badge */
+.hw-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;
+  background:rgba(242,201,76,0.1);
+  border:1px solid rgba(242,201,76,.28);
+  color:var(--yw);
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:14px;width:fit-content;
+}
+
+/* ── SPECIALIZATIONS ── */
+.spec{background:var(--dk);border-bottom:1px solid var(--bdk);padding:100px 40px}
+.spec-in{max-width:1280px;margin:0 auto}
+.spec-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bl);margin-bottom:16px;display:flex;align-items:center;gap:7px}
+.spec-h{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--cr);margin-bottom:48px}
+
+.spec-wrap{display:grid;grid-template-columns:360px 1fr;gap:1px;background:var(--bdk);overflow:hidden}
+.spec-main{
+  background:var(--dk2);padding:48px;
+  display:flex;flex-direction:column;
+}
+.spec-main-tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--bl);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.spec-main-tag::before{content:'';width:24px;height:2px;background:var(--bl);border-radius:2px}
+.spec-main-h{font-size:1.25rem;font-weight:700;color:var(--cr);letter-spacing:-.02em;line-height:1.4;margin-bottom:14px}
+.spec-main-p{font-size:.86rem;font-weight:300;color:var(--gl);line-height:1.75;margin-bottom:28px;flex:1}
+.spec-main-btn{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;
+  border:1px solid var(--bl);
+  font-size:13px;font-weight:600;color:var(--bl);
+  align-self:flex-start;
+  transition:background .2s,color .2s;
+}
+.spec-main-btn::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.4)}
+.spec-main-btn::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.4)}
+.spec-main-btn:hover{background:var(--btn-mt);color:#fff}
+.spec-main-btn:hover::before,.spec-main-btn:hover::after{border-color:rgba(255,255,255,0.4)}
+
+.spec-tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(2,1fr);
+  gap:1px;background:var(--bdk);
+}
+.stab{
+  background:var(--dk2);padding:32px 28px;
+  display:flex;flex-direction:column;gap:10px;
+  cursor:pointer;
+  transition:background .25s;
+}
+.stab:hover{background:var(--dk3)}
+.stab.act{background:linear-gradient(145deg,rgba(78,205,196,.07) 0%,var(--dk3) 100%)}
+.stab.act .stab-h{color:var(--mt)}
+.stab-ico{display:flex;align-items:center;color:var(--mt)}
+.stab-ico svg{flex-shrink:0}
+.stab-h{font-size:.88rem;font-weight:600;color:var(--cr);letter-spacing:-.01em;line-height:1.4;transition:color .2s}
+.stab-p{font-size:.78rem;font-weight:300;color:var(--gl);line-height:1.65}
+
+/* ── PROJECTS ── */
+.projs{background:var(--dk2);border-bottom:1px solid var(--bdk);padding:100px 40px}
+.projs-in{max-width:1280px;margin:0 auto}
+.projs-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:20px;flex-wrap:wrap}
+.projs-hl .sec-lbl-dk{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bl);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.projs-hl .pj-main-h{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;color:var(--cr)}
+.see-all{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px;border:1px solid var(--bdk);
+  font-size:13px;font-weight:500;color:var(--gl);
+  transition:border-color .2s,color .2s;align-self:flex-end;white-space:nowrap;
+}
+.see-all::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(163,154,146,0.2)}
+.see-all::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(163,154,146,0.2)}
+.see-all:hover{border-color:var(--bl);color:var(--cr)}
+.see-all:hover::before,.see-all:hover::after{border-color:rgba(78,205,196,0.35)}
+
+.proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pj{
+  background:var(--dk2);
+  border:1px solid var(--bdk);
+  overflow:hidden;
+  transition:border-color .3s,transform .35s var(--expo),filter .35s;
+}
+.pj:hover{border-color:rgba(78,205,196,.35);transform:translateY(-5px);filter:drop-shadow(0 18px 50px rgba(78,205,196,0.1))}
+
+/* project status tabs */
+.pj-tabs{display:flex;border-bottom:1px solid var(--bdk)}
+.pjt{
+  padding:10px 16px;font-size:11px;font-weight:500;
+  color:var(--gd);border-right:1px solid var(--bdk);
+  letter-spacing:.02em;white-space:nowrap;
+  transition:color .2s,background .2s;
+}
+.pjt:last-child{border-right:none}
+.pjt.on{color:var(--bl);background:var(--bld)}
+
+/* thumb */
+.pj-thumb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.th1{background:linear-gradient(135deg,#0c1e1c,#061a28)}
+.th2{background:linear-gradient(135deg,#1a0e1e,#060e20)}
+.th3{background:linear-gradient(135deg,#1c1408,#101808)}
+.pj-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(244,235,217,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(244,235,217,.018) 1px,transparent 1px);background-size:26px 26px}
+.pj-gl{position:absolute;border-radius:50%;filter:blur(30px)}
+.th1 .pj-gl{width:90px;height:90px;background:rgba(78,205,196,.45);top:22%;left:16%}
+.th2 .pj-gl{width:80px;height:80px;background:rgba(120,80,220,.45);top:24%;right:18%}
+.th3 .pj-gl{width:95px;height:95px;background:rgba(163,154,146,.4);top:20%;left:22%}
+.pj-mock{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:68%;height:60%;
+  background:rgba(244,235,217,.04);
+  border:1px solid rgba(244,235,217,.07);
+  border-radius:6px 6px 0 0;
+  padding:7px;display:grid;
+  grid-template-columns:26% 1fr;gap:5px;overflow:hidden;
+}
+.pm-nav{background:rgba(244,235,217,.04);border-radius:3px}
+.pm-b{display:flex;flex-direction:column;gap:4px}
+.pm-r{border-radius:2px;background:rgba(244,235,217,.04)}
+.pm-r:nth-child(1){height:13px}
+.pm-r:nth-child(2){flex:1}
+.pm-r:nth-child(3){height:8px}
+
+.pj-info{padding:26px}
+.pj-name{font-size:1.05rem;font-weight:700;letter-spacing:-.02em;color:var(--cr);margin-bottom:10px}
+.pj-desc{font-size:.84rem;font-weight:300;color:var(--gl);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px}
+.pj-lnk{font-size:12.5px;font-weight:600;color:var(--bl);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+.pj-lnk:hover{gap:10px}
+
+/* ── BLOG ── */
+.blog{background:var(--dk3);border-bottom:1px solid var(--bdk);padding:100px 40px}
+.blog-in{max-width:1280px;margin:0 auto}
+.blog-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:12px;gap:20px;flex-wrap:wrap}
+.blog-intro{
+  font-size:.9rem;font-weight:300;color:var(--gl);
+  max-width:440px;line-height:1.8;
+  margin-bottom:40px;margin-top:12px;
+}
+.blog-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdk);overflow:hidden}
+.art{background:var(--dk3);transition:background .25s}
+.art:hover{background:var(--dk2)}
+.art-tag{
+  padding:8px 20px;border-bottom:1px solid var(--bdk);
+  font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--bl);
+}
+.art-body{padding:28px}
+.art-h{font-size:1rem;font-weight:700;letter-spacing:-.02em;line-height:1.45;color:var(--cr);margin-bottom:12px}
+.art-p{font-size:.84rem;font-weight:300;color:var(--gl);line-height:1.72;margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.art-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--gl)}
+.art-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--gl)}
+.art-author{font-weight:600;color:var(--cr2)}
+
+/* ── CTA ── */
+.cta{background:var(--dk);border-top:1px solid var(--bdk);border-bottom:1px solid var(--bdk);padding:56px 40px}
+.cta-in{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;gap:40px;
+}
+.cta-l{flex:0 0 340px}
+.cta-h{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--cr);margin-bottom:10px;line-height:1.3}
+.cta-p{font-size:.85rem;font-weight:300;color:var(--gl);line-height:1.75}
+.cta-line{flex:1;height:1px;background:var(--bdk)}
+.cta-big{
+  flex-shrink:0;
+  font-size:clamp(1.7rem,2.8vw,2.2rem);
+  font-weight:800;letter-spacing:-.04em;
+  line-height:1;color:var(--cr);
+  white-space:nowrap;
+}
+.cta-btn-wrap{flex-shrink:0;margin-left:24px}
+@media(max-width:1099px){
+  .cta-in{flex-wrap:wrap;gap:32px}
+  .cta-l{flex:0 0 100%}
+  .cta-line{display:none}
+  .cta-big{font-size:2rem}
+}
+@media(max-width:767px){.cta{padding:48px 18px}}
+.btn-gh-lt{
+  position:relative;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border:1px solid var(--bdk);
+  font-size:14px;font-weight:500;color:var(--gl);
+  transition:border-color .2s,color .2s;
+}
+.btn-gh-lt::before{top:4px;left:4px;width:10px;height:10px;border-width:1.5px 0 0 1.5px;border-color:rgba(163,154,146,0.2)}
+.btn-gh-lt::after{bottom:4px;right:4px;width:10px;height:10px;border-width:0 1.5px 1.5px 0;border-color:rgba(163,154,146,0.2)}
+.btn-gh-lt:hover{border-color:var(--bl);color:var(--cr)}
+.btn-gh-lt:hover::before,.btn-gh-lt:hover::after{border-color:rgba(78,205,196,0.35)}
+
+/* ── FOOTER ── */
+footer{background:var(--dk);padding:0 40px}
+.ft-news{
+  padding:52px 0;border-bottom:1px solid var(--bdk);
+  display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
+}
+.ft-nl-t{font-size:1rem;font-weight:700;color:var(--cr);margin-bottom:6px;letter-spacing:-.02em}
+.ft-nl-s{font-size:.85rem;font-weight:300;color:var(--gl)}
+.ft-nl-form{display:flex;gap:0}
+.ft-nl-form input{
+  background:var(--dk2);border:1px solid var(--bdk);
+  border-right:none;border-radius:2px 0 0 2px;
+  padding:11px 18px;font-size:13px;font-family:inherit;
+  color:var(--cr);outline:none;width:260px;
+  transition:border-color .2s;
+}
+.ft-nl-form input::placeholder{color:var(--gd)}
+.ft-nl-form input:focus{border-color:var(--bl)}
+.ft-nl-form button{
+  position:relative;
+  padding:11px 20px;background:var(--btn-mt);
+  font-size:13px;font-weight:700;color:#fff;
+  transition:background .2s;
+}
+.ft-nl-form button::before{content:'';position:absolute;top:3px;left:3px;width:6px;height:6px;border-top:1px solid rgba(255,255,255,0.3);border-left:1px solid rgba(255,255,255,0.3)}
+.ft-nl-form button::after{content:'';position:absolute;bottom:3px;right:3px;width:6px;height:6px;border-bottom:1px solid rgba(255,255,255,0.3);border-right:1px solid rgba(255,255,255,0.3)}
+.ft-nl-form button:hover{background:var(--btn-mt-h)}
+
+.ft-cols{
+  padding:52px 0;border-bottom:1px solid var(--bdk);
+  display:grid;grid-template-columns:260px repeat(4,1fr);gap:40px;
+}
+.ft-brand .logo{margin-bottom:16px}
+.ft-brand p{font-size:.82rem;font-weight:300;color:var(--gd);line-height:1.75;max-width:220px}
+.ft-col-t{
+  font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gd);margin-bottom:18px;
+}
+.ft-col a{display:block;font-size:13px;font-weight:300;color:var(--gl);margin-bottom:12px;transition:color .2s}
+.ft-col a:hover{color:var(--cr)}
+
+.ft-bot{
+  padding:24px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.ft-copy{font-size:12px;color:var(--gd);font-weight:300}
+.ft-copy .lo{font-family:'Cascadia Code',monospace;color:var(--gl)}
+.ft-copy .lo .br{color:var(--bl)}
+.ft-lang{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--gd)}
+.lang-b{
+  position:relative;
+  padding:4px 10px;background:var(--dk2);
+  border:1px solid var(--bdk);
+  font-size:12px;color:var(--gl);font-family:inherit;
+  transition:border-color .2s,color .2s;
+}
+.lang-b::before{content:'';position:absolute;top:2px;left:2px;width:4px;height:4px;border-top:1px solid rgba(163,154,146,0.25);border-left:1px solid rgba(163,154,146,0.25)}
+.lang-b::after{content:'';position:absolute;bottom:2px;right:2px;width:4px;height:4px;border-bottom:1px solid rgba(163,154,146,0.25);border-right:1px solid rgba(163,154,146,0.25)}
+.lang-b:hover{border-color:var(--bl);color:var(--cr)}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--expo),transform .7s var(--expo)}
+.rv.v{opacity:1;transform:none}
+
+/* ── ANIMATIONS ── */
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes su{from{opacity:0;transform:translateY(106%)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes revX{to{transform:scaleX(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes floatY2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1099px){
+  header{padding:0 24px}
+  .hero,.why,.srvs,.how,.spec,.projs,.blog,.cta{padding:72px 24px}
+  footer{padding:0 24px}
+  .hero-in{grid-template-columns:1fr;gap:48px}
+  .hero-r{order:-1}
+  .hani{max-width:360px}
+  .hfc1{right:-20px}.hfc2{left:-20px}.hfc3{display:none}
+  .why-stats{grid-template-columns:repeat(2,1fr)}
+  .srvs-g{grid-template-columns:repeat(2,1fr)}
+  .how-g{grid-template-columns:1fr}
+  .spec-wrap{grid-template-columns:1fr}
+  .spec-tabs{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,auto)}
+  .proj-g{grid-template-columns:repeat(2,1fr)}
+  .blog-g{grid-template-columns:1fr;gap:0}
+  .cta-row{flex-direction:column;align-items:flex-start}
+  .ft-cols{grid-template-columns:1fr 1fr;gap:32px}
+  .ft-brand{grid-column:1/-1}
+  .ft-news{flex-direction:column;align-items:flex-start}
+  .hero-icons{flex-wrap:wrap}
+}
+@media(max-width:767px){
+  header{padding:0 18px}
+  .hero,.why,.srvs,.how,.spec,.projs,.blog,.cta{padding:56px 18px}
+  footer{padding:0 18px}
+  nav{display:none}
+  nav.open{
+    display:flex;flex-direction:column;
+    position:fixed;inset:70px 0 0;
+    background:var(--dk);
+    padding:40px 20px;gap:24px;
+    align-items:flex-start;z-index:999;
+  }
+  nav.open a{font-size:1.3rem;font-weight:700;color:var(--cr)}
+  .hdr-pill{display:none}
+  .mbar{display:flex}
+  .why-stats{grid-template-columns:1fr 1fr}
+  .srvs-g{grid-template-columns:1fr}
+  .proj-g{grid-template-columns:1fr}
+  .blog-g{grid-template-columns:1fr}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .ft-bot{flex-direction:column;align-items:flex-start}
+  .hero-icons{display:none}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .hfc1,.hfc2,.hfc3{display:none}
+  .hani{animation:none}
+  .cta-big{font-size:2rem}
+  .spec-tabs{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header id="hdr">
+  <div class="hdr-in">
+    <a href="/" class="logo">
+      &lt;lup vision&gt;
+    </a>
+    <nav id="nav">
+      <a href="misiunea-noastra.html">Misiunea noastră</a>
+      <a href="servicii.html">Servicii</a>
+      <a href="proiecte.html">Proiecte</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hdr-r">
+      <a href="contact.html" class="btn-blue">Începe proiectul</a>
+    </div>
+    <button class="mbar" id="mb" aria-label="Meniu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-in">
+    <!-- LEFT -->
+    <div class="hero-l">
+      <h1 class="hero-h1">
+        <span class="ln"><span>Prezența ta digitală,</span></span>
+        <span class="ln"><span>de <em class="acc" style="font-style:normal">neignorat.</em></span></span>
+      </h1>
+
+      <p class="hero-sub">Valorificăm expertiza și inovația pentru a livra soluții personalizate care stimulează eficiența și optimizează procesele prin Web Design, Development și strategie digitală.</p>
+
+      <div class="hero-btns">
+        <a href="#srvs" class="btn-bl-lg">Serviciile noastre ↓</a>
+        <a href="#why" class="btn-gh-dk">De ce noi?</a>
+      </div>
+
+      <!-- service icons row — Elaniin style -->
+      <div class="hero-icons">
+        <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>Web Design</div>
+        <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Development</div>
+        <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>E-commerce</div>
+        <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>SEO</div>
+        <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Mentenanță</div>
+      </div>
+    </div>
+
+    <!-- RIGHT — browser animation -->
+    <div class="hero-r">
+      <div class="hani">
+        <div class="hani-glow"></div>
+
+        <!-- Browser frame -->
+        <div class="hani-br">
+          <div class="hani-bar">
+            <span class="hd hd-r"></span>
+            <span class="hd hd-y"></span>
+            <span class="hd hd-g"></span>
+            <div class="hani-url">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              lupvision.ro<span class="hani-cur">|</span>
+            </div>
+          </div>
+          <div class="hani-screen">
+            <div class="hn">
+              <div class="hn-logo"></div>
+              <div class="hn-links">
+                <div class="hn-l"></div>
+                <div class="hn-l"></div>
+                <div class="hn-l"></div>
+              </div>
+              <div class="hn-btn"></div>
+            </div>
+            <div class="mh">
+              <div class="mh-h"></div>
+              <div class="mh-h mh-h2"></div>
+              <div class="mh-p"></div>
+              <div class="mh-p mh-p2"></div>
+              <div class="mh-btns">
+                <div class="mh-bp"></div>
+                <div class="mh-bg"></div>
+              </div>
+            </div>
+            <div class="mc-row">
+              <div class="mc"></div>
+              <div class="mc"></div>
+              <div class="mc"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Float 1: Performance score -->
+        <div class="hfc hfc1">
+          <div class="hfc-top">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>PageSpeed</span>
+          </div>
+          <div class="hfc-score">98</div>
+          <div class="hfc-bar"><div class="hfc-fill"></div></div>
+        </div>
+
+        <!-- Float 2: Code snippet -->
+        <div class="hfc hfc2">
+          <div class="hcc">
+            <div><span class="ck">const</span> site = {</div>
+            <div>&nbsp;&nbsp;design: <span class="cs">"premium"</span>,</div>
+            <div>&nbsp;&nbsp;speed: <span class="cn">98</span>,</div>
+            <div>&nbsp;&nbsp;<span class="cg">// lup vision</span></div>
+            <div>}</div>
+          </div>
+        </div>
+
+        <!-- Float 3: Tech stack -->
+        <div class="hfc hfc3">
+          <div class="hfc-lbl">Stack</div>
+          <div class="hts">
+            <span>WordPress</span>
+            <span>WooCommerce</span>
+            <span>React</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ DE CE LUP VISION ══ -->
+<section class="why rv" id="why">
+  <div class="why-in">
+    <div class="why-top">
+      <div>
+        <div class="why-lbl lbl-chev rv">De ce Lup Vision</div>
+        <h2 class="why-h rv">Rezolvăm cele mai mari<br>provocări ale clienților noștri</h2>
+        <p class="why-p rv">Rezolvăm provocările clienților datorită echipelor noastre dedicate, agile și înalt calificate. Cultura noastră unică, caracterizată prin implicare totală, ne diferențiază și ne face o comunitate orientată spre excelență.</p>
+        <a href="#contact" class="why-more rv">Află mai mult <span>→</span></a>
+      </div>
+      <p class="why-right rv">Serviciile noastre de înaltă calitate sunt livrate eficient prin două modele: proiecte la cheie și abonamente de mentenanță.</p>
+    </div>
+
+    <div class="why-stats">
+      <div class="wst rv">
+        <div class="wst-n">+47</div>
+        <div class="wst-l">proiecte livrate</div>
+        <div class="wst-s">în 5 ani de activitate</div>
+      </div>
+      <div class="wst rv" style="transition-delay:.08s">
+        <div class="wst-n" style="font-size:1.1rem;margin-bottom:8px;letter-spacing:-.01em">Clutch<br>Top Rated</div>
+        <div class="wst-l">recenzii verificate</div>
+        <div class="wst-s">5.0 ★ scor mediu</div>
+      </div>
+      <div class="wst rv" style="transition-delay:.16s">
+        <div class="wst-n">100<span style="font-size:1rem">/100</span></div>
+        <div class="wst-l">Scor PageSpeed</div>
+        <div class="wst-s">pe toate proiectele livrate</div>
+      </div>
+      <div class="wst rv" style="transition-delay:.24s">
+        <div class="wst-n">98%</div>
+        <div class="wst-l">Clienți satisfăcuți</div>
+        <div class="wst-s">România & internațional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CE FACEM (dark) ══ -->
+<section class="srvs" id="srvs">
+  <div class="srvs-in">
+    <div class="srvs-hd rv">
+      <div class="sec-lbl lbl-chev">Ce facem</div>
+      <h2 class="sec-h-dk">Serviciile noastre de înaltă calitate sunt<br>livrate eficient prin procese riguroase</h2>
+      <p class="sec-p-dk">Design, development, SEO și mentenanță — totul sub un singur acoperiș, fără să externalizăm nimic esențial din lanțul de valoare.</p>
+    </div>
+
+    <div class="srvs-g">
+      <div class="srv rv">
+        <div class="srv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="srv-h">Web Design</div>
+        <p class="srv-p">Construim interfețe vizuale personalizate care captivează și convertesc. Design system coerent, tipografie rafinată, animații cu scop.</p>
+        <a href="#contact" class="srv-more">Află mai mult →</a>
+      </div>
+      <div class="srv rv" style="transition-delay:.06s">
+        <div class="srv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+        <div class="srv-h">Hosting & Infrastructură</div>
+        <p class="srv-p">Implementăm soluții de hosting scalabile și sigure care optimizează costurile și accelerează creșterea afacerii tale.</p>
+        <a href="#contact" class="srv-more">Află mai mult →</a>
+      </div>
+      <div class="srv rv" style="transition-delay:.12s">
+        <div class="srv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="srv-h">Securitate & Mentenanță</div>
+        <p class="srv-p">Protejăm afacerea ta cu măsuri proactive — backup zilnic, monitorizare 24/7 și actualizări regulate de securitate.</p>
+        <a href="#contact" class="srv-more">Află mai mult →</a>
+      </div>
+      <div class="srv rv" style="transition-delay:.18s">
+        <div class="srv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="srv-h">Web Development</div>
+        <p class="srv-p">Folosim cele mai noi tehnologii web pentru a automatiza procese, crește productivitatea și construi produse digitale scalabile.</p>
+        <a href="#contact" class="srv-more">Află mai mult →</a>
+      </div>
+      <div class="srv rv" style="transition-delay:.24s">
+        <div class="srv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="srv-h">SEO & Marketing Digital</div>
+        <p class="srv-p">Transformăm vizibilitatea ta online în rezultate concrete — mai mult trafic organic, mai mulți clienți, mai multă creștere.</p>
+        <a href="#contact" class="srv-more">Află mai mult →</a>
+      </div>
+      <div class="srv all rv" style="transition-delay:.30s">
+        <div class="srv-ico" style="background:var(--bld);color:var(--bl);border-color:rgba(78,205,196,.2);font-size:18px;font-weight:700">→</div>
+        <div class="srv-h">Toate serviciile</div>
+        <p class="srv-p" style="color:rgba(78,205,196,.65)">Verifică lista completă a serviciilor noastre disponibile pentru proiectul tău.</p>
+        <a href="#contact" class="srv-more" style="opacity:1;transform:none">Explorează →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CUM LUCRĂM (light) ══ -->
+<section class="how" id="companie">
+  <div class="how-in">
+    <div class="how-top rv">
+      <div>
+        <div class="how-eyebrow lbl-chev">DU PROIECTUL TĂU LA NIVELUL URMĂTOR</div>
+        <h2 class="how-h">Lucrează cu noi ca</h2>
+      </div>
+      <p class="how-p">Alege modelul de colaborare potrivit afacerii și obiectivelor tale.</p>
+    </div>
+    <div class="how-g">
+      <div class="hw rv">
+        <div class="hw-h">Proiect la Cheie</div>
+        <p class="hw-p">Împuternicim organizația ta cu un produs digital complet livrat la preț fix și termen garantat — de la design la lansare, fără surprize.</p>
+        <a href="#contact" class="hw-lnk">Află mai mult →</a>
+      </div>
+      <div class="hw feat rv" style="transition-delay:.1s">
+        <span class="hw-badge">★ Recomandat</span>
+        <div class="hw-h">Abonament Lunar</div>
+        <p class="hw-p">Modelul nostru de abonament fix asigură mentenanța, securitatea și creșterea platformei tale în mod eficient, cu rezultate predictibile.</p>
+        <a href="#contact" class="hw-lnk">Află mai mult →</a>
+      </div>
+      <div class="hw rv" style="transition-delay:.2s">
+        <div class="hw-h">Consultanță & Strategie</div>
+        <p class="hw-p">Personalizăm strategii pentru a dezvolta și executa abordarea ta digitală câștigătoare, asigurând o integrare perfectă cu obiectivele de business.</p>
+        <a href="#contact" class="hw-lnk">Află mai mult →</a>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pr-sep rv">
+      <div class="pr-sep-hd">
+        <h3 class="pr-sep-h">Investiție — prețuri orientative</h3>
+        <span class="pr-sep-note">*Prețurile sunt fără TVA. Ofertă exactă după brief.</span>
+      </div>
+      <div class="pr-g">
+
+        <!-- Proiect la Cheie -->
+        <div class="pr rv">
+          <div class="pr-name">Proiect la Cheie</div>
+          <div class="pr-price">1.200€<em>+</em></div>
+          <div class="pr-from">plată unică · preț fix</div>
+          <div class="pr-divider"></div>
+          <ul class="pr-list">
+            <li>Analiză și strategie digitală</li>
+            <li>Design UI personalizat</li>
+            <li>Dezvoltare WordPress / WooCommerce</li>
+            <li>Optimizare SEO on-page</li>
+            <li>30 zile suport post-lansare</li>
+            <li class="muted">Modificări incluse în perioadă</li>
+          </ul>
+          <a href="contact.html" class="hw-lnk">Cere ofertă →</a>
+        </div>
+
+        <!-- Abonament Lunar -->
+        <div class="pr feat rv" style="transition-delay:.08s">
+          <div class="pr-badge">★ Recomandat</div>
+          <div class="pr-name">Abonament Lunar</div>
+          <div class="pr-price">199€<em>/lună</em></div>
+          <div class="pr-from">contract minim 3 luni</div>
+          <div class="pr-divider"></div>
+          <ul class="pr-list">
+            <li>Mentenanță & actualizări incluse</li>
+            <li>Backup zilnic automatizat</li>
+            <li>Monitorizare uptime 24/7</li>
+            <li>3 ore modificări/lună incluse</li>
+            <li>Raport lunar de performanță</li>
+            <li>Prioritate la suport</li>
+          </ul>
+          <a href="contact.html" class="hw-lnk">Cere ofertă →</a>
+        </div>
+
+        <!-- Consultanță -->
+        <div class="pr rv" style="transition-delay:.16s">
+          <div class="pr-name">Consultanță & Strategie</div>
+          <div class="pr-price">90€<em>/oră</em></div>
+          <div class="pr-from">sesiuni de min. 2 ore</div>
+          <div class="pr-divider"></div>
+          <ul class="pr-list">
+            <li>Audit complet website & strategie</li>
+            <li>Plan de acțiune concret</li>
+            <li>Recomandări tehnice & SEO</li>
+            <li>1 sesiune follow-up inclusă</li>
+            <li class="muted">Raport scris detaliat</li>
+            <li class="muted">Disponibil remote sau la sediu</li>
+          </ul>
+          <a href="contact.html" class="hw-lnk">Rezervă sesiune →</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SPECIALIZĂRI (Elaniin AI Products) — dark ══ -->
+<section class="spec">
+  <div class="spec-in">
+    <div class="rv">
+      <div class="spec-lbl lbl-chev">SPECIALIZĂRI WEB</div>
+      <h2 class="spec-h">Descoperă puterea<br>prezenței digitale profesionale</h2>
+    </div>
+    <div class="spec-wrap rv">
+      <!-- main card -->
+      <div class="spec-main">
+        <div class="spec-main-tag">Design & Development Integrat</div>
+        <h3 class="spec-main-h">Construim experiențe digitale complete, de la concept la lansare</h3>
+        <p class="spec-main-p">Abordăm fiecare proiect holistic — strategia, designul, codul și performanța sunt tratate ca un sistem unitar, nu ca etape separate. Rezultatul: site-uri coerente, rapide și convertitoare.</p>
+        <a href="#contact" class="spec-main-btn">Cum funcționează? →</a>
+      </div>
+      <!-- tabs grid -->
+      <div class="spec-tabs">
+        <div class="stab act rv">
+          <span class="stab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+          <div class="stab-h">UI / UX Design</div>
+          <p class="stab-p">Interfețe gândite pentru utilizator, nu pentru premii de design</p>
+        </div>
+        <div class="stab rv" style="transition-delay:.06s">
+          <span class="stab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+          <div class="stab-h">E-commerce WooCommerce</div>
+          <p class="stab-p">Magazine online scalabile cu checkout optimizat</p>
+        </div>
+        <div class="stab rv" style="transition-delay:.12s">
+          <span class="stab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
+          <div class="stab-h">Landing Pages</div>
+          <p class="stab-p">Pagini de conversie cu A/B testing integrat</p>
+        </div>
+        <div class="stab rv" style="transition-delay:.08s">
+          <span class="stab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+          <div class="stab-h">SEO On-page</div>
+          <p class="stab-p">Structură corectă și conținut semantic pentru creștere organică</p>
+        </div>
+        <div class="stab rv" style="transition-delay:.14s">
+          <span class="stab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+          <div class="stab-h">Analytics & Rapoarte</div>
+          <p class="stab-p">Date reale, decizii informate pentru afacerea ta</p>
+        </div>
+        <div class="stab rv" style="transition-delay:.20s">
+          <span class="stab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <div class="stab-h">Mentenanță Predictivă</div>
+          <p class="stab-p">Site-ul tău nu doarme — nici monitorizarea noastră</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROIECTE (light) ══ -->
+<section class="projs" id="projs">
+  <div class="projs-in">
+    <div class="projs-hd rv">
+      <div class="projs-hl">
+        <div class="sec-lbl-dk lbl-chev">Proiectele noastre</div>
+        <div class="pj-main-h">Munca noastră</div>
+      </div>
+      <a href="#" class="see-all">Explorează toate →</a>
+    </div>
+    <div class="proj-g">
+
+      <div class="pj rv">
+        <div class="pj-tabs">
+          <span class="pjt on">Discovery</span>
+          <span class="pjt on">Design</span>
+          <span class="pjt">Development</span>
+          <span class="pjt">Lansare</span>
+        </div>
+        <div class="pj-thumb th1">
+          <div class="pj-bg"></div><div class="pj-gl"></div>
+          <div class="pj-mock"><div class="pm-nav"></div><div class="pm-b"><div class="pm-r"></div><div class="pm-r"></div><div class="pm-r"></div></div></div>
+        </div>
+        <div class="pj-info">
+          <div class="pj-name">Cabinet Medical Dr. Ionescu</div>
+          <p class="pj-desc">Platforma de programări online cu dashboard admin custom și integrare plăți. Pacienții pot programa consultații 24/7.</p>
+          <a href="#" class="pj-lnk">Citește mai mult →</a>
+        </div>
+      </div>
+
+      <div class="pj rv" style="transition-delay:.1s">
+        <div class="pj-tabs">
+          <span class="pjt on">Discovery</span>
+          <span class="pjt on">Design</span>
+          <span class="pjt on">Development</span>
+          <span class="pjt">Lansare</span>
+        </div>
+        <div class="pj-thumb th2">
+          <div class="pj-bg"></div><div class="pj-gl"></div>
+          <div class="pj-mock"><div class="pm-nav"></div><div class="pm-b"><div class="pm-r"></div><div class="pm-r"></div><div class="pm-r"></div></div></div>
+        </div>
+        <div class="pj-info">
+          <div class="pj-name">Agenție Imobiliară Construct</div>
+          <p class="pj-desc">Site de prezentare cu listing proprietăți, filtre avansate și hartă interactivă cu leads CRM integrat.</p>
+          <a href="#" class="pj-lnk">Citește mai mult →</a>
+        </div>
+      </div>
+
+      <div class="pj rv" style="transition-delay:.2s">
+        <div class="pj-tabs">
+          <span class="pjt on">Discovery</span>
+          <span class="pjt on">Design</span>
+          <span class="pjt on">Development</span>
+          <span class="pjt on">Lansare</span>
+        </div>
+        <div class="pj-thumb th3">
+          <div class="pj-bg"></div><div class="pj-gl"></div>
+          <div class="pj-mock"><div class="pm-nav"></div><div class="pm-b"><div class="pm-r"></div><div class="pm-r"></div><div class="pm-r"></div></div></div>
+        </div>
+        <div class="pj-info">
+          <div class="pj-name">Brand Cosmetics Naturale</div>
+          <p class="pj-desc">Landing page cu conversie optimizată, A/B testing și integrare Klaviyo pentru automatizare email marketing.</p>
+          <a href="#" class="pj-lnk">Citește mai mult →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ BLOG (slightly darker cream) ══ -->
+<section class="blog">
+  <div class="blog-in">
+    <div class="blog-hd rv">
+      <div class="projs-hl">
+        <div class="sec-lbl-dk lbl-chev">Blog</div>
+        <div class="pj-main-h">Ultimele articole</div>
+      </div>
+      <a href="#" class="see-all">Vezi blogul →</a>
+    </div>
+    <p class="blog-intro rv">Bun venit pe blogul Lup Vision! De la conținut tehnic la strategie de marketing. Fiecare subiect bazat pe experiența noastră reală din proiecte.</p>
+    <div class="blog-g">
+      <div class="art rv">
+        <div class="art-tag">#ghid</div>
+        <div class="art-body">
+          <div class="art-h">GDPR pentru WordPress: ce trebuie să știi dincolo de bannerul de cookies</div>
+          <p class="art-p">Bannerele de cookies sunt doar o mică parte din conformitate. Cele mai mari probleme vin din formulare, plugin-uri și scripturi terțe care colectează date fără să știi.</p>
+          <div class="art-meta"><span class="art-author">Alexandru Sladaru</span><span class="sep"></span><span>15 Mar 2026</span></div>
+        </div>
+      </div>
+      <div class="art rv" style="transition-delay:.1s">
+        <div class="art-tag">#newsroom</div>
+        <div class="art-body">
+          <div class="art-h">WordPress vs Next.js: care platformă generează SEO mai bun în 2026?</div>
+          <p class="art-p">Diferența reală nu e ce CMS rankează mai bine — e vorba de control, workflow și tipul de conținut. Iată când alegi fiecare și de ce contează.</p>
+          <div class="art-meta"><span class="art-author">Alexandru Sladaru</span><span class="sep"></span><span>8 Mar 2026</span></div>
+        </div>
+      </div>
+      <div class="art rv" style="transition-delay:.2s">
+        <div class="art-tag">#newsroom</div>
+        <div class="art-body">
+          <div class="art-h">Cum funcționează un motor de prețuri în timp real pentru magazine online</div>
+          <p class="art-p">Un motor de prețuri real-time calculează și servește prețuri via API, folosind date despre stoc, campanii active și margini configurate de tine.</p>
+          <div class="art-meta"><span class="art-author">Alexandru Sladaru</span><span class="sep"></span><span>1 Mar 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta" id="contact">
+  <div class="cta-in rv">
+    <div class="cta-l">
+      <h2 class="cta-h">Ai un proiect?</h2>
+      <p class="cta-p">Developerii noștri sunt pregătiți să-ți ofere soluțiile web de cea mai înaltă calitate. Suntem gata să pornim împreună.</p>
+    </div>
+    <div class="cta-line"></div>
+    <div class="cta-big">Hai să vorbim</div>
+    <div class="cta-btn-wrap">
+      <a href="contact.html" class="btn-blue" style="padding:13px 26px;font-size:14px">Contactează-ne</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div style="max-width:1280px;margin:0 auto">
+
+    <!-- Newsletter -->
+    <div class="ft-news">
+      <div>
+        <div class="ft-nl-t">Abonează-te la newsletter</div>
+        <div class="ft-nl-s">Ultimele noutăți, articole și resurse, direct în inbox, săptămânal.</div>
+      </div>
+      <div class="ft-nl-form">
+        <input type="email" placeholder="Introdu adresa de email">
+        <button>Abonează-te</button>
+      </div>
+    </div>
+
+    <!-- Columns -->
+    <div class="ft-cols">
+      <div class="ft-brand">
+        <div class="logo"><span class="br">&lt;</span>lup vision<span class="br sl">/&gt;</span></div>
+        <p>Cu 5 ani de experiență și 47+ proiecte, ajutăm afacerile cu web design, development și strategie digitală. Hai să construim viitorul!</p>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-t">De ce Lup Vision</div>
+        <a href="#">Pentru clienți</a>
+        <a href="#">Testimoniale</a>
+        <a href="#">Ofertă gratuită</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-t">Servicii</div>
+        <a href="#">Web Design</a>
+        <a href="#">Web Development</a>
+        <a href="#">E-commerce</a>
+        <a href="#">SEO & Marketing</a>
+        <a href="#">Hosting & Mentenanță</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-t">Companie</div>
+        <a href="#">Despre noi</a>
+        <a href="#">Blog</a>
+        <a href="#">Cariere</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-t">Contact</div>
+        <a href="#">Locații</a>
+        <a href="mailto:contact@lupvision.ro">Scrie-ne</a>
+        <a href="#">FAQ</a>
+        <a href="#">Confidențialitate</a>
+        <a href="#">Termeni</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="ft-bot">
+      <p class="ft-copy">© 2026 <span class="lo"><span class="br">&lt;</span>lup vision<span class="br">/&gt;</span></span> — Limbă:</p>
+      <div class="ft-lang">
+        <button class="lang-b">🇷🇴 RO</button>
+        <button class="lang-b">🇬🇧 EN</button>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* header (always dark, no scroll color change needed) */
+
+  /* mobile nav */
+  const mb = document.getElementById('mb');
+  const nav = document.getElementById('nav');
+  mb.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    const b = mb.querySelectorAll('span');
+    if (nav.classList.contains('open')) {
+      b[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+      b[1].style.opacity   = '0';
+      b[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    } else {
+      b.forEach(x => { x.style.transform = ''; x.style.opacity = ''; });
+    }
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    mb.querySelectorAll('span').forEach(x => { x.style.transform = ''; x.style.opacity = ''; });
+  }));
+
+  /* active nav on scroll */
+  const secs = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (scrollY >= s.offsetTop - 80) cur = s.id; });
+    nav.querySelectorAll('a').forEach(a => a.classList.toggle('act', a.getAttribute('href') === '#' + cur));
+  }, {passive:true});
+
+  /* reveal observer */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('v'); ro.unobserve(e.target); }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -28px 0px'});
+  document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  /* spec tabs */
+  document.querySelectorAll('.stab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.stab').forEach(t => t.classList.remove('act'));
+      tab.classList.add('act');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
