@@ -81,8 +81,13 @@ header{
   position:fixed;top:0;left:0;right:0;
   height:70px;z-index:1000;
   padding:0 40px;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .45s ease,border-color .45s ease;
+}
+header.hdr-solid{
   background:var(--dk);
-  border-bottom:1px solid var(--bdk);
+  border-bottom-color:var(--bdk);
 }
 .hdr-in{
   max-width:1280px;width:100%;margin:0 auto;
@@ -136,30 +141,58 @@ nav a:hover,nav a.act{color:var(--cr)}
 .mbar{display:none;flex-direction:column;gap:5px;width:36px;padding:6px}
 .mbar span{display:block;height:1.5px;background:var(--gl);border-radius:2px;transition:transform .3s,opacity .3s}
 
-/* ── SEQ LAYOUT (hero + why share right column) ── */
-.seq-outer{display:grid;grid-template-columns:1fr 1fr;position:relative}
-.seq-left{min-width:0}
-.seq-hero-blk{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:110px 40px 80px;
-  background:var(--dk);
-  border-bottom:1px solid var(--bdk);
-  position:relative;overflow:hidden;
-}
-.seq-why-blk{
-  background:var(--dk2);
-  border-bottom:1px solid var(--bdk);
-  padding:100px 40px;
-}
-.seq-right{position:relative;background:var(--dk)}
+/* ── SEQ LAYOUT: full-width cinematic background ── */
+.seq-outer{position:relative;z-index:0}
+
+/* Background layer: absolute, full-size, canvas + scrim */
+.seq-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
 .seq-sticky{
   position:sticky;
-  top:70px;
-  height:calc(100vh - 70px);
+  top:0;
+  height:100vh;
+  width:100%;
   overflow:hidden;
 }
 #seq-canvas{display:block;width:100%;height:100%}
+
+/* Minimal dark scrim — enough for text legibility, not enough to kill the image */
+.seq-scrim{
+  position:absolute;inset:0;
+  background:rgba(4,4,0,0.38);
+  pointer-events:none;z-index:1;
+}
+
+/* Bottom dissolve — seq zone bleeds cleanly into the dark next section */
+.seq-outer::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;height:220px;
+  background:linear-gradient(to bottom,transparent 0%,rgba(4,4,0,0.6) 55%,#040400 100%);
+  z-index:3;pointer-events:none;
+}
+
+/* Content layer: above canvas + scrim, clipped to header bottom so text never bleeds into nav */
+.seq-content{
+  position:relative;z-index:2;
+  clip-path:inset(70px 0 0 0);
+}
+.seq-hero-blk{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:110px 40px 80px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  position:relative;overflow:hidden;
+}
+.seq-why-blk{
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:100px 40px;
+}
+
+/* Hero content centered */
+.hero-l{max-width:660px;width:100%;text-align:center}
+.hero-sub{margin-left:auto;margin-right:auto}
+.hero-btns{justify-content:center}
+.hero-icons{justify-content:center}
 
 /* social chips row */
 .hero-chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:36px;opacity:0;animation:fu .7s var(--expo) .2s forwards}
@@ -683,8 +716,6 @@ footer{background:var(--dk);padding:0 40px}
   header{padding:0 24px}
   .srvs,.how,.spec,.projs,.blog,.cta{padding:72px 24px}
   footer{padding:0 24px}
-  .seq-outer{grid-template-columns:1fr}
-  .seq-right{display:none}
   .seq-hero-blk{padding:80px 24px 72px}
   .seq-why-blk{padding:72px 24px}
   .why-stats{grid-template-columns:repeat(2,1fr)}
@@ -752,10 +783,18 @@ footer{background:var(--dk);padding:0 40px}
 </header>
 
 <!-- ══ SCROLL SEQUENCE: HERO + WHY ══ -->
-<div class="seq-outer">
+<div class="seq-outer" id="seq-trigger">
 
-  <!-- Left column: hero + why content stacked -->
-  <div class="seq-left">
+  <!-- Cinematic background: full-width scroll-driven image sequence -->
+  <div class="seq-bg">
+    <div class="seq-sticky">
+      <canvas id="seq-canvas"></canvas>
+    </div>
+    <div class="seq-scrim"></div>
+  </div>
+
+  <!-- Content layer -->
+  <div class="seq-content">
 
     <!-- Hero block -->
     <div class="seq-hero-blk" id="home">
@@ -816,14 +855,7 @@ footer{background:var(--dk);padding:0 40px}
       </div>
     </div>
 
-  </div><!-- /.seq-left -->
-
-  <!-- Right column: sticky canvas for scroll-driven sequence -->
-  <div class="seq-right">
-    <div class="seq-sticky">
-      <canvas id="seq-canvas"></canvas>
-    </div>
-  </div>
+  </div><!-- /.seq-content -->
 
 </div><!-- /.seq-outer -->
 
@@ -1362,14 +1394,28 @@ footer{background:var(--dk);padding:0 40px}
   function initST(){
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
+
+    /* Scroll-driven image sequence */
     ScrollTrigger.create({
-      trigger: '.seq-outer',
+      trigger: '#seq-trigger',
       start: 'top top+=70',
       end: 'bottom bottom',
       scrub: true,
       onUpdate(self){
         scheduleRender(Math.round(self.progress * (TOTAL - 1)));
       }
+    });
+
+    /* Header: transparent over seq zone, solid after */
+    const hdr = document.getElementById('hdr');
+    ScrollTrigger.create({
+      trigger: '#seq-trigger',
+      start: 'top top',
+      end: 'bottom top',
+      onEnter:      () => hdr.classList.remove('hdr-solid'),
+      onLeave:      () => hdr.classList.add('hdr-solid'),
+      onEnterBack:  () => hdr.classList.remove('hdr-solid'),
+      onLeaveBack:  () => hdr.classList.add('hdr-solid'),
     });
   }
 
