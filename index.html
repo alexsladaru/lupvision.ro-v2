@@ -24,9 +24,9 @@
   --ywd:  rgba(242,201,76,0.12);
   --or:   #F2994A;
   --cr:   #FAF4EC;
-  --cr2:  #EDE7DF;
-  --gl:   #D8D0C8;
-  --gd:   #B0A89E;
+  --cr2:  #F2EDE7;
+  --gl:   #E8E0D8;
+  --gd:   #C8C0B8;
   --bdk:  rgba(255,255,255,0.12);
   --expo: cubic-bezier(0.16,1,0.3,1);
   --btn-mt:  #1F9590;
@@ -919,12 +919,12 @@ nav a:hover,nav a.act{color:var(--cr)}
 .fq-q:hover{color:var(--cr)}
 .fq-q[aria-expanded="true"]{color:var(--cr)}
 .fq-num{
-  font-family:'Cascadia Code',monospace;
-  font-size:.7rem;font-weight:400;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem;font-weight:700;
   color:var(--bl);opacity:.55;
   min-width:72px;flex-shrink:0;text-align:center;
   transition:opacity .2s ease;
-  line-height:1;padding-top:1px;
+  line-height:1;
 }
 .fq-q:hover .fq-num,.fq-q[aria-expanded="true"] .fq-num{opacity:1}
 .fq-txt{flex:1}
@@ -991,8 +991,24 @@ nav a:hover,nav a.act{color:var(--cr)}
 
 /* ── FOOTER ── */
 footer{background:var(--dk);padding:0 40px}
+.ft-inner{max-width:1280px;margin:0 auto;display:flex;align-items:stretch}
+.ft-vert{
+  flex-shrink:0;width:72px;
+  margin-right:72px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ft-vert-logo{
+  font-family:'Cascadia Code','Cascadia Mono',monospace;
+  font-size:3.2rem;font-weight:500;
+  color:#6B6560;letter-spacing:.04em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  white-space:nowrap;
+}
+.ft-main{flex:1;min-width:0}
 .ft-news{
-  padding:52px 0;border-bottom:1px solid var(--bdk);
+  padding:52px 24px 52px 24px;border-bottom:1px solid var(--bdk);
+  margin-left:-24px;
   display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
 }
 .ft-nl-t{font-size:1rem;font-weight:700;color:var(--cr);margin-bottom:6px;letter-spacing:-.02em}
@@ -1020,11 +1036,10 @@ footer{background:var(--dk);padding:0 40px}
 .ft-nl-form button:hover::after{border-color:rgba(255,255,255,0.9);transform:translate(8px,8px)}
 
 .ft-cols{
-  padding:52px 0;border-bottom:1px solid var(--bdk);
-  display:grid;grid-template-columns:260px repeat(4,1fr);gap:40px;
+  padding:52px 24px 52px 24px;border-bottom:1px solid var(--bdk);
+  margin-left:-24px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;column-gap:clamp(24px,4vw,64px);
 }
-.ft-brand .logo{margin-bottom:16px}
-.ft-brand p{font-size:.82rem;font-weight:400;color:var(--gd);line-height:1.75;max-width:220px}
 .ft-col-t{
   font-size:11px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--gd);margin-bottom:18px;
@@ -1033,11 +1048,10 @@ footer{background:var(--dk);padding:0 40px}
 .ft-col a:hover{color:var(--cr)}
 
 .ft-bot{
-  padding:24px 0;
+  padding:24px 24px 24px 24px;
+  margin-left:-24px;
   display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
 }
-.ft-bot-logo{font-size:15px}
-.ft-bot-l{display:flex;align-items:center;gap:16px}
 .ft-copy{font-size:12px;color:var(--gd);font-weight:400}
 .ft-lang{display:flex;align-items:center;gap:28px}
 .ft-lang-lbl{font-size:12px;color:var(--gd);font-weight:400}
@@ -1084,8 +1098,8 @@ footer{background:var(--dk);padding:0 40px}
   .proj-g{grid-template-columns:repeat(2,1fr)}
   .blog-g{grid-template-columns:1fr;gap:0}
   .cta-row{flex-direction:column;align-items:flex-start}
+  .ft-vert{display:none}
   .ft-cols{grid-template-columns:1fr 1fr;gap:32px}
-  .ft-brand{grid-column:1/-1}
   .ft-news{flex-direction:column;align-items:flex-start}
   .hero-icons{flex-wrap:wrap}
 }
@@ -1902,70 +1916,72 @@ footer{background:var(--dk);padding:0 40px}
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <div style="max-width:1280px;margin:0 auto">
+  <div class="ft-inner">
 
-    <!-- Columns -->
-    <div class="ft-cols">
-      <div class="ft-brand">
-        <div class="logo">&lt;lup vision&gt;</div>
-        <p>Cu 5 ani de experiență și 47+ proiecte, ajutăm afacerile cu web design, development și strategie digitală. Hai să construim viitorul!</p>
-      </div>
-      <div class="ft-col">
-        <div class="ft-col-t">De ce Lup Vision</div>
-        <a href="#">Pentru clienți</a>
-        <a href="#">Testimoniale</a>
-        <a href="#">Ofertă gratuită</a>
-      </div>
-      <div class="ft-col">
-        <div class="ft-col-t">Servicii</div>
-        <a href="#">Web Design</a>
-        <a href="#">Web Development</a>
-        <a href="#">E-commerce</a>
-        <a href="#">SEO & Marketing</a>
-        <a href="#">Hosting & Mentenanță</a>
-      </div>
-      <div class="ft-col">
-        <div class="ft-col-t">Companie</div>
-        <a href="#">Despre noi</a>
-        <a href="#">Blog</a>
-        <a href="#">Cariere</a>
-      </div>
-      <div class="ft-col">
-        <div class="ft-col-t">Contact</div>
-        <a href="#">Locații</a>
-        <a href="mailto:contact@lupvision.ro">Scrie-ne</a>
-        <a href="#">FAQ</a>
-        <a href="#">Confidențialitate</a>
-        <a href="#">Termeni</a>
-        <a href="#">Cookies</a>
-      </div>
+    <!-- Coloana verticală logo -->
+    <div class="ft-vert">
+      <span class="ft-vert-logo">&lt;lup vision&gt;</span>
     </div>
 
-    <!-- Newsletter -->
-    <div class="ft-news">
-      <div>
-        <div class="ft-nl-t">Abonează-te la newsletter</div>
-        <div class="ft-nl-s">Ultimele noutăți, articole și resurse, direct în inbox, săptămânal.</div>
-      </div>
-      <div class="ft-nl-form">
-        <input type="email" placeholder="Introdu adresa de email">
-        <button>Abonează-te</button>
-      </div>
-    </div>
+    <!-- Conținut principal -->
+    <div class="ft-main">
 
-    <!-- Bottom bar -->
-    <div class="ft-bot">
-      <div class="ft-bot-l">
-        <a href="/" class="logo ft-bot-logo">&lt;lup vision&gt;</a>
-        <p class="ft-copy">2026 © Toate drepturile sunt rezervate.</p>
+      <!-- Rând 1: coloane linkuri -->
+      <div class="ft-cols">
+        <div class="ft-col">
+          <div class="ft-col-t">De ce Lup Vision</div>
+          <a href="#">Pentru clienți</a>
+          <a href="#">Testimoniale</a>
+          <a href="#">Ofertă gratuită</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-t">Servicii</div>
+          <a href="#">Web Design</a>
+          <a href="#">Web Development</a>
+          <a href="#">E-commerce</a>
+          <a href="#">SEO & Marketing</a>
+          <a href="#">Hosting & Mentenanță</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-t">Companie</div>
+          <a href="#">Despre noi</a>
+          <a href="#">Blog</a>
+          <a href="#">Cariere</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-t">Contact</div>
+          <a href="#">Locații</a>
+          <a href="mailto:contact@lupvision.ro">Scrie-ne</a>
+          <a href="#">FAQ</a>
+          <a href="#">Confidențialitate</a>
+          <a href="#">Termeni</a>
+          <a href="#">Cookies</a>
+        </div>
       </div>
-      <div class="ft-lang">
-        <span class="ft-lang-lbl">Limbă:</span>
-        <button class="lang-b">🇷🇴 RO</button>
-        <button class="lang-b">🇬🇧 EN</button>
-      </div>
-    </div>
 
+      <!-- Rând 2: newsletter -->
+      <div class="ft-news">
+        <div>
+          <div class="ft-nl-t">Abonează-te la newsletter</div>
+          <div class="ft-nl-s">Ultimele noutăți, articole și resurse, direct în inbox, săptămânal.</div>
+        </div>
+        <div class="ft-nl-form">
+          <input type="email" placeholder="Introdu adresa de email">
+          <button>Abonează-te</button>
+        </div>
+      </div>
+
+      <!-- Rând 3: copyright -->
+      <div class="ft-bot">
+        <p class="ft-copy">© 2026 VISIONLAND 24 SRL. Toate drepturile rezervate.</p>
+        <div class="ft-lang">
+          <span class="ft-lang-lbl">Limbă:</span>
+          <button class="lang-b">🇷🇴 RO</button>
+          <button class="lang-b">🇬🇧 EN</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </footer>
 
