@@ -92,7 +92,7 @@ img{display:block;max-width:100%}
 /* State 0 — scroll=0 : fully transparent, no blur */
 header{
   position:fixed;top:0;left:0;right:0;
-  height:70px;z-index:1000;
+  height:74px;z-index:1000;
   padding:0 40px;
   background:transparent;
   border-bottom:1px solid transparent;
@@ -116,7 +116,7 @@ header::before{
 /* Safari: disable backdrop-filter during canvas animation — too expensive */
 @supports (-webkit-hyphens:none){
   header::before{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,4,0,0.72)}
-  nav::before{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,4,0,0.55)}
+  .nav-isl{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,4,0,0.62)}
 }
 /* State 1 — scrolled, still in seq zone : blurred glass */
 header.hdr-blur::before{
@@ -144,11 +144,89 @@ header.hdr-solid::before{
 }
 
 nav{
-  display:flex;align-items:center;gap:28px;
+  display:flex;align-items:center;
   position:absolute;left:50%;transform:translateX(-50%);
 }
-nav a{font-size:13.5px;font-weight:500;color:var(--cr2);transition:color .2s}
-nav a:hover,nav a.act{color:var(--cr)}
+/* Insula nav — wrapper cu island + brackets */
+.nav-isl{
+  display:flex;align-items:center;gap:28px;
+  position:relative;
+  padding:15px 34px;
+  backdrop-filter:blur(20px) saturate(1.1);
+  -webkit-backdrop-filter:blur(20px) saturate(1.1);
+  background:rgba(4,4,0,0.46);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:opacity .5s cubic-bezier(0.16,1,0.3,1),background .5s,border-color .5s;
+}
+/* Bracket top-left */
+.nav-isl::before{
+  content:'';position:absolute;
+  top:3px;left:3px;width:13px;height:13px;
+  border-top:1.5px solid rgba(255,255,255,0.38);
+  border-left:1.5px solid rgba(255,255,255,0.38);
+  transition:transform .38s var(--expo),border-color .25s,opacity .5s cubic-bezier(0.16,1,0.3,1);
+}
+/* Bracket bottom-right */
+.nav-isl::after{
+  content:'';position:absolute;
+  bottom:3px;right:3px;width:13px;height:13px;
+  border-bottom:1.5px solid rgba(255,255,255,0.38);
+  border-right:1.5px solid rgba(255,255,255,0.38);
+  transition:transform .38s var(--expo),border-color .25s,opacity .5s cubic-bezier(0.16,1,0.3,1);
+}
+/* Hover — brackets ies în afară */
+.nav-isl:has(a:hover)::before{transform:translate(-8px,-8px);border-color:rgba(255,255,255,0.7)}
+.nav-isl:has(a:hover)::after{transform:translate(8px,8px);border-color:rgba(255,255,255,0.7)}
+/* Nav island border glow — reuses @property --hi-angle + @keyframes hi-border-angle */
+.nav-isl-clip{
+  position:absolute;inset:-1px;
+  overflow:hidden;pointer-events:none;
+}
+.nav-isl-spin{
+  position:absolute;inset:0;
+  mask-image:conic-gradient(
+    from var(--hi-angle) at center,
+    black 0deg, black 18deg,
+    transparent 36deg, transparent 324deg,
+    black 342deg, black 360deg
+  );
+  -webkit-mask-image:conic-gradient(
+    from var(--hi-angle) at center,
+    black 0deg, black 18deg,
+    transparent 36deg, transparent 324deg,
+    black 342deg, black 360deg
+  );
+  animation:hi-border-angle 9s linear infinite;
+  pointer-events:none;
+}
+.nav-isl-spin::before{
+  content:'';position:absolute;inset:0;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.45),
+    inset 0 0 2px 0 rgba(255,255,255,0.22),
+    inset 0 0 6px 0 rgba(255,255,255,0.1),
+    inset 0 0 14px 0 rgba(255,255,255,0.05);
+}
+/* Insula dispare la scroll — doar vizualul, nu linkurile */
+header.hdr-blur .nav-isl,header.hdr-solid .nav-isl{
+  background:transparent;
+  border-color:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+header.hdr-blur .nav-isl::before,header.hdr-blur .nav-isl::after,
+header.hdr-solid .nav-isl::before,header.hdr-solid .nav-isl::after{
+  opacity:0;
+}
+header.hdr-blur .nav-isl-spin,header.hdr-solid .nav-isl-spin{opacity:0}
+nav a{
+  font-size:13.5px;font-weight:500;color:var(--cr2);
+  text-decoration:none;
+  background-image:linear-gradient(#fff,#fff);
+  background-size:0% 1px;background-repeat:no-repeat;background-position:left bottom;
+  transition:color .2s,background-size .25s ease;
+}
+nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 
 .hdr-r{display:flex;align-items:center;gap:10px}
 .hdr-pill{
@@ -229,31 +307,81 @@ nav a:hover,nav a.act{color:var(--cr)}
    Corner bracket marks (top-left + bottom-right) matching the button system.
    Sits inside .seq-hero-blk; .hero-l is z-index:1 above it.
 */
-.hero-island{
+@property --hi-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+.hero-island-wrap{
   position:absolute;
   left:50%;top:52%;
   transform:translate(-50%,-50%);
   width:min(780px,94vw);
   height:min(560px,76vh);
   z-index:0;pointer-events:none;
+}
+.hero-island{
+  position:absolute;inset:0;
+  pointer-events:none;
   backdrop-filter:blur(20px) saturate(1.1);
   -webkit-backdrop-filter:blur(20px) saturate(1.1);
   background:rgba(4,4,0,0.46);
   border:1px solid rgba(255,255,255,0.08);
 }
+.hero-island-clip{
+  position:absolute;inset:0;
+  overflow:hidden;pointer-events:none;
+}
+.hi-border-spin{
+  position:absolute;inset:0;
+  mask-image:conic-gradient(
+    from var(--hi-angle) at center,
+    black 0deg, black 18deg,
+    transparent 36deg, transparent 324deg,
+    black 342deg, black 360deg
+  );
+  -webkit-mask-image:conic-gradient(
+    from var(--hi-angle) at center,
+    black 0deg, black 18deg,
+    transparent 36deg, transparent 324deg,
+    black 342deg, black 360deg
+  );
+  animation:hi-border-angle 9s linear infinite;
+  pointer-events:none;
+}
+.hi-border-spin::before{
+  content:'';position:absolute;inset:0;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,0.45),
+    inset 0 0 2px 0 rgba(255,255,255,0.22),
+    inset 0 0 6px 0 rgba(255,255,255,0.1),
+    inset 0 0 14px 0 rgba(255,255,255,0.05);
+}
+@keyframes hi-border-angle{
+  to{--hi-angle:360deg}
+}
+/* Brackets ies afară la hover pe butoane sau servicii */
+.seq-hero-blk:has(.btn-blue:hover,.btn-gh-dk:hover,.hico:hover) .hero-island::before{
+  transform:translate(-24px,-24px);border-color:rgba(255,255,255,0.7);
+}
+.seq-hero-blk:has(.btn-blue:hover,.btn-gh-dk:hover,.hico:hover) .hero-island::after{
+  transform:translate(24px,24px);border-color:rgba(255,255,255,0.7);
+}
 /* top-left L bracket */
 .hero-island::before{
   content:'';position:absolute;
-  top:12px;left:12px;width:22px;height:22px;
+  top:11px;left:11px;width:22px;height:22px;
   border-top:1.5px solid rgba(255,255,255,0.38);
   border-left:1.5px solid rgba(255,255,255,0.38);
+  transition:transform .38s var(--expo),border-color .25s;
 }
 /* bottom-right L bracket */
 .hero-island::after{
   content:'';position:absolute;
-  bottom:12px;right:12px;width:22px;height:22px;
+  bottom:11px;right:11px;width:22px;height:22px;
   border-bottom:1.5px solid rgba(255,255,255,0.38);
   border-right:1.5px solid rgba(255,255,255,0.38);
+  transition:transform .38s var(--expo),border-color .25s;
 }
 
 .seq-why-blk{
@@ -292,14 +420,33 @@ nav a:hover,nav a.act{color:var(--cr)}
   font-weight:800;line-height:1.12;
   letter-spacing:-.035em;
   color:var(--cr);
-  margin-bottom:22px;
+  margin-bottom:52px;
 }
 .hero-h1 .ln{overflow:hidden;display:block}
 .hero-h1 .ln span{display:block;opacity:0;transform:translateY(106%);animation:su .9s var(--expo) forwards}
 .hero-h1 .ln:nth-child(1) span{animation-delay:.28s}
 .hero-h1 .ln:nth-child(2) span{animation-delay:.38s}
 .hero-h1 .ln:nth-child(3) span{animation-delay:.48s}
-.hero-h1 .acc{color:var(--bl)}
+.hero-h1 .hero-h1-light{font-weight:600}
+.hero-h1 .acc{
+  background-image:
+    linear-gradient(110deg,
+      transparent 0%,transparent 35%,
+      rgba(255,255,255,0.65) 47%,#fff 50%,rgba(255,255,255,0.65) 53%,
+      transparent 65%,transparent 100%
+    ),
+    linear-gradient(90deg, var(--bl) 0%, var(--bl) 44%, var(--cr) 52%, var(--cr) 100%);
+  background-size:220% auto, 100% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:var(--bl);
+  animation:hero-acc-shine 2.4s linear infinite;
+}
+@keyframes hero-acc-shine{
+  from{background-position:150% center, 0% 0%}
+  to{background-position:-50% center, 0% 0%}
+}
 
 .hero-sub{
   font-size:1.05rem;font-weight:400;
@@ -309,8 +456,8 @@ nav a:hover,nav a.act{color:var(--cr)}
 }
 
 .hero-btns{
-  display:flex;align-items:center;gap:28px;
-  margin-bottom:52px;
+  display:flex;align-items:center;gap:36px;
+  margin-bottom:72px;
   opacity:0;animation:fu .7s var(--expo) .72s forwards;
 }
 .btn-bl-lg{
@@ -355,6 +502,7 @@ nav a:hover,nav a.act{color:var(--cr)}
   border-left:1px solid var(--bdk);
   font-size:11px;font-weight:500;color:var(--gl);
   letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;
   --gx:50%;--gy:50%;--gi:0;
   transition:background .2s,color .2s;
 }
@@ -372,10 +520,9 @@ nav a:hover,nav a.act{color:var(--cr)}
   -webkit-mask-composite:xor;
   mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   mask-composite:exclude;
-  padding:1px 1px 0 1px;pointer-events:none;z-index:1;
+  padding:1px 0 0 1px;pointer-events:none;z-index:1;
 }
 .hico:first-child::after{padding-left:0}
-.hico:last-child::after{padding-right:0}
 .hico .ico{display:flex;align-items:center;justify-content:center;width:22px;height:22px}
 .hico .ico svg{width:100%;height:100%}
 
@@ -398,29 +545,41 @@ nav a:hover,nav a.act{color:var(--cr)}
 /* top-left bracket */
 .whi-l::before,.whi-r::before{
   content:'';position:absolute;
-  top:12px;left:12px;width:22px;height:22px;
+  top:7px;left:7px;width:22px;height:22px;
   border-top:1.5px solid rgba(255,255,255,0.38);
   border-left:1.5px solid rgba(255,255,255,0.38);
+  transition:transform .38s var(--expo),border-color .25s;
 }
 /* bottom-right bracket */
 .whi-l::after,.whi-r::after{
   content:'';position:absolute;
-  bottom:12px;right:12px;width:22px;height:22px;
+  bottom:7px;right:7px;width:22px;height:22px;
   border-bottom:1.5px solid rgba(255,255,255,0.38);
   border-right:1.5px solid rgba(255,255,255,0.38);
+  transition:transform .38s var(--expo),border-color .25s;
 }
+/* whi-r has no padding — brackets must render above grid cells */
+.whi-r::before,.whi-r::after{z-index:2}
+/* Brackets ies afară la hover pe Află mai mult */
+.whi-l:has(.why-more:hover)::before{transform:translate(-20px,-20px);border-color:rgba(255,255,255,0.7)}
+.whi-l:has(.why-more:hover)::after{transform:translate(20px,20px);border-color:rgba(255,255,255,0.7)}
+/* Brackets ies afară la hover oriunde în .whi-r */
+.whi-r:hover::before{transform:translate(-20px,-20px);border-color:rgba(255,255,255,0.7)}
+.whi-r:hover::after{transform:translate(20px,20px);border-color:rgba(255,255,255,0.7)}
 .why-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bl);margin-bottom:18px;display:inline-flex}
 .why-h{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.22;color:var(--cr);margin-bottom:18px}
 .why-p{font-size:.93rem;font-weight:400;color:var(--gl);line-height:1.82;max-width:460px}
 .why-more{
   display:inline-flex;align-items:center;gap:5px;
   font-size:13px;font-weight:600;color:var(--bl);
-  margin-top:20px;text-decoration:none;
+  margin-top:20px;text-decoration:none;position:relative;
   background-image:linear-gradient(currentColor,currentColor);
   background-size:0% 1px;background-repeat:no-repeat;background-position:left bottom;
   transition:background-size .25s ease;
 }
+.why-more svg{transition:transform .25s var(--expo)}
 .why-more:hover{background-size:100% 1px;}
+.why-more:hover svg{transform:translate(2px,-2px)}
 .why-right{max-width:340px;font-size:.9rem;font-weight:400;color:var(--gl);line-height:1.8;padding-top:40px}
 
 /* 4 stats row */
@@ -487,6 +646,7 @@ nav a:hover,nav a.act{color:var(--cr)}
   position:relative;
   border-right:1px solid var(--bdk);
   --gx:50%;--gy:50%;--gi:0;
+  cursor:pointer;
 }
 .srv:nth-child(3n){border-right:none}
 .srv{border-top:1px solid var(--bdk)}
@@ -519,8 +679,10 @@ nav a:hover,nav a.act{color:var(--cr)}
   margin-bottom:26px;
   transition:background .15s,filter .15s;
 }
-.srv-ico::before{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;border-top:1px solid rgba(78,205,196,0.45);border-left:1px solid rgba(78,205,196,0.45)}
-.srv-ico::after{content:'';position:absolute;bottom:3px;right:3px;width:7px;height:7px;border-bottom:1px solid rgba(78,205,196,0.45);border-right:1px solid rgba(78,205,196,0.45)}
+.srv-ico::before{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;border-top:1px solid rgba(78,205,196,0.45);border-left:1px solid rgba(78,205,196,0.45);transition:transform .38s var(--expo),border-color .25s}
+.srv-ico::after{content:'';position:absolute;bottom:3px;right:3px;width:7px;height:7px;border-bottom:1px solid rgba(78,205,196,0.45);border-right:1px solid rgba(78,205,196,0.45);transition:transform .38s var(--expo),border-color .25s}
+.srv:hover .srv-ico::before{transform:translate(-10px,-10px);border-color:rgba(78,205,196,0.9)}
+.srv:hover .srv-ico::after{transform:translate(10px,10px);border-color:rgba(78,205,196,0.9)}
 .srv-ico svg{color:var(--mt);stroke:var(--mt)}
 .srv-h{font-size:1.05rem;font-weight:700;color:var(--cr);margin-bottom:10px;letter-spacing:-.02em;transition:color .15s ease}
 .srv-p{font-size:.85rem;font-weight:400;color:var(--gl);line-height:1.75}
@@ -532,35 +694,32 @@ nav a:hover,nav a.act{color:var(--cr)}
   background-size:0% 1px;background-repeat:no-repeat;background-position:left bottom;
   transition:background-size .25s ease;
 }
+.srv-more svg{transition:transform .25s var(--expo)}
 .srv-more:hover{background-size:100% 1px;}
-.srv-more::before{content:'';position:absolute;inset:0;cursor:pointer}
+.srv-more:hover svg{transform:translate(2px,-2px)}
 
 /* ── TECH STRIP ── */
 .ts{background:var(--dk);border-top:1px solid var(--bdk);border-bottom:1px solid var(--bdk);padding:64px 0 34px;overflow:hidden}
 .ts-hd{max-width:1280px;margin:0 auto;padding:0 40px 40px;}
 .ts-wrap{
-  -webkit-mask:linear-gradient(to right,transparent 0,#000 140px,#000 calc(100% - 140px),transparent 100%);
-  mask:linear-gradient(to right,transparent 0,#000 140px,#000 calc(100% - 140px),transparent 100%);
+  --ts-fl:140px;--ts-fr:140px;
+  -webkit-mask:linear-gradient(to right,transparent 0,#000 var(--ts-fl),#000 calc(100% - var(--ts-fr)),transparent 100%);
+  mask:linear-gradient(to right,transparent 0,#000 var(--ts-fl),#000 calc(100% - var(--ts-fr)),transparent 100%);
 }
-.ts-track{display:flex;align-items:center;width:max-content;animation:ts-go 48s linear infinite}
-@keyframes ts-go{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ts-track{display:flex;align-items:center;width:max-content}
 .ts-item{
   display:inline-flex;align-items:center;gap:13px;
   padding:0 38px;
   font-family:'Cascadia Code','Cascadia Mono',monospace;
   font-size:15px;font-weight:400;letter-spacing:.01em;
   color:var(--cr);white-space:nowrap;
-  transition:color .2s ease;cursor:default;
+  pointer-events:none;
 }
-.ts-item:hover{color:var(--cr)}
 .ts-logo{
   width:32px;height:32px;flex-shrink:0;
   object-fit:contain;
   opacity:.75;
-  transition:opacity .2s ease,transform .2s ease;
-  filter:drop-shadow(0 0 0 transparent);
 }
-.ts-item:hover .ts-logo{opacity:1;transform:scale(1.08)}
 .ts-div{width:1px;height:20px;background:rgba(255,255,255,0.1);flex-shrink:0}
 
 /* ── WORK WITH US ── */
@@ -618,8 +777,8 @@ nav a:hover,nav a.act{color:var(--cr)}
 .pr-divider{height:1px;background:var(--bdk);margin-bottom:24px}
 .pr-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:32px}
 .pr-list li{font-size:.82rem;color:var(--cr2);display:flex;align-items:flex-start;gap:9px;line-height:1.55}
-.pr-list li::before{content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--mt);opacity:.7;margin-top:5px}
-.pr-list li.muted::before{background:var(--gl)}
+.pr-list li::before{content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--bl);opacity:.85;margin-top:5px}
+.pr-list li.muted::before{background:var(--bl);opacity:.85}
 .pr-list li.muted{color:var(--gl)}
 @media(max-width:1099px){.pr-g{grid-template-columns:1fr}}
 @media(max-width:767px){.pr-sep{margin-top:40px;padding-top:40px}.pr{padding:32px 24px}}
@@ -844,11 +1003,11 @@ nav a:hover,nav a.act{color:var(--cr)}
 /* ── BLOG ── */
 .blog{background:var(--dk);border-bottom:1px solid var(--bdk);padding:100px 40px}
 .blog-in{max-width:1280px;margin:0 auto}
-.blog-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:12px;gap:20px;flex-wrap:wrap}
+.blog-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;gap:20px;flex-wrap:wrap}
 .blog-intro{
   font-size:.9rem;font-weight:400;color:var(--gl);
   max-width:440px;line-height:1.8;
-  margin-bottom:40px;margin-top:12px;
+  margin-bottom:40px;margin-top:0;
 }
 .blog-g{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 .art{
@@ -896,7 +1055,9 @@ nav a:hover,nav a.act{color:var(--cr)}
   background-size:0% 1px;background-repeat:no-repeat;background-position:left bottom;
   transition:background-size .25s ease;
 }
+.art-more svg{transition:transform .25s var(--expo)}
 .art-more:hover{background-size:100% 1px;}
+.art-more:hover svg{transform:translate(2px,-2px)}
 .art-more::before{content:'';position:absolute;inset:0;cursor:pointer}
 
 /* ── FAQ ── */
@@ -906,7 +1067,24 @@ nav a:hover,nav a.act{color:var(--cr)}
 .fq-h{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.22;color:var(--cr);margin-bottom:12px}
 .fq-sub{font-size:.9rem;font-weight:400;color:var(--gl);line-height:1.8}
 .fq-list{list-style:none;border-top:1px solid var(--bdk)}
-.fq-item{border-bottom:1px solid var(--bdk)}
+.fq-item{border-bottom:1px solid var(--bdk);position:relative;--gx:50%;--gy:50%;--gi:0}
+/* border spotlight glow — MagicBento */
+.fq-item::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(
+    200px circle at var(--gx) var(--gy),
+    rgba(255,255,255,calc(var(--gi)*0.75)) 0%,
+    rgba(255,255,255,calc(var(--gi)*0.3)) 40%,
+    transparent 65%
+  );
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+  padding:0 0 1px 0;
+  pointer-events:none;z-index:1;
+}
+.fq-list .fq-item:first-child::after{padding:1px 0 1px 0}
 .fq-q{
   width:100%;display:flex;align-items:center;gap:20px;
   padding:22px 32px 22px 0;
@@ -953,14 +1131,18 @@ nav a:hover,nav a.act{color:var(--cr)}
 }
 
 /* ── CTA ── */
-.cta{background:var(--dk);border-top:1px solid var(--bdk);border-bottom:1px solid var(--bdk);padding:56px 40px}
+.cta{
+  background:var(--dk);
+  border-top:1px solid var(--bdk);border-bottom:1px solid var(--bdk);
+  padding:56px 40px;
+}
 .cta-in{
   max-width:1280px;margin:0 auto;
   display:flex;align-items:center;gap:40px;
 }
 .cta-l{flex:0 0 340px}
-.cta-h{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--cr);margin-bottom:10px;line-height:1.3}
-.cta-p{font-size:.85rem;font-weight:400;color:var(--gl);line-height:1.75}
+.cta-h{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--cr);margin:0 0 10px;line-height:1.3}
+.cta-p{font-size:.85rem;font-weight:400;color:var(--gl);line-height:1.75;margin:0}
 .cta-line{flex:1;height:1px;background:var(--bdk)}
 .cta-big{
   flex-shrink:0;
@@ -1001,6 +1183,7 @@ footer{background:var(--dk);padding:0 40px}
   font-family:'Cascadia Code','Cascadia Mono',monospace;
   font-size:3.2rem;font-weight:500;
   color:#6B6560;letter-spacing:.04em;
+  text-decoration:none;
   writing-mode:vertical-rl;
   transform:rotate(180deg);
   white-space:nowrap;
@@ -1069,8 +1252,40 @@ footer{background:var(--dk);padding:0 40px}
 .lang-b:hover::after{border-color:rgba(255,255,255,0.7);transform:translate(8px,8px)}
 
 /* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--expo),transform .7s var(--expo)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .72s var(--expo),transform .72s var(--expo)}
 .rv.v{opacity:1;transform:none}
+/* Linkuri cu rv care au hover background-size — restaurează tranziția */
+.why-more.rv{transition:opacity .72s var(--expo),transform .72s var(--expo),background-size .25s ease}
+
+/* Labels — snappy, minimal lift */
+.sec-lbl.rv,.lbl-chev.rv{transform:translateY(8px);transition-duration:.44s,.44s}
+
+/* Cards */
+.srv.rv,.wst.rv,.pr.rv,.pj.rv,.art.rv,.stab.rv{
+  transform:translateY(14px);
+  transition:opacity .82s var(--expo),transform .82s var(--expo);
+}
+
+/* Large wrappers — more authority */
+.srvs-hd.rv,.how-top.rv,.blog-hd.rv,.fq-hd.rv,.cta-in.rv{
+  transform:translateY(28px);
+  transition-duration:.88s,.88s;
+}
+
+/* FAQ items — slide lateral de la stânga + stagger */
+.fq-item.rv{transform:translateX(-16px);transition-duration:.54s,.54s}
+.fq-list .fq-item:nth-child(1).rv{transition-delay:0ms}
+.fq-list .fq-item:nth-child(2).rv{transition-delay:38ms}
+.fq-list .fq-item:nth-child(3).rv{transition-delay:76ms}
+.fq-list .fq-item:nth-child(4).rv{transition-delay:114ms}
+.fq-list .fq-item:nth-child(5).rv{transition-delay:152ms}
+.fq-list .fq-item:nth-child(6).rv{transition-delay:190ms}
+.fq-list .fq-item:nth-child(7).rv{transition-delay:228ms}
+.fq-list .fq-item:nth-child(8).rv{transition-delay:266ms}
+.fq-list .fq-item:nth-child(9).rv{transition-delay:304ms}
+.fq-list .fq-item:nth-child(10).rv{transition-delay:342ms}
+.fq-list .fq-item:nth-child(11).rv{transition-delay:380ms}
+.fq-list .fq-item:nth-child(12).rv{transition-delay:418ms}
 
 /* ── ANIMATIONS ── */
 @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -1143,10 +1358,13 @@ footer{background:var(--dk);padding:0 40px}
       &lt;lup vision&gt;
     </a>
     <nav id="nav">
-      <a href="misiunea-noastra.html">Misiunea noastră</a>
-      <a href="servicii.html">Servicii</a>
-      <a href="proiecte.html">Proiecte</a>
-      <a href="contact.html">Contact</a>
+      <div class="nav-isl">
+        <div class="nav-isl-clip"><div class="nav-isl-spin"></div></div>
+        <a href="misiunea-noastra.html">Misiunea noastră</a>
+        <a href="servicii.html">Servicii</a>
+        <a href="proiecte.html">Proiecte</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </nav>
     <div class="hdr-r">
       <a href="contact.html" class="btn-blue">Începe proiectul</a>
@@ -1171,23 +1389,27 @@ footer{background:var(--dk);padding:0 40px}
 
     <!-- Hero block -->
     <div class="seq-hero-blk" id="home">
-      <div class="hero-island"></div>
+      <div class="hero-island-wrap">
+        <div class="hero-island"></div>
+        <div class="hero-island-clip">
+          <div class="hi-border-spin"></div>
+        </div>
+      </div>
       <div class="hero-l">
         <h1 class="hero-h1">
-          <span class="ln"><span>Prezența ta digitală,</span></span>
-          <span class="ln"><span>de <em class="acc" style="font-style:normal">neignorat.</em></span></span>
+          <span class="ln"><span><em class="acc" style="font-style:normal">Ridicăm branduri</em></span></span>
+          <span class="ln"><span class="hero-h1-light">în spațiul digital.</span></span>
         </h1>
-        <p class="hero-sub">Valorificăm expertiza și inovația pentru a livra soluții personalizate care stimulează eficiența și optimizează procesele prin Web Design, Development și strategie digitală.</p>
         <div class="hero-btns">
-          <a href="#srvs" class="btn-blue" style="padding:13px 24px">Serviciile noastre</a>
-          <a href="#why" class="btn-gh-dk">De ce noi?</a>
+          <a href="contact.html" class="btn-blue" style="padding:13px 24px">Începe proiectul</a>
+          <a href="proiecte.html" class="btn-gh-dk">Vezi ce lucrăm</a>
         </div>
         <div class="hero-icons">
-          <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>Web Design</div>
-          <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Development</div>
-          <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>E-commerce</div>
-          <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>SEO</div>
-          <div class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Mentenanță</div>
+          <a href="servicii.html#web-design" class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>Web Design</a>
+          <a href="servicii.html#development" class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Development</a>
+          <a href="servicii.html#e-commerce" class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>E-commerce</a>
+          <a href="servicii.html#seo" class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>SEO</a>
+          <a href="servicii.html#mentenanta" class="hico"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Mentenanță</a>
         </div>
       </div>
     </div>
@@ -1909,7 +2131,7 @@ footer{background:var(--dk);padding:0 40px}
     <div class="cta-line"></div>
     <div class="cta-big">Hai să vorbim</div>
     <div class="cta-btn-wrap">
-      <a href="contact.html" class="btn-blue" style="padding:13px 26px;font-size:14px">Contactează-ne</a>
+      <a href="contact.html" class="btn-blue" style="padding:13px 24px">Contactează-ne</a>
     </div>
   </div>
 </section>
@@ -1920,7 +2142,7 @@ footer{background:var(--dk);padding:0 40px}
 
     <!-- Coloana verticală logo -->
     <div class="ft-vert">
-      <span class="ft-vert-logo">&lt;lup vision&gt;</span>
+      <a href="/" class="ft-vert-logo">&lt;lup vision&gt;</a>
     </div>
 
     <!-- Conținut principal -->
@@ -2039,7 +2261,7 @@ footer{background:var(--dk);padding:0 40px}
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('v'); ro.unobserve(e.target); }
     });
-  }, {threshold: 0.08, rootMargin: '0px 0px -28px 0px'});
+  }, {threshold: 0.1, rootMargin: '0px 0px -48px 0px'});
   document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 
   /* ── Bento spotlight on hero service icons (MagicBento-style) ── */
@@ -2104,8 +2326,6 @@ footer{background:var(--dk);padding:0 40px}
 
     const PROXIMITY = 0;
     const FADE      = 180;
-    const BASE_NUM  = [78, 205, 196];   /* --bl teal */
-    const BASE_LBL  = [200, 192, 184];  /* --gl gray */
 
     function paint(mx, my){
       items.forEach(el => {
@@ -2118,16 +2338,6 @@ footer{background:var(--dk);padding:0 40px}
         if      (d <= PROXIMITY) gi = 1;
         else if (d <= FADE)      gi = (FADE - d) / FADE;
 
-        const ccx = (r.left + r.right) / 2;
-        const ccy = (r.top  + r.bottom) / 2;
-        const dc  = Math.hypot(mx - ccx, my - ccy);
-        const gc  = Math.max(0, 1 - dc / 380);
-
-        const num = el.querySelector('.wst-n');
-        const lbl = el.querySelector('.wst-l');
-        if(num) num.style.color = `rgb(${Math.round(BASE_NUM[0]+(255-BASE_NUM[0])*gc)},${Math.round(BASE_NUM[1]+(255-BASE_NUM[1])*gc)},${Math.round(BASE_NUM[2]+(255-BASE_NUM[2])*gc)})`;
-        if(lbl) lbl.style.color = `rgb(${Math.round(BASE_LBL[0]+(255-BASE_LBL[0])*gc)},${Math.round(BASE_LBL[1]+(255-BASE_LBL[1])*gc)},${Math.round(BASE_LBL[2]+(255-BASE_LBL[2])*gc)})`;
-
         el.style.setProperty('--gx', (((mx-r.left)/r.width)*100).toFixed(1)+'%');
         el.style.setProperty('--gy', (((my-r.top)/r.height)*100).toFixed(1)+'%');
         el.style.setProperty('--gi', gi.toFixed(3));
@@ -2135,19 +2345,7 @@ footer{background:var(--dk);padding:0 40px}
     }
 
     function reset(){
-      items.forEach(el => {
-        const num = el.querySelector('.wst-n');
-        const lbl = el.querySelector('.wst-l');
-        if(num){ num.style.transition = 'color .5s ease'; num.style.color = ''; }
-        if(lbl){ lbl.style.transition = 'color .5s ease'; lbl.style.color = ''; }
-        el.style.setProperty('--gi', '0');
-      });
-      setTimeout(() => items.forEach(el => {
-        const num = el.querySelector('.wst-n');
-        const lbl = el.querySelector('.wst-l');
-        if(num) num.style.transition = '';
-        if(lbl) lbl.style.transition = '';
-      }), 500);
+      items.forEach(el => el.style.setProperty('--gi', '0'));
     }
 
     grid.addEventListener('mousemove', e => {
@@ -2205,6 +2403,15 @@ footer{background:var(--dk);padding:0 40px}
 
     grid.addEventListener('mousemove', e => { paint(e.clientX, e.clientY); });
     grid.addEventListener('mouseleave', reset);
+
+    /* card click → follow srv-more href (fără să extindă hover-ul linkului) */
+    items.forEach(card => {
+      card.addEventListener('click', e => {
+        if(e.target.closest('.srv-more')) return;
+        const link = card.querySelector('.srv-more');
+        if(link) window.location.href = link.href;
+      });
+    });
   })();
 
   /* ── Bento spotlight on pricing cards ── */
@@ -2367,11 +2574,39 @@ footer{background:var(--dk);padding:0 40px}
     grid.addEventListener('mouseleave', reset);
   })();
 
+  /* ── Bento spotlight on FAQ items ── */
+  (function(){
+    const list = document.querySelector('.fq-list');
+    if(!list) return;
+    const items = Array.from(list.querySelectorAll('.fq-item'));
+    const PROXIMITY = 0, FADE = 200;
+
+    function paint(mx, my){
+      items.forEach(el => {
+        const r  = el.getBoundingClientRect();
+        const cx = Math.max(r.left, Math.min(mx, r.right));
+        const cy = Math.max(r.top,  Math.min(my, r.bottom));
+        const d  = Math.hypot(mx - cx, my - cy);
+        let gi = 0;
+        if      (d <= PROXIMITY) gi = 1;
+        else if (d <= FADE)      gi = (FADE - d) / FADE;
+        el.style.setProperty('--gx', (((mx-r.left)/r.width)*100).toFixed(1)+'%');
+        el.style.setProperty('--gy', (((my-r.top)/r.height)*100).toFixed(1)+'%');
+        el.style.setProperty('--gi', gi.toFixed(3));
+      });
+    }
+    function reset(){
+      items.forEach(el => el.style.setProperty('--gi','0'));
+    }
+    list.addEventListener('mousemove', e => { paint(e.clientX, e.clientY); });
+    list.addEventListener('mouseleave', reset);
+  })();
+
   /* why panels — vertical gap whi-l→whi-r = vertical gap hero-island→whi-l */
   function alignWhyPanels(){
     const l    = document.querySelector('.whi-l');
     const r    = document.querySelector('.whi-r');
-    const hero = document.querySelector('.hero-island');
+    const hero = document.querySelector('.hero-island-wrap');
     if(!l || !r || !hero) return;
     /* scroll-independent absolute Y positions */
     const sy         = window.scrollY;
@@ -2382,6 +2617,45 @@ footer{background:var(--dk);padding:0 40px}
   }
   requestAnimationFrame(alignWhyPanels);
   window.addEventListener('resize', alignWhyPanels);
+
+  /* ── Tech strip — fade aliniat cu nav logo / CTA ── */
+  (function(){
+    const wrap = document.querySelector('.ts-wrap');
+    const logo = document.querySelector('.logo');
+    const cta  = document.querySelector('.hdr-r .btn-blue');
+    if(!wrap || !logo || !cta) return;
+    function align(){
+      const fl = logo.getBoundingClientRect().left;
+      const fr = window.innerWidth - cta.getBoundingClientRect().right;
+      wrap.style.setProperty('--ts-fl', Math.max(0, fl + 80) + 'px');
+      wrap.style.setProperty('--ts-fr', Math.max(0, fr + 80) + 'px');
+    }
+    align();
+    window.addEventListener('resize', align);
+  })();
+
+  /* ── Tech strip — marquee JS cu click to reverse ── */
+  (function(){
+    const track = document.querySelector('.ts-track');
+    const wrap  = document.querySelector('.ts-wrap');
+    if(!track || !wrap) return;
+    let dir  = -1;
+    let x    = 0;
+    let last = null;
+    function tick(ts){
+      if(last === null) last = ts;
+      const dt   = Math.min((ts - last) / 1000, 0.05);
+      last = ts;
+      const half  = track.scrollWidth / 2;
+      const speed = half / 48;
+      x += dir * speed * dt;
+      if(x <= -half) x += half;
+      if(x >  0)     x -= half;
+      track.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
 
   /* smooth scroll */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -2509,5 +2783,6 @@ footer{background:var(--dk);padding:0 40px}
   })();
 })();
 </script>
+
 </body>
 </html>
