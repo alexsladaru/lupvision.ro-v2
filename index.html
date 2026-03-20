@@ -11,26 +11,26 @@
 <style>
 /* ── PALETTE ── */
 :root {
-  --dk:   #040400;
-  --dk2:  #090900;
-  --dk3:  #0F0F03;
-  --bl:   #4ECDC4;
-  --bld:  rgba(78,205,196,0.11);
-  --blg:  rgba(78,205,196,0.25);
-  --mt:   #4ECDC4;
-  --mtd:  rgba(78,205,196,0.11);
-  --mtg:  rgba(78,205,196,0.25);
+  --dk:   #04091A;
+  --dk2:  #060C1F;
+  --dk3:  #080F1E;
+  --bl:   #28D4FF;
+  --bld:  rgba(40,212,255,0.11);
+  --blg:  rgba(40,212,255,0.25);
+  --mt:   #28D4FF;
+  --mtd:  rgba(40,212,255,0.11);
+  --mtg:  rgba(40,212,255,0.25);
   --yw:   #F2C94C;
   --ywd:  rgba(242,201,76,0.12);
   --or:   #F2994A;
-  --cr:   #FAF4EC;
-  --cr2:  #F2EDE7;
-  --gl:   #E8E0D8;
-  --gd:   #C8C0B8;
-  --bdk:  rgba(255,255,255,0.12);
+  --cr:   #E8EDF5;
+  --cr2:  #D4DCF0;
+  --gl:   #5A6A85;
+  --gd:   #35445C;
+  --bdk:  rgba(255,255,255,0.07);
   --expo: cubic-bezier(0.16,1,0.3,1);
-  --btn-mt:  #1F9590;
-  --btn-mt-h:#157872;
+  --btn-mt:  #1AAED4;
+  --btn-mt-h:#1592B8;
 }
 
 /* ── RESET ── */
@@ -106,7 +106,7 @@ header::before{
   z-index:0;
   backdrop-filter:blur(22px) saturate(1.2);
   -webkit-backdrop-filter:blur(22px) saturate(1.2);
-  background:rgba(4,4,0,0.18);
+  background:rgba(4,9,26,0.18);
   -webkit-mask-image:linear-gradient(to bottom,black 0px,black 58px,transparent 170px);
   mask-image:linear-gradient(to bottom,black 0px,black 58px,transparent 170px);
   opacity:0;
@@ -115,8 +115,8 @@ header::before{
 }
 /* Safari: disable backdrop-filter during canvas animation — too expensive */
 @supports (-webkit-hyphens:none){
-  header::before{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,4,0,0.72)}
-  .nav-isl{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,4,0,0.62)}
+  header::before{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,9,26,0.72)}
+  .nav-isl{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(4,9,26,0.62)}
 }
 /* State 1 — scrolled, still in seq zone : blurred glass */
 header.hdr-blur::before{
@@ -154,7 +154,7 @@ nav{
   padding:15px 34px;
   backdrop-filter:blur(20px) saturate(1.1);
   -webkit-backdrop-filter:blur(20px) saturate(1.1);
-  background:rgba(4,4,0,0.46);
+  background:rgba(4,9,26,0.46);
   border:1px solid rgba(255,255,255,0.08);
   transition:opacity .5s cubic-bezier(0.16,1,0.3,1),background .5s,border-color .5s;
 }
@@ -239,10 +239,10 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   color:var(--gl);
   transition:border-color .2s,color .2s;
 }
-.hdr-pill::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.35)}
-.hdr-pill::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.35)}
+.hdr-pill::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(40,212,255,0.35)}
+.hdr-pill::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(40,212,255,0.35)}
 .hdr-pill:hover{border-color:var(--bl);color:var(--cr)}
-.hdr-pill:hover::before,.hdr-pill:hover::after{border-color:rgba(78,205,196,0.55)}
+.hdr-pill:hover::before,.hdr-pill:hover::after{border-color:rgba(40,212,255,0.55)}
 .hdr-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--mt)}
 
 .btn-blue{
@@ -279,7 +279,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 /* Global scrim — kept light; the hero island handles center contrast */
 .seq-scrim{
   position:absolute;inset:0;
-  background:rgba(4,4,0,0.18);
+  background:rgba(4,9,26,0.18);
   pointer-events:none;z-index:1;
 }
 
@@ -288,7 +288,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   content:'';
   position:absolute;
   bottom:0;left:0;right:0;height:520px;
-  background:linear-gradient(to bottom,transparent 0%,rgba(4,4,0,0.45) 40%,rgba(4,4,0,0.85) 72%,#040400 100%);
+  background:linear-gradient(to bottom,transparent 0%,rgba(4,9,26,0.45) 40%,rgba(4,9,26,0.85) 72%,#04091A 100%);
   z-index:3;pointer-events:none;
 }
 
@@ -325,7 +325,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   pointer-events:none;
   backdrop-filter:blur(20px) saturate(1.1);
   -webkit-backdrop-filter:blur(20px) saturate(1.1);
-  background:rgba(4,4,0,0.46);
+  background:rgba(4,9,26,0.46);
   border:1px solid rgba(255,255,255,0.08);
 }
 .hero-island-clip{
@@ -411,8 +411,8 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 .hchip::after{bottom:2px;right:2px;width:5px;height:5px;border-width:0 1px 1px 0;border-color:rgba(163,154,146,0.2)}
 .hchip:hover{border-color:var(--bl);color:var(--cr);background:var(--bld)}
 .hchip svg{flex-shrink:0;opacity:.6}
-.hchip.avail{color:var(--mt);border-color:rgba(78,205,196,.28);background:var(--mtd)}
-.hchip.avail::before,.hchip.avail::after{border-color:rgba(78,205,196,0.35)}
+.hchip.avail{color:var(--mt);border-color:rgba(40,212,255,.28);background:var(--mtd)}
+.hchip.avail::before,.hchip.avail::after{border-color:rgba(40,212,255,0.35)}
 
 /* headline */
 .hero-h1{
@@ -470,7 +470,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 }
 .btn-bl-lg::before{top:4px;left:4px;width:10px;height:10px;border-width:1.5px 0 0 1.5px;border-color:#fff;transition:border-color .35s,transform .35s cubic-bezier(0.16,1,0.3,1)}
 .btn-bl-lg::after{bottom:4px;right:4px;width:10px;height:10px;border-width:0 1.5px 1.5px 0;border-color:#fff;transition:border-color .35s,transform .35s cubic-bezier(0.16,1,0.3,1)}
-.btn-bl-lg:hover{background:var(--btn-mt-h);transform:translateY(-1px);filter:drop-shadow(0 8px 20px rgba(78,205,196,0.4))}
+.btn-bl-lg:hover{background:var(--btn-mt-h);transform:translateY(-1px);filter:drop-shadow(0 8px 20px rgba(40,212,255,0.4))}
 .btn-bl-lg:hover::before{border-color:rgba(255,255,255,0.9);transform:translate(-8px,-8px)}
 .btn-bl-lg:hover::after{border-color:rgba(255,255,255,0.9);transform:translate(8px,8px)}
 
@@ -536,7 +536,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   position:relative;
   backdrop-filter:blur(20px) saturate(1.1);
   -webkit-backdrop-filter:blur(20px) saturate(1.1);
-  background:rgba(4,4,0,0.46);
+  background:rgba(4,9,26,0.46);
   border:1px solid rgba(255,255,255,0.08);
   will-change:transform;
 }
@@ -674,15 +674,15 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   position:relative;
   width:52px;height:52px;
   background:var(--bld);
-  border:1px solid rgba(78,205,196,.18);
+  border:1px solid rgba(40,212,255,.18);
   display:flex;align-items:center;justify-content:center;
   margin-bottom:26px;
   transition:background .15s,filter .15s;
 }
-.srv-ico::before{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;border-top:1px solid rgba(78,205,196,0.45);border-left:1px solid rgba(78,205,196,0.45);transition:transform .38s var(--expo),border-color .25s}
-.srv-ico::after{content:'';position:absolute;bottom:3px;right:3px;width:7px;height:7px;border-bottom:1px solid rgba(78,205,196,0.45);border-right:1px solid rgba(78,205,196,0.45);transition:transform .38s var(--expo),border-color .25s}
-.srv:hover .srv-ico::before{transform:translate(-10px,-10px);border-color:rgba(78,205,196,0.9)}
-.srv:hover .srv-ico::after{transform:translate(10px,10px);border-color:rgba(78,205,196,0.9)}
+.srv-ico::before{content:'';position:absolute;top:3px;left:3px;width:7px;height:7px;border-top:1px solid rgba(40,212,255,0.45);border-left:1px solid rgba(40,212,255,0.45);transition:transform .38s var(--expo),border-color .25s}
+.srv-ico::after{content:'';position:absolute;bottom:3px;right:3px;width:7px;height:7px;border-bottom:1px solid rgba(40,212,255,0.45);border-right:1px solid rgba(40,212,255,0.45);transition:transform .38s var(--expo),border-color .25s}
+.srv:hover .srv-ico::before{transform:translate(-10px,-10px);border-color:rgba(40,212,255,0.9)}
+.srv:hover .srv-ico::after{transform:translate(10px,10px);border-color:rgba(40,212,255,0.9)}
 .srv-ico svg{color:var(--mt);stroke:var(--mt)}
 .srv-h{font-size:1.05rem;font-weight:700;color:var(--cr);margin-bottom:10px;letter-spacing:-.02em;transition:color .15s ease}
 .srv-p{font-size:.85rem;font-weight:400;color:var(--gl);line-height:1.75}
@@ -762,8 +762,8 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 .pr-badge{
   display:inline-flex;align-items:center;gap:5px;
   font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--mt);background:rgba(78,205,196,0.1);
-  border:1px solid rgba(78,205,196,0.25);
+  color:var(--mt);background:rgba(40,212,255,0.1);
+  border:1px solid rgba(40,212,255,0.25);
   padding:3px 10px;margin-bottom:20px;
 }
 .pr-name{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:16px;transition:color .15s ease}
@@ -795,14 +795,14 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   padding:40px;
   transition:border-color .3s,background .3s,transform .3s var(--expo),filter .3s;
 }
-.hw::before{top:10px;left:10px;width:13px;height:13px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.25)}
-.hw::after{bottom:10px;right:10px;width:13px;height:13px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.25)}
-.hw:hover{border-color:rgba(78,205,196,.35);background:var(--dk);transform:translateY(-4px);filter:drop-shadow(0 14px 32px rgba(78,205,196,0.08))}
-.hw:hover::before,.hw:hover::after{border-color:rgba(78,205,196,0.65);transform:scale(1.12)}
-.hw.feat{border-color:rgba(78,205,196,.25);background:linear-gradient(145deg,rgba(78,205,196,.06) 0%,var(--dk2) 100%)}
-.hw.feat::before,.hw.feat::after{border-color:rgba(78,205,196,0.3)}
-.hw.feat:hover{border-color:rgba(78,205,196,.55)}
-.hw.feat:hover::before,.hw.feat:hover::after{border-color:rgba(78,205,196,0.7)}
+.hw::before{top:10px;left:10px;width:13px;height:13px;border-width:1px 0 0 1px;border-color:rgba(40,212,255,0.25)}
+.hw::after{bottom:10px;right:10px;width:13px;height:13px;border-width:0 1px 1px 0;border-color:rgba(40,212,255,0.25)}
+.hw:hover{border-color:rgba(40,212,255,.35);background:var(--dk);transform:translateY(-4px);filter:drop-shadow(0 14px 32px rgba(40,212,255,0.08))}
+.hw:hover::before,.hw:hover::after{border-color:rgba(40,212,255,0.65);transform:scale(1.12)}
+.hw.feat{border-color:rgba(40,212,255,.25);background:linear-gradient(145deg,rgba(40,212,255,.06) 0%,var(--dk2) 100%)}
+.hw.feat::before,.hw.feat::after{border-color:rgba(40,212,255,0.3)}
+.hw.feat:hover{border-color:rgba(40,212,255,.55)}
+.hw.feat:hover::before,.hw.feat:hover::after{border-color:rgba(40,212,255,0.7)}
 .hw-h{font-size:1.05rem;font-weight:700;letter-spacing:-.02em;color:var(--cr);margin-bottom:12px}
 .hw-p{font-size:.86rem;font-weight:400;color:var(--gl);line-height:1.75;margin-bottom:24px}
 .hw-lnk{
@@ -852,8 +852,8 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
   align-self:flex-start;
   transition:background .2s,color .2s;
 }
-.spec-main-btn::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(78,205,196,0.4)}
-.spec-main-btn::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(78,205,196,0.4)}
+.spec-main-btn::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(40,212,255,0.4)}
+.spec-main-btn::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(40,212,255,0.4)}
 .spec-main-btn:hover{background:var(--btn-mt);color:#fff}
 .spec-main-btn:hover::before,.spec-main-btn:hover::after{border-color:rgba(255,255,255,0.4)}
 
@@ -909,7 +909,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 .see-all::before{top:3px;left:3px;width:6px;height:6px;border-width:1px 0 0 1px;border-color:rgba(163,154,146,0.2)}
 .see-all::after{bottom:3px;right:3px;width:6px;height:6px;border-width:0 1px 1px 0;border-color:rgba(163,154,146,0.2)}
 .see-all:hover{border-color:var(--bl);color:var(--cr)}
-.see-all:hover::before,.see-all:hover::after{border-color:rgba(78,205,196,0.35)}
+.see-all:hover::before,.see-all:hover::after{border-color:rgba(40,212,255,0.35)}
 
 .proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 .pj{
@@ -965,7 +965,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 .th3{background:linear-gradient(135deg,#1c1408,#101808)}
 .pj-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(244,235,217,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(244,235,217,.018) 1px,transparent 1px);background-size:26px 26px}
 .pj-gl{position:absolute;border-radius:50%;filter:blur(30px)}
-.th1 .pj-gl{width:90px;height:90px;background:rgba(78,205,196,.45);top:22%;left:16%}
+.th1 .pj-gl{width:90px;height:90px;background:rgba(40,212,255,.45);top:22%;left:16%}
 .th2 .pj-gl{width:80px;height:80px;background:rgba(120,80,220,.45);top:24%;right:18%}
 .th3 .pj-gl{width:95px;height:95px;background:rgba(163,154,146,.4);top:20%;left:22%}
 .pj-mock{
@@ -1169,7 +1169,7 @@ nav a:hover,nav a.act{color:var(--cr);background-size:100% 1px}
 .btn-gh-lt::before{top:4px;left:4px;width:10px;height:10px;border-width:1.5px 0 0 1.5px;border-color:rgba(163,154,146,0.2)}
 .btn-gh-lt::after{bottom:4px;right:4px;width:10px;height:10px;border-width:0 1.5px 1.5px 0;border-color:rgba(163,154,146,0.2)}
 .btn-gh-lt:hover{border-color:var(--bl);color:var(--cr)}
-.btn-gh-lt:hover::before,.btn-gh-lt:hover::after{border-color:rgba(78,205,196,0.35)}
+.btn-gh-lt:hover::before,.btn-gh-lt:hover::after{border-color:rgba(40,212,255,0.35)}
 
 /* ── FOOTER ── */
 footer{background:var(--dk);padding:0 40px}
@@ -1756,7 +1756,7 @@ footer{background:var(--dk);padding:0 40px}
               <filter id="a1gf"><feGaussianBlur stdDeviation="14"/></filter>
               <filter id="a1glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <rect width="400" height="220" fill="#040400"/>
+            <rect width="400" height="220" fill="#04091A"/>
             <!-- Grid -->
             <g stroke="rgba(255,255,255,0.045)" stroke-width="1">
               <line x1="0" y1="44" x2="400" y2="44"/><line x1="0" y1="88" x2="400" y2="88"/>
@@ -1765,31 +1765,31 @@ footer{background:var(--dk);padding:0 40px}
               <line x1="240" y1="0" x2="240" y2="220"/><line x1="320" y1="0" x2="320" y2="220"/>
             </g>
             <!-- Ambient glow -->
-            <ellipse cx="200" cy="108" rx="72" ry="62" fill="#4ECDC4" opacity="0.09" filter="url(#a1gf)"/>
+            <ellipse cx="200" cy="108" rx="72" ry="62" fill="#28D4FF" opacity="0.09" filter="url(#a1gf)"/>
             <!-- Shield outer -->
-            <path d="M200 28 L244 48 L244 108 Q244 152 200 174 Q156 152 156 108 L156 48 Z" fill="rgba(78,205,196,0.05)" stroke="#4ECDC4" stroke-width="1.5" opacity="0.8" filter="url(#a1glow)"/>
+            <path d="M200 28 L244 48 L244 108 Q244 152 200 174 Q156 152 156 108 L156 48 Z" fill="rgba(40,212,255,0.05)" stroke="#28D4FF" stroke-width="1.5" opacity="0.8" filter="url(#a1glow)"/>
             <!-- Shield inner -->
-            <path d="M200 40 L234 57 L234 108 Q234 142 200 160 Q166 142 166 108 L166 57 Z" fill="rgba(78,205,196,0.04)" stroke="rgba(78,205,196,0.3)" stroke-width="1"/>
+            <path d="M200 40 L234 57 L234 108 Q234 142 200 160 Q166 142 166 108 L166 57 Z" fill="rgba(40,212,255,0.04)" stroke="rgba(40,212,255,0.3)" stroke-width="1"/>
             <!-- Lock shackle -->
-            <path d="M194 95 L194 88 Q194 80 200 80 Q206 80 206 88 L206 95" fill="none" stroke="#4ECDC4" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M194 95 L194 88 Q194 80 200 80 Q206 80 206 88 L206 95" fill="none" stroke="#28D4FF" stroke-width="1.8" stroke-linecap="round"/>
             <!-- Lock body -->
-            <rect x="188" y="94" width="24" height="18" rx="4" fill="rgba(78,205,196,0.12)" stroke="#4ECDC4" stroke-width="1.5"/>
+            <rect x="188" y="94" width="24" height="18" rx="4" fill="rgba(40,212,255,0.12)" stroke="#28D4FF" stroke-width="1.5"/>
             <!-- Keyhole -->
-            <circle cx="200" cy="102" r="3" fill="#4ECDC4" opacity="0.9"/>
-            <rect x="198.5" y="103" width="3" height="5" rx="1" fill="#4ECDC4" opacity="0.9"/>
+            <circle cx="200" cy="102" r="3" fill="#28D4FF" opacity="0.9"/>
+            <rect x="198.5" y="103" width="3" height="5" rx="1" fill="#28D4FF" opacity="0.9"/>
             <!-- Floating labels -->
-            <text x="34" y="58" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(78,205,196,0.35)">consent</text>
-            <text x="292" y="72" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(78,205,196,0.35)">privacy</text>
-            <text x="42" y="148" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(78,205,196,0.25)">GDPR</text>
-            <text x="312" y="136" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(78,205,196,0.25)">data</text>
+            <text x="34" y="58" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(40,212,255,0.35)">consent</text>
+            <text x="292" y="72" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(40,212,255,0.35)">privacy</text>
+            <text x="42" y="148" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(40,212,255,0.25)">GDPR</text>
+            <text x="312" y="136" font-family="'Cascadia Code',monospace" font-size="9" fill="rgba(40,212,255,0.25)">data</text>
             <text x="28" y="100" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.12)">Art. 6</text>
             <text x="338" y="112" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.12)">§ 4.1</text>
             <text x="82" y="190" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.09)">cookie_policy.php</text>
             <text x="240" y="200" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.09)">wp_forms</text>
             <!-- Corner accents -->
-            <circle cx="18" cy="18" r="1.5" fill="rgba(78,205,196,0.4)"/><circle cx="382" cy="18" r="1.5" fill="rgba(78,205,196,0.4)"/>
-            <circle cx="18" cy="202" r="1.5" fill="rgba(78,205,196,0.4)"/><circle cx="382" cy="202" r="1.5" fill="rgba(78,205,196,0.4)"/>
-            <circle cx="68" cy="128" r="1" fill="rgba(78,205,196,0.3)"/><circle cx="338" cy="162" r="1" fill="rgba(78,205,196,0.3)"/>
+            <circle cx="18" cy="18" r="1.5" fill="rgba(40,212,255,0.4)"/><circle cx="382" cy="18" r="1.5" fill="rgba(40,212,255,0.4)"/>
+            <circle cx="18" cy="202" r="1.5" fill="rgba(40,212,255,0.4)"/><circle cx="382" cy="202" r="1.5" fill="rgba(40,212,255,0.4)"/>
+            <circle cx="68" cy="128" r="1" fill="rgba(40,212,255,0.3)"/><circle cx="338" cy="162" r="1" fill="rgba(40,212,255,0.3)"/>
           </svg>
         </div>
         <div class="art-tag">#ghid</div>
@@ -1807,10 +1807,10 @@ footer{background:var(--dk);padding:0 40px}
           <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="a2gl" cx="25%" cy="50%" r="50%"><stop offset="0%" stop-color="#2271B1" stop-opacity="0.18"/><stop offset="100%" stop-color="#2271B1" stop-opacity="0"/></radialGradient>
-              <radialGradient id="a2gr" cx="75%" cy="50%" r="50%"><stop offset="0%" stop-color="#4ECDC4" stop-opacity="0.14"/><stop offset="100%" stop-color="#4ECDC4" stop-opacity="0"/></radialGradient>
+              <radialGradient id="a2gr" cx="75%" cy="50%" r="50%"><stop offset="0%" stop-color="#28D4FF" stop-opacity="0.14"/><stop offset="100%" stop-color="#28D4FF" stop-opacity="0"/></radialGradient>
               <filter id="a2f"><feGaussianBlur stdDeviation="16"/></filter>
             </defs>
-            <rect width="400" height="220" fill="#040400"/>
+            <rect width="400" height="220" fill="#04091A"/>
             <rect width="400" height="220" fill="url(#a2gl)"/>
             <rect width="400" height="220" fill="url(#a2gr)"/>
             <!-- Faint horizontal grid -->
@@ -1827,17 +1827,17 @@ footer{background:var(--dk);padding:0 40px}
             <text x="100" y="48" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(34,113,177,0.35)">CMS · Plugins · PHP</text>
             <!-- Center divider -->
             <line x1="200" y1="16" x2="200" y2="204" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-            <circle cx="200" cy="108" r="20" fill="#040400" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+            <circle cx="200" cy="108" r="20" fill="#04091A" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
             <text x="200" y="113" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,0.65)">vs</text>
             <!-- Right: angle brackets -->
-            <text x="300" y="128" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="46" fill="none" stroke="#4ECDC4" stroke-width="1.2" opacity="0.55">&lt;/&gt;</text>
-            <text x="300" y="185" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="10" fill="#4ECDC4" opacity="0.55">Next.js</text>
-            <text x="300" y="48" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(78,205,196,0.35)">SSR · ISR · RSC</text>
+            <text x="300" y="128" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="46" fill="none" stroke="#28D4FF" stroke-width="1.2" opacity="0.55">&lt;/&gt;</text>
+            <text x="300" y="185" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="10" fill="#28D4FF" opacity="0.55">Next.js</text>
+            <text x="300" y="48" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(40,212,255,0.35)">SSR · ISR · RSC</text>
             <!-- Floating code hints -->
             <text x="34" y="164" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(34,113,177,0.35)">rank()</text>
-            <text x="314" y="144" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(78,205,196,0.35)">seo()</text>
-            <circle cx="18" cy="18" r="1.5" fill="rgba(78,205,196,0.35)"/><circle cx="382" cy="18" r="1.5" fill="rgba(78,205,196,0.35)"/>
-            <circle cx="18" cy="202" r="1.5" fill="rgba(78,205,196,0.35)"/><circle cx="382" cy="202" r="1.5" fill="rgba(78,205,196,0.35)"/>
+            <text x="314" y="144" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(40,212,255,0.35)">seo()</text>
+            <circle cx="18" cy="18" r="1.5" fill="rgba(40,212,255,0.35)"/><circle cx="382" cy="18" r="1.5" fill="rgba(40,212,255,0.35)"/>
+            <circle cx="18" cy="202" r="1.5" fill="rgba(40,212,255,0.35)"/><circle cx="382" cy="202" r="1.5" fill="rgba(40,212,255,0.35)"/>
           </svg>
         </div>
         <div class="art-tag">#newsroom</div>
@@ -1855,17 +1855,17 @@ footer{background:var(--dk);padding:0 40px}
           <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="a3ln" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#4ECDC4" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#4ECDC4" stop-opacity="1"/>
+                <stop offset="0%" stop-color="#28D4FF" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#28D4FF" stop-opacity="1"/>
               </linearGradient>
               <linearGradient id="a3fill" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#4ECDC4" stop-opacity="0.1"/>
-                <stop offset="100%" stop-color="#4ECDC4" stop-opacity="0"/>
+                <stop offset="0%" stop-color="#28D4FF" stop-opacity="0.1"/>
+                <stop offset="100%" stop-color="#28D4FF" stop-opacity="0"/>
               </linearGradient>
               <filter id="a3gf"><feGaussianBlur stdDeviation="10"/></filter>
               <filter id="a3glow"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <rect width="400" height="220" fill="#040400"/>
+            <rect width="400" height="220" fill="#04091A"/>
             <!-- Chart grid -->
             <g stroke="rgba(255,255,255,0.045)" stroke-width="1">
               <line x1="42" y1="44" x2="386" y2="44"/><line x1="42" y1="84" x2="386" y2="84"/>
@@ -1878,24 +1878,24 @@ footer{background:var(--dk);padding:0 40px}
             <!-- Area fill glow -->
             <path d="M62 168 L108 150 L154 138 L196 122 L242 100 L284 76 L334 54 L374 36 L374 178 L62 178 Z" fill="url(#a3fill)"/>
             <!-- Glow layer -->
-            <path d="M62 168 L108 150 L154 138 L196 122 L242 100 L284 76 L334 54 L374 36" fill="none" stroke="#4ECDC4" stroke-width="6" opacity="0.15" filter="url(#a3gf)" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M62 168 L108 150 L154 138 L196 122 L242 100 L284 76 L334 54 L374 36" fill="none" stroke="#28D4FF" stroke-width="6" opacity="0.15" filter="url(#a3gf)" stroke-linecap="round" stroke-linejoin="round"/>
             <!-- Main chart line -->
             <path d="M62 168 L108 150 L154 138 L196 122 L242 100 L284 76 L334 54 L374 36" fill="none" stroke="url(#a3ln)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#a3glow)"/>
             <!-- Data points -->
-            <circle cx="62" cy="168" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
-            <circle cx="108" cy="150" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
-            <circle cx="154" cy="138" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
-            <circle cx="196" cy="122" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
-            <circle cx="242" cy="100" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
-            <circle cx="284" cy="76" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
-            <circle cx="334" cy="54" r="3.5" fill="#040400" stroke="#4ECDC4" stroke-width="1.5"/>
+            <circle cx="62" cy="168" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
+            <circle cx="108" cy="150" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
+            <circle cx="154" cy="138" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
+            <circle cx="196" cy="122" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
+            <circle cx="242" cy="100" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
+            <circle cx="284" cy="76" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
+            <circle cx="334" cy="54" r="3.5" fill="#04091A" stroke="#28D4FF" stroke-width="1.5"/>
             <!-- Last point: active -->
-            <circle cx="374" cy="36" r="14" fill="#4ECDC4" opacity="0.08"/>
-            <circle cx="374" cy="36" r="6" fill="#4ECDC4" opacity="0.25"/>
-            <circle cx="374" cy="36" r="3.5" fill="#4ECDC4"/>
+            <circle cx="374" cy="36" r="14" fill="#28D4FF" opacity="0.08"/>
+            <circle cx="374" cy="36" r="6" fill="#28D4FF" opacity="0.25"/>
+            <circle cx="374" cy="36" r="3.5" fill="#28D4FF"/>
             <!-- Labels -->
             <text x="52" y="22" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.18)">GET /api/prices</text>
-            <text x="286" y="22" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(78,205,196,0.6)">● live</text>
+            <text x="286" y="22" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(40,212,255,0.6)">● live</text>
             <!-- Y-axis labels -->
             <text x="4" y="48" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.18)">€499</text>
             <text x="4" y="88" font-family="'Cascadia Code',monospace" font-size="8" fill="rgba(250,244,236,0.18)">€349</text>
@@ -1907,9 +1907,9 @@ footer{background:var(--dk);padding:0 40px}
             <text x="238" y="196" font-family="'Cascadia Code',monospace" font-size="7" fill="rgba(250,244,236,0.14)">3pm</text>
             <text x="330" y="196" font-family="'Cascadia Code',monospace" font-size="7" fill="rgba(250,244,236,0.14)">6pm</text>
             <!-- Price tag floating -->
-            <rect x="340" y="10" width="44" height="18" rx="4" fill="rgba(78,205,196,0.1)" stroke="rgba(78,205,196,0.3)" stroke-width="1"/>
-            <text x="362" y="22" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="8" fill="#4ECDC4">€ 499</text>
-            <circle cx="18" cy="18" r="1.5" fill="rgba(78,205,196,0.35)"/><circle cx="382" cy="202" r="1.5" fill="rgba(78,205,196,0.35)"/>
+            <rect x="340" y="10" width="44" height="18" rx="4" fill="rgba(40,212,255,0.1)" stroke="rgba(40,212,255,0.3)" stroke-width="1"/>
+            <text x="362" y="22" text-anchor="middle" font-family="'Cascadia Code',monospace" font-size="8" fill="#28D4FF">€ 499</text>
+            <circle cx="18" cy="18" r="1.5" fill="rgba(40,212,255,0.35)"/><circle cx="382" cy="202" r="1.5" fill="rgba(40,212,255,0.35)"/>
           </svg>
         </div>
         <div class="art-tag">#newsroom</div>
