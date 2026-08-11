@@ -152,7 +152,6 @@
   spotlight('.srvs-g', '.srv', { title: '.srv-h', clickThrough: '.srv-more' });
   spotlight('.pr-g', '.pr', { title: '.pr-name' });
   spotlight('.proj-g', '.pj', { title: '.pj-name' });
-  spotlight('.spec-tabs', '.stab', { title: '.stab-h' });
   spotlight('.fq-list', '.fq-item', { fade: 200 });
 
   /* ── FAQ accordion ── */
