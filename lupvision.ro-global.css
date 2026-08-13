@@ -496,6 +496,18 @@ nav a.act {
     z-index: 1;
     overflow: hidden;
 }
+/* ── HERO BALLPIT (fundal WebGL) ── */
+.hero-ballpit {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+.hero-ballpit canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 .hero-in {
     max-width: 1280px;
     width: 100%;
@@ -519,6 +531,36 @@ nav a.act {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+/* ── HERO ILLUSTRATION (SVG) ── */
+.hero-illus-wrap {
+    position: relative;
+    width: min(560px, 46vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-illus {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    animation: fx-illus-in 1s ease-out 0.3s forwards;
+}
+@keyframes fx-illus-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-illus {
+        animation: none;
+        opacity: 1;
+    }
 }
 
 /* Why section (replaces the old .seq-why-blk) */
@@ -2873,6 +2915,9 @@ footer {
     .hero-donut-wrap {
         width: min(420px, 100%);
     }
+    .hero-illus-wrap {
+        width: min(500px, 100%);
+    }
     .why {
         padding: 72px 24px;
     }
@@ -2978,6 +3023,9 @@ footer {
     }
     .hero-donut-wrap {
         width: min(340px, 100%);
+    }
+    .hero-illus-wrap {
+        width: min(420px, 100%);
     }
     .hero-btns {
         flex-direction: column;

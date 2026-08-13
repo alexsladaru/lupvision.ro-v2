@@ -19,6 +19,15 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="lupvision.ro-global.css" />
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+                    "three/examples/jsm/environments/RoomEnvironment.js": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/environments/RoomEnvironment.js",
+                    "three/examples/jsm/misc/Timer.js": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/misc/Timer.js"
+                }
+            }
+        </script>
     </head>
     <body>
         <!-- ══ HEADER ══ -->
@@ -53,6 +62,9 @@
         <div class="hero-stage">
             <!-- ══ HERO ══ -->
             <section class="hero" id="home">
+                <div class="hero-ballpit" aria-hidden="true">
+                    <canvas id="hero-ballpit-canvas"></canvas>
+                </div>
                 <div class="hero-in">
                     <div class="hero-l">
                         <h1 class="hero-h1">
@@ -83,423 +95,17 @@
                     </div>
 
                     <div class="hero-r">
-                        <div class="hero-donut-wrap">
-                            <div class="hd-backdrop"></div>
-                            <svg
-                                class="hero-donut"
-                                viewBox="0 0 500 500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                role="navigation"
-                                aria-label="Servicii Lup Vision"
-                            >
-                                <defs>
-                                    <!-- Arc paths at r=155 for each segment (CW, short arc through segment mid) -->
-                                    <path
-                                        id="hd-arc-0"
-                                        d="M 172.5,115.77 A 155,155 0 0,1 327.5,115.77"
-                                        fill="none"
-                                    />
-                                    <path
-                                        id="hd-arc-1"
-                                        d="M 327.5,115.77 A 155,155 0 0,1 405,250"
-                                        fill="none"
-                                    />
-                                    <path
-                                        id="hd-arc-2"
-                                        d="M 405,250      A 155,155 0 0,1 327.5,384.23"
-                                        fill="none"
-                                    />
-                                    <path
-                                        id="hd-arc-3"
-                                        d="M 327.5,384.23 A 155,155 0 0,1 172.5,384.23"
-                                        fill="none"
-                                    />
-                                    <path
-                                        id="hd-arc-4"
-                                        d="M 172.5,384.23 A 155,155 0 0,1 95,250"
-                                        fill="none"
-                                    />
-                                    <path
-                                        id="hd-arc-5"
-                                        d="M 95,250       A 155,155 0 0,1 172.5,115.77"
-                                        fill="none"
-                                    />
-                                </defs>
-
-                                <!-- Ripple burst (emits once on page load) -->
-                                <circle
-                                    class="hd-ripple"
-                                    cx="250"
-                                    cy="250"
-                                    r="60"
-                                    fill="none"
-                                    stroke="#28D4FF"
-                                    stroke-width="2"
-                                    opacity="0"
-                                />
-
-                                <g class="hd-rot">
-                                    <!-- Donut ring fill (between r=135 and r=210) -->
-                                    <path
-                                        class="hd-fill"
-                                        fill-rule="evenodd"
-                                        d="
-            M 40,250 A 210,210 0 1,0 460,250 A 210,210 0 1,0 40,250 Z
-            M 115,250 A 135,135 0 1,1 385,250 A 135,135 0 1,1 115,250 Z
-          "
-                                    />
-
-                                    <!-- Outer and inner rings -->
-                                    <circle
-                                        class="hd-ring"
-                                        cx="250"
-                                        cy="250"
-                                        r="210"
-                                    />
-                                    <circle
-                                        class="hd-ring-inner"
-                                        cx="250"
-                                        cy="250"
-                                        r="135"
-                                    />
-
-                                    <!-- 6 radial dividers (between segments) -->
-                                    <line
-                                        class="hd-div"
-                                        x1="385"
-                                        y1="250"
-                                        x2="460"
-                                        y2="250"
-                                    />
-                                    <line
-                                        class="hd-div"
-                                        x1="317.5"
-                                        y1="366.91"
-                                        x2="355"
-                                        y2="431.76"
-                                    />
-                                    <line
-                                        class="hd-div"
-                                        x1="182.5"
-                                        y1="366.91"
-                                        x2="145"
-                                        y2="431.76"
-                                    />
-                                    <line
-                                        class="hd-div"
-                                        x1="115"
-                                        y1="250"
-                                        x2="40"
-                                        y2="250"
-                                    />
-                                    <line
-                                        class="hd-div"
-                                        x1="182.5"
-                                        y1="133.09"
-                                        x2="145"
-                                        y2="68.24"
-                                    />
-                                    <line
-                                        class="hd-div"
-                                        x1="317.5"
-                                        y1="133.09"
-                                        x2="355"
-                                        y2="68.24"
-                                    />
-
-                                    <!-- 6 accent dots on outer ring at dividers -->
-                                    <circle
-                                        class="hd-dot"
-                                        cx="460"
-                                        cy="250"
-                                        r="3"
-                                    />
-                                    <circle
-                                        class="hd-dot"
-                                        cx="355"
-                                        cy="431.76"
-                                        r="3"
-                                    />
-                                    <circle
-                                        class="hd-dot"
-                                        cx="145"
-                                        cy="431.76"
-                                        r="3"
-                                    />
-                                    <circle
-                                        class="hd-dot"
-                                        cx="40"
-                                        cy="250"
-                                        r="3"
-                                    />
-                                    <circle
-                                        class="hd-dot"
-                                        cx="145"
-                                        cy="68.24"
-                                        r="3"
-                                    />
-                                    <circle
-                                        class="hd-dot"
-                                        cx="355"
-                                        cy="68.24"
-                                        r="3"
-                                    />
-
-                                    <!-- ── 6 clickable services (hit-area + icon + curved label) ── -->
-
-                                    <!-- Seg 0 — Web Design -->
-                                    <a
-                                        href="#srvs"
-                                        class="hd-seg"
-                                        aria-label="Web Design"
-                                    >
-                                        <path
-                                            class="hd-hit"
-                                            d="M 145,68.24 A 210,210 0 0,1 355,68.24 L 317.5,133.09 A 135,135 0 0,0 182.5,133.09 Z"
-                                        />
-                                        <g
-                                            class="hd-ico"
-                                            transform="translate(250,62) rotate(0)"
-                                        >
-                                            <rect
-                                                x="-12"
-                                                y="-8"
-                                                width="24"
-                                                height="16"
-                                                rx="1.5"
-                                            />
-                                            <line
-                                                x1="-8"
-                                                y1="-4"
-                                                x2="8"
-                                                y2="-4"
-                                            />
-                                            <line
-                                                x1="-6"
-                                                y1="12"
-                                                x2="6"
-                                                y2="12"
-                                            />
-                                        </g>
-                                        <text
-                                            class="hd-lbl"
-                                            dominant-baseline="central"
-                                        >
-                                            <textPath
-                                                href="#hd-arc-0"
-                                                startOffset="50%"
-                                                text-anchor="middle"
-                                            >
-                                                Web Design
-                                            </textPath>
-                                        </text>
-                                    </a>
-
-                                    <!-- Seg 1 — Development -->
-                                    <a
-                                        href="#srvs"
-                                        class="hd-seg"
-                                        aria-label="Development"
-                                    >
-                                        <path
-                                            class="hd-hit"
-                                            d="M 355,68.24 A 210,210 0 0,1 460,250 L 385,250 A 135,135 0 0,0 317.5,133.09 Z"
-                                        />
-                                        <g
-                                            class="hd-ico"
-                                            transform="translate(412.81,156) rotate(60)"
-                                        >
-                                            <polyline
-                                                points="-6,-5 -12,0 -6,5"
-                                            />
-                                            <polyline points="6,-5 12,0 6,5" />
-                                            <line
-                                                x1="3"
-                                                y1="-7"
-                                                x2="-3"
-                                                y2="7"
-                                            />
-                                        </g>
-                                        <text
-                                            class="hd-lbl"
-                                            dominant-baseline="central"
-                                        >
-                                            <textPath
-                                                href="#hd-arc-1"
-                                                startOffset="50%"
-                                                text-anchor="middle"
-                                            >
-                                                Development
-                                            </textPath>
-                                        </text>
-                                    </a>
-
-                                    <!-- Seg 2 — E-commerce -->
-                                    <a
-                                        href="#srvs"
-                                        class="hd-seg"
-                                        aria-label="E-commerce"
-                                    >
-                                        <path
-                                            class="hd-hit"
-                                            d="M 460,250 A 210,210 0 0,1 355,431.76 L 317.5,366.91 A 135,135 0 0,0 385,250 Z"
-                                        />
-                                        <g
-                                            class="hd-ico"
-                                            transform="translate(412.81,344) rotate(120)"
-                                        >
-                                            <path
-                                                d="M -12,-6 L -8,-6 L -5,5 L 8,5 L 10,-2 L -6,-2"
-                                            />
-                                            <circle
-                                                cx="-4"
-                                                cy="10"
-                                                r="1.6"
-                                                fill="var(--bl)"
-                                                stroke="none"
-                                            />
-                                            <circle
-                                                cx="6"
-                                                cy="10"
-                                                r="1.6"
-                                                fill="var(--bl)"
-                                                stroke="none"
-                                            />
-                                        </g>
-                                        <text
-                                            class="hd-lbl"
-                                            dominant-baseline="central"
-                                        >
-                                            <textPath
-                                                href="#hd-arc-2"
-                                                startOffset="50%"
-                                                text-anchor="middle"
-                                            >
-                                                E-commerce
-                                            </textPath>
-                                        </text>
-                                    </a>
-
-                                    <!-- Seg 3 — SEO -->
-                                    <a
-                                        href="#srvs"
-                                        class="hd-seg"
-                                        aria-label="SEO"
-                                    >
-                                        <path
-                                            class="hd-hit"
-                                            d="M 355,431.76 A 210,210 0 0,1 145,431.76 L 182.5,366.91 A 135,135 0 0,0 317.5,366.91 Z"
-                                        />
-                                        <g
-                                            class="hd-ico"
-                                            transform="translate(250,438) rotate(180)"
-                                        >
-                                            <circle cx="-2" cy="-2" r="7" />
-                                            <line x1="3" y1="3" x2="9" y2="9" />
-                                        </g>
-                                        <text
-                                            class="hd-lbl"
-                                            dominant-baseline="central"
-                                        >
-                                            <textPath
-                                                href="#hd-arc-3"
-                                                startOffset="50%"
-                                                text-anchor="middle"
-                                            >
-                                                SEO
-                                            </textPath>
-                                        </text>
-                                    </a>
-
-                                    <!-- Seg 4 — Mentenanță (socket wrench) -->
-                                    <a
-                                        href="#srvs"
-                                        class="hd-seg"
-                                        aria-label="Mentenanță"
-                                    >
-                                        <path
-                                            class="hd-hit"
-                                            d="M 145,431.76 A 210,210 0 0,1 40,250 L 115,250 A 135,135 0 0,0 182.5,366.91 Z"
-                                        />
-                                        <g
-                                            class="hd-ico"
-                                            transform="translate(87.19,344) rotate(240)"
-                                        >
-                                            <!-- Socket head (circular ring) -->
-                                            <circle cx="-6" cy="-6" r="4.5" />
-                                            <!-- Bolt inside socket -->
-                                            <circle
-                                                cx="-6"
-                                                cy="-6"
-                                                r="1.6"
-                                                fill="var(--bl)"
-                                                stroke="none"
-                                            />
-                                            <!-- Handle: diagonal bar -->
-                                            <line
-                                                x1="-3"
-                                                y1="-3"
-                                                x2="9"
-                                                y2="9"
-                                                stroke-width="2"
-                                            />
-                                            <!-- End cap on handle -->
-                                            <line
-                                                x1="8"
-                                                y1="10"
-                                                x2="10"
-                                                y2="8"
-                                            />
-                                        </g>
-                                        <text
-                                            class="hd-lbl"
-                                            dominant-baseline="central"
-                                        >
-                                            <textPath
-                                                href="#hd-arc-4"
-                                                startOffset="50%"
-                                                text-anchor="middle"
-                                            >
-                                                Mentenanță
-                                            </textPath>
-                                        </text>
-                                    </a>
-
-                                    <!-- Seg 5 — Branding -->
-                                    <a
-                                        href="#srvs"
-                                        class="hd-seg"
-                                        aria-label="Branding"
-                                    >
-                                        <path
-                                            class="hd-hit"
-                                            d="M 40,250 A 210,210 0 0,1 145,68.24 L 182.5,133.09 A 135,135 0 0,0 115,250 Z"
-                                        />
-                                        <g
-                                            class="hd-ico"
-                                            transform="translate(87.19,156) rotate(300)"
-                                        >
-                                            <polygon
-                                                points="0,-10 2.8,-3 10,-3 4.2,1.5 6.5,9 0,4.5 -6.5,9 -4.2,1.5 -10,-3 -2.8,-3"
-                                            />
-                                        </g>
-                                        <text
-                                            class="hd-lbl"
-                                            dominant-baseline="central"
-                                        >
-                                            <textPath
-                                                href="#hd-arc-5"
-                                                startOffset="50%"
-                                                text-anchor="middle"
-                                            >
-                                                Branding
-                                            </textPath>
-                                        </text>
-                                    </a>
-                                </g>
-                            </svg>
+                        <div class="hero-illus-wrap">
+                            <img
+                                class="hero-illus"
+                                src="media-files/undraw_website-visitors_qy9c.svg"
+                                alt="Vizitatori pe un website — ilustrație"
+                                width="800"
+                                height="619"
+                                loading="eager"
+                                decoding="async"
+                            />
                         </div>
-                        <!-- /.hero-donut-wrap -->
                     </div>
                 </div>
             </section>
@@ -1852,5 +1458,6 @@
         </footer>
 
         <script src="lupvision.ro-global.js"></script>
+        <script type="module" src="hero-ballpit.js"></script>
     </body>
 </html>
