@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0F0E0C; }
+    ::selection { background: #E2A23B; color: #0F0E0C; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--lv-accent, #E2A23B); }
+    @keyframes lv-pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    @keyframes lv-bracket { from { opacity: 0; transform: scale(1.7); } to { opacity: 1; transform: scale(1); } }
+    a { transition: background .25s ease, color .25s ease, border-color .25s ease; }
+  </style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="font-family: Archivo, sans-serif; background: #0F0E0C; color: #F2EFE9; -webkit-font-smoothing: antialiased; overflow-x: hidden;">
+
+  <!-- NAV -->
+  <nav data-screen-label="Nav" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px clamp(20px, 5vw, 72px); background: rgba(15,14,12,.92); border-bottom: 1px solid rgba(242,239,233,.12);">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px;">
+      <span style="display: flex; gap: 5px; align-items: center;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #F2EFE9; display: block;"></span>
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--lv-accent, #E2A23B); display: block;"></span>
+      </span>
+      <span style="font-weight: 700; letter-spacing: .1em; font-size: 15px;">LUP VISION</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: clamp(16px, 3vw, 36px); font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .08em;">
+      <a href="#services" style="color: rgba(242,239,233,.7); white-space: nowrap;">SERVICES</a>
+      <a href="#process" style="color: rgba(242,239,233,.7); white-space: nowrap;">PROCESS</a>
+      <a href="#work" style="color: rgba(242,239,233,.7); white-space: nowrap;">WORK</a>
+      <a href="#contact" style="color: #0F0E0C; background: #F2EFE9; padding: 10px 18px; font-weight: 500; white-space: nowrap; flex-shrink: 0;" style-hover="background: var(--lv-accent, #E2A23B); color: #0F0E0C;">START A PROJECT</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" data-screen-label="Hero" style="padding: clamp(72px, 12vh, 140px) clamp(20px, 5vw, 72px) clamp(48px, 8vh, 96px); border-bottom: 1px solid rgba(242,239,233,.12); position: relative;">
+    <p data-hero="label" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .2em; color: var(--lv-accent, #E2A23B); margin: 0 0 28px;">WEB DESIGN &amp; DEVELOPMENT STUDIO</p>
+    <h1 style="margin: 0; font-weight: 740; font-stretch: 112%; font-size: clamp(42px, 6.6vw, 104px); line-height: 1.06; letter-spacing: -0.02em; max-width: 16ch; text-wrap: balance;">
+      <span style="display: block; overflow: hidden;"><span data-hero-line style="display: block;">We build websites</span></span>
+      <span style="display: block; overflow: hidden;"><span data-hero-line style="display: block;">that make businesses <span style="position: relative; display: inline-block; padding: .04em .14em; color: var(--lv-accent, #E2A23B);" style-before="content: ''; position: absolute; top: 0; left: 0; width: .35em; height: .35em; border-top: 3px solid var(--lv-accent, #E2A23B); border-left: 3px solid var(--lv-accent, #E2A23B); animation: lv-bracket .55s cubic-bezier(.2,.6,.2,1) 1.05s both;" style-after="content: ''; position: absolute; bottom: 0; right: 0; width: .35em; height: .35em; border-bottom: 3px solid var(--lv-accent, #E2A23B); border-right: 3px solid var(--lv-accent, #E2A23B); animation: lv-bracket .55s cubic-bezier(.2,.6,.2,1) 1.2s both;">look</span></span></span>
+      <span style="display: block; overflow: hidden;"><span data-hero-line style="display: block;">as good as they actually are.</span></span>
+    </h1>
+    <div data-hero="sub" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: clamp(40px, 6vh, 72px);">
+      <p style="margin: 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: rgba(242,239,233,.68); max-width: 46ch; text-wrap: pretty;">Lup Vision is a small design and development team crafting presentation websites for businesses that take their image seriously. Clear, fast, and built to earn trust at first glance.</p>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="#contact" style="background: var(--lv-accent, #E2A23B); color: #0F0E0C; padding: 16px 28px; font-weight: 600; font-size: 15px; letter-spacing: .02em;" style-hover="background: #F2EFE9; color: #0F0E0C;">Start a project</a>
+        <a href="#work" style="border: 1px solid rgba(242,239,233,.3); padding: 15px 28px; font-weight: 500; font-size: 15px;" style-hover="border-color: var(--lv-accent, #E2A23B); color: var(--lv-accent, #E2A23B);">See the work</a>
+      </div>
+    </div>
+    <div data-hero="meta" style="display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: clamp(40px, 7vh, 80px); font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: rgba(242,239,233,.45);">
+      <span>DESIGN · CODE · STRATEGY</span>
+      <span style="display: flex; align-items: center; gap: 8px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--lv-accent, #E2A23B); display: inline-block; animation: lv-pulse 2.4s ease-in-out infinite;"></span>BOOKING Q3 2026 · WORKING WORLDWIDE</span>
+    </div>
+  </header>
+
+  <!-- 01 POINT OF VIEW -->
+  <section data-screen-label="Point of view" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(40px, 6vw, 96px);">
+    <div data-reveal>
+      <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .2em; color: rgba(242,239,233,.45); margin: 0 0 24px;">01 — POINT OF VIEW</p>
+      <h2 style="margin: 0 0 24px; font-weight: 700; font-stretch: 110%; font-size: clamp(28px, 3vw, 44px); line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance;">Most business websites are templates wearing a suit.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: rgba(242,239,233,.68); max-width: 52ch; text-wrap: pretty;">People judge a business in seconds — and your website is usually where that judgment happens. We design and build sites that communicate clearly, load fast, and position you as the professional choice. Not decoration. Positioning.</p>
+    </div>
+    <div data-reveal data-reveal-delay="120" style="display: flex; flex-direction: column; justify-content: flex-end; gap: 0;">
+      <div style="border-top: 1px solid rgba(242,239,233,.14); padding: 22px 0; display: grid; grid-template-columns: 44px 1fr; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); padding-top: 4px;">A</span>
+        <div><strong style="font-size: 17px; font-weight: 650;">Small team, senior work.</strong><p style="margin: 6px 0 0; font-size: 15px; line-height: 1.6; color: rgba(242,239,233,.6);">No account managers, no hand-offs. The people you meet are the people who design and build your site.</p></div>
+      </div>
+      <div style="border-top: 1px solid rgba(242,239,233,.14); padding: 22px 0; display: grid; grid-template-columns: 44px 1fr; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); padding-top: 4px;">B</span>
+        <div><strong style="font-size: 17px; font-weight: 650;">Design and code, one pair of hands.</strong><p style="margin: 6px 0 0; font-size: 15px; line-height: 1.6; color: rgba(242,239,233,.6);">What we design is what ships — pixel-accurate, fast, and technically sound.</p></div>
+      </div>
+      <div style="border-top: 1px solid rgba(242,239,233,.14); border-bottom: 1px solid rgba(242,239,233,.14); padding: 22px 0; display: grid; grid-template-columns: 44px 1fr; gap: 16px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); padding-top: 4px;">C</span>
+        <div><strong style="font-size: 17px; font-weight: 650;">Every detail deliberate.</strong><p style="margin: 6px 0 0; font-size: 15px; line-height: 1.6; color: rgba(242,239,233,.6);">Spacing, wording, load time, the way a button feels — details are where credibility is won.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SERVICES -->
+  <section id="services" data-screen-label="Services" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12);">
+    <div data-reveal style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vh, 64px);">
+      <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .2em; color: rgba(242,239,233,.45); margin: 0;">02 — WHAT WE DO</p>
+      <h2 style="margin: 0; font-weight: 700; font-stretch: 110%; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.015em;">One core craft. A few sharp tools around it.</h2>
+    </div>
+    <div data-reveal style="border-top: 1px solid rgba(242,239,233,.14);">
+      <div style="display: grid; grid-template-columns: 64px minmax(200px, 1fr) 1.3fr; gap: 20px; align-items: baseline; padding: 30px 12px; border-bottom: 1px solid rgba(242,239,233,.14); background: rgba(226,162,59,.06); transition: background .3s ease;" style-hover="background: rgba(226,162,59,.11);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--lv-accent, #E2A23B);">01</span>
+        <div><h3 style="margin: 0; font-size: clamp(20px, 2vw, 26px); font-weight: 680;">Presentation websites</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .16em; color: var(--lv-accent, #E2A23B);">CORE SERVICE</span></div>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65); text-wrap: pretty;">A complete website that presents your business with clarity and credibility — structure, copy guidance, design and development, end to end.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 64px minmax(200px, 1fr) 1.3fr; gap: 20px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14); transition: background .3s ease;" style-hover="background: rgba(242,239,233,.04);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: rgba(242,239,233,.4);">02</span>
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 620;">Landing pages</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">One page, one goal: turn a campaign click into an inquiry.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 64px minmax(200px, 1fr) 1.3fr; gap: 20px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14); transition: background .3s ease;" style-hover="background: rgba(242,239,233,.04);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: rgba(242,239,233,.4);">03</span>
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 620;">Redesigns</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Keep what works, rebuild what doesn't. For sites that no longer match the level of the business behind them.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 64px minmax(200px, 1fr) 1.3fr; gap: 20px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14); transition: background .3s ease;" style-hover="background: rgba(242,239,233,.04);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: rgba(242,239,233,.4);">04</span>
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 620;">Performance &amp; technical care</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Speed, structure, SEO groundwork and ongoing maintenance — the invisible work that keeps a site sharp.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 64px minmax(200px, 1fr) 1.3fr; gap: 20px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14); transition: background .3s ease;" style-hover="background: rgba(242,239,233,.04);">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: rgba(242,239,233,.4);">05</span>
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 620;">Branding support &amp; custom builds</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Visual identity refinement and custom web solutions when the standard shape doesn't fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 PROCESS -->
+  <section id="process" data-screen-label="Process" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12);">
+    <div data-reveal style="margin-bottom: clamp(36px, 5vh, 64px);">
+      <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .2em; color: rgba(242,239,233,.45); margin: 0 0 20px;">03 — HOW WE WORK</p>
+      <h2 style="margin: 0; font-weight: 700; font-stretch: 110%; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.015em; max-width: 24ch; text-wrap: balance;">Quiet observation first. Then precise execution.</h2>
+    </div>
+    <div data-reveal data-reveal-delay="100" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: #0F0E0C; border: 1px solid rgba(242,239,233,.14);">
+      <div style="background: #0F0E0C; padding: 32px 26px; outline: 1px solid rgba(242,239,233,.14);">
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); margin: 0 0 40px;">STEP 01</p>
+        <h3 style="margin: 0 0 12px; font-size: 19px; font-weight: 650;">Listen</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.6);">We start with your business, your clients and your goals — not with a template. You get a clear plan and a fixed quote.</p>
+      </div>
+      <div style="background: #0F0E0C; padding: 32px 26px; outline: 1px solid rgba(242,239,233,.14);">
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); margin: 0 0 40px;">STEP 02</p>
+        <h3 style="margin: 0 0 12px; font-size: 19px; font-weight: 650;">Design</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.6);">Structure and message first, aesthetics second. You review real pages, not abstract moodboards.</p>
+      </div>
+      <div style="background: #0F0E0C; padding: 32px 26px; outline: 1px solid rgba(242,239,233,.14);">
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); margin: 0 0 40px;">STEP 03</p>
+        <h3 style="margin: 0 0 12px; font-size: 19px; font-weight: 650;">Build</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.6);">Hand-coded, fast and accessible. Tested on real devices, tuned until it feels effortless.</p>
+      </div>
+      <div style="background: #0F0E0C; padding: 32px 26px; outline: 1px solid rgba(242,239,233,.14);">
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--lv-accent, #E2A23B); margin: 0 0 40px;">STEP 04</p>
+        <h3 style="margin: 0 0 12px; font-size: 19px; font-weight: 650;">Launch &amp; refine</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.6);">We launch, measure and stay available. A website is an asset — we help you keep it sharp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 WORK (light) -->
+  <section id="work" data-screen-label="Work" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); background: #F2EFE9; color: #14120F;">
+    <div data-reveal style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vh, 64px);">
+      <div>
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .2em; color: rgba(20,18,15,.5); margin: 0 0 20px;">04 — SELECTED WORK</p>
+        <h2 style="margin: 0; font-weight: 700; font-stretch: 110%; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.015em;">Built to represent, not to decorate.</h2>
+      </div>
+      <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .1em; color: rgba(20,18,15,.5);">FULL CASE STUDIES ON REQUEST</p>
+    </div>
+    <div data-reveal data-reveal-delay="100" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 3vw, 40px);">
+      <div style="display: flex; flex-direction: column; gap: 14px; transition: transform .45s cubic-bezier(.2,.6,.2,1);" style-hover="transform: translateY(-6px);">
+        <div style="aspect-ratio: 4 / 3; position: relative; background: #E5E1D8;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="work-1" shape="rect" placeholder="Drop project screenshot — 01" hint-size="100%,100%"></x-import>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; border-top: 2px solid #14120F; padding-top: 12px;">
+          <strong style="font-size: 16px; font-weight: 650;">Professional services firm</strong>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(20,18,15,.55); white-space: nowrap;">PRESENTATION SITE</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; transition: transform .45s cubic-bezier(.2,.6,.2,1);" style-hover="transform: translateY(-6px);">
+        <div style="aspect-ratio: 4 / 3; position: relative; background: #E5E1D8;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="work-2" shape="rect" placeholder="Drop project screenshot — 02" hint-size="100%,100%"></x-import>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; border-top: 2px solid #14120F; padding-top: 12px;">
+          <strong style="font-size: 16px; font-weight: 650;">Private clinic</strong>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(20,18,15,.55); white-space: nowrap;">REDESIGN</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; transition: transform .45s cubic-bezier(.2,.6,.2,1);" style-hover="transform: translateY(-6px);">
+        <div style="aspect-ratio: 4 / 3; position: relative; background: #E5E1D8;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="work-3" shape="rect" placeholder="Drop project screenshot — 03" hint-size="100%,100%"></x-import>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; border-top: 2px solid #14120F; padding-top: 12px;">
+          <strong style="font-size: 16px; font-weight: 650;">Local manufacturer</strong>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(20,18,15,.55); white-space: nowrap;">SITE + TECHNICAL REWORK</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 CONTACT -->
+  <section id="contact" data-screen-label="Contact" style="padding: clamp(80px, 14vh, 160px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12); text-align: center;">
+    <p data-reveal style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .2em; color: rgba(242,239,233,.45); margin: 0 0 28px;">05 — NEXT MOVE</p>
+    <h2 data-reveal data-reveal-delay="80" style="margin: 0 auto; font-weight: 740; font-stretch: 112%; font-size: clamp(36px, 5vw, 76px); line-height: 1.05; letter-spacing: -0.02em; max-width: 18ch; text-wrap: balance;">Tell us about your project.</h2>
+    <p data-reveal data-reveal-delay="140" style="margin: 28px auto 0; font-size: 17px; line-height: 1.6; color: rgba(242,239,233,.65); max-width: 52ch; text-wrap: pretty;">We reply within one working day — with straight answers, a clear scope and a fixed quote. Even if the honest answer is that you don't need us yet.</p>
+    <div data-reveal data-reveal-delay="200" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 44px;">
+      <a href="mailto:{{ email }}" style="background: var(--lv-accent, #E2A23B); color: #0F0E0C; padding: 18px 34px; font-weight: 600; font-size: 16px;" style-hover="background: #F2EFE9;">{{ email }}</a>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: rgba(242,239,233,.45);">OR BOOK A 20-MIN INTRO CALL</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-screen-label="Footer" style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 28px clamp(20px, 5vw, 72px); font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .1em; color: rgba(242,239,233,.45);">
+    <span style="display: flex; align-items: center; gap: 10px;">
+      <span style="display: flex; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #F2EFE9; display: block;"></span><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--lv-accent, #E2A23B); display: block;"></span></span>
+      © 2026 LUP VISION
+    </span>
+    <span>DESIGNED AND BUILT IN-HOUSE — LIKE EVERYTHING WE SHIP.</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accentColor&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#E2A23B&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#E2A23B&quot;, &quot;#D96C47&quot;, &quot;#9FB8A6&quot;, &quot;#A9B7D0&quot;], &quot;section&quot;: &quot;Brand&quot; },
+  &quot;email&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;hello@lupvision.com&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contact&quot; },
+  &quot;reveals&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot; }
+}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  applyAccent() {
+    const root = this.rootRef.current;
+    if (root && this.props.accentColor) root.style.setProperty('--lv-accent', this.props.accentColor);
+  }
+  componentDidMount() {
+    this.applyAccent();
+    const root = this.rootRef.current;
+    if (!root) return;
+    const wantsMotion = (this.props.reveals ?? true) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!wantsMotion) return;
+    this.heroIntro(root);
+    const els = root.querySelectorAll('[data-reveal]');
+    els.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = 'opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1)';
+    });
+    this._io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.style.transitionDelay = (e.target.getAttribute('data-reveal-delay') || '0') + 'ms';
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        this._io.unobserve(e.target);
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => this._io.observe(el));
+  }
+  heroIntro(root) {
+    const ease = 'cubic-bezier(.16,1,.3,1)';
+    const label = root.querySelector('[data-hero="label"]');
+    if (label) {
+      label.style.opacity = '0'; label.style.filter = 'blur(6px)'; label.style.letterSpacing = '.45em';
+      label.style.transition = 'opacity 1s ease, filter 1s ease, letter-spacing 1.4s ' + ease;
+    }
+    const lines = root.querySelectorAll('[data-hero-line]');
+    lines.forEach((el, i) => {
+      el.style.transform = 'translateY(115%)';
+      el.style.transition = 'transform 1s ' + ease + ' ' + (150 + i * 140) + 'ms';
+    });
+    ['sub', 'meta'].forEach((k, i) => {
+      const el = root.querySelector('[data-hero="' + k + '"]');
+      if (!el) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(26px)';
+      el.style.transition = 'opacity .9s ease ' + (650 + i * 200) + 'ms, transform .9s ' + ease + ' ' + (650 + i * 200) + 'ms';
+    });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (label) { label.style.opacity = '1'; label.style.filter = 'none'; label.style.letterSpacing = '.2em'; }
+      lines.forEach(el => { el.style.transform = 'none'; });
+      ['sub', 'meta'].forEach(k => {
+        const el = root.querySelector('[data-hero="' + k + '"]');
+        if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+      });
+    }));
+  }
+  componentDidUpdate() { this.applyAccent(); }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  renderVals() {
+    return { rootRef: this.rootRef, email: this.props.email ?? 'hello@lupvision.com' };
+  }
+}
+</script>
+</body>
+</html>

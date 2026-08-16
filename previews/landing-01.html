@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brandul tău — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=nexover@300,400,500,600,700,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-head: 'Nexover', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-ui: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0F0E0C; font-family: var(--font-body); }
+  ::selection { background: #E2A23B; color: #0F0E0C; }
+  a { color: inherit; text-decoration: none; transition: background .25s ease, color .25s ease, border-color .25s ease; }
+  a:hover { color: #E2A23B; }
+  h1, h2, h3 { font-family: var(--font-head); font-feature-settings: 'ss01', 'ss02'; }
+  h1 { font-weight: 700; letter-spacing: -0.03em; }
+  h2 { font-weight: 700; letter-spacing: -0.02em; }
+  h3 { font-weight: 600; letter-spacing: -0.01em; }
+  strong { font-weight: 650; }
+  @keyframes lv-pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+  /* ── Responsive tuning across all breakpoints ── */
+  @media (max-width: 900px) {
+    nav a[href="#services"],
+    nav a[href="#process"],
+    nav a[href="#work"] { display: none !important; }
+  }
+  @media (max-width: 560px) {
+    nav a[href="#contact"] { padding: 8px 14px !important; font-size: 11.5px !important; }
+    nav a[href="#top"] span:last-child { font-size: 13px !important; letter-spacing: .08em !important; }
+    #contact a[href^="mailto"] { padding: 14px 22px !important; font-size: 14px !important; word-break: break-all; }
+    #services > div:last-child > div { grid-template-columns: 1fr !important; padding: 22px 12px !important; }
+    #services > div:last-child > div > p { margin-top: 4px !important; }
+  }
+  @media (max-width: 420px) {
+    header[id="top"] > div:last-child { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+    footer { justify-content: flex-start !important; }
+  }
+</style>
+</head>
+<body>
+<div style="font-family: var(--font-body); background: #0F0E0C; color: #F2EFE9; -webkit-font-smoothing: antialiased; overflow-x: hidden;">
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px clamp(20px, 5vw, 72px); background: rgba(15,14,12,.92); border-bottom: 1px solid rgba(242,239,233,.12);">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px;">
+      <span style="display: flex; gap: 5px; align-items: center;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #F2EFE9; display: block;"></span>
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #E2A23B; display: block;"></span>
+      </span>
+      <span style="font-family: var(--font-ui); font-weight: 600; letter-spacing: .06em; font-size: 15px;">BRANDUL TĂU</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: clamp(16px, 3vw, 36px); font-family: var(--font-ui); font-size: 13.5px; font-weight: 500; letter-spacing: .01em;">
+      <a href="#services" style="color: rgba(242,239,233,.7); white-space: nowrap;">Servicii</a>
+      <a href="#process" style="color: rgba(242,239,233,.7); white-space: nowrap;">Proces</a>
+      <a href="#work" style="color: rgba(242,239,233,.7); white-space: nowrap;">Lucrări</a>
+      <a href="#contact" style="color: #0F0E0C; background: #F2EFE9; padding: 10px 18px; font-weight: 600; white-space: nowrap; flex-shrink: 0;">Începe un proiect</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" style="padding: clamp(72px, 12vh, 140px) clamp(20px, 5vw, 72px) clamp(48px, 8vh, 96px); border-bottom: 1px solid rgba(242,239,233,.12); position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; pointer-events: none; background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1600&q=80'); background-size: cover; background-position: center; opacity: 0.12; filter: grayscale(0.4);"></div>
+    <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to bottom, rgba(15,14,12,.4), rgba(15,14,12,.9));"></div>
+    <div style="position: relative;">
+    <p style="font-family: var(--font-ui); font-size: 12.5px; font-weight: 500; letter-spacing: .18em; color: #E2A23B; margin: 0 0 28px; text-transform: uppercase;">Birou de arhitectură · București</p>
+    <h1 style="margin: 0; font-weight: 700; font-size: clamp(42px, 6.6vw, 104px); line-height: 1.04; letter-spacing: -0.03em; max-width: 16ch; text-wrap: balance;">
+      <span style="display: block;">Case gândite</span>
+      <span style="display: block;">să rămână <span style="display: inline-block; padding: .04em .14em; color: #E2A23B;">acasă</span></span>
+      <span style="display: block;">și după cincizeci de ani.</span>
+    </h1>
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; margin-top: clamp(40px, 6vh, 72px);">
+      <p style="margin: 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: rgba(242,239,233,.68); max-width: 46ch; text-wrap: pretty;">Suntem un birou mic — doi arhitecți și un tehnolog. Facem case, amenajări și restaurări, de la teren la cheia în ușă. Fără intermediari și fără prezentări cu muzică. Ce vezi mai jos e ce am terminat.</p>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="#contact" style="font-family: var(--font-ui); background: #E2A23B; color: #0F0E0C; padding: 16px 28px; font-weight: 600; font-size: 15px; letter-spacing: 0;">Începe un proiect</a>
+        <a href="#work" style="font-family: var(--font-ui); border: 1px solid rgba(242,239,233,.3); padding: 15px 28px; font-weight: 500; font-size: 15px;">Vezi lucrările</a>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: clamp(40px, 7vh, 80px); font-family: var(--font-ui); font-size: 12.5px; font-weight: 500; letter-spacing: .1em; color: rgba(242,239,233,.45); text-transform: uppercase;">
+      <span>Rezidențial · Comercial · Restaurare</span>
+      <span style="display: flex; align-items: center; gap: 8px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #E2A23B; display: inline-block; animation: lv-pulse 2.4s ease-in-out infinite;"></span>Programări Q3 2026 · Lucrări în toată țara</span>
+    </div>
+    </div>
+  </header>
+
+  <!-- 01 PUNCT DE VEDERE -->
+  <section style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(40px, 6vw, 96px);">
+    <div>
+      <h2 style="margin: 0 0 24px; font-weight: 700; font-size: clamp(28px, 3vw, 44px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance;">Aproape orice casă nouă din România arată la fel. Nu e o coincidență.</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65; color: rgba(242,239,233,.68); max-width: 52ch; text-wrap: pretty;">În 12 ani am văzut aceleași fațade, aceeași tâmplărie neagră, aceleași OSB-uri pe orice teren. Nu că ar fi urât. E că nu spune nimic despre oamenii care locuiesc acolo. Noi începem cu tine — nu cu un plan pe care l-am mai făcut de treizeci de ori.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 0;">
+      <div style="border-top: 1px solid rgba(242,239,233,.14); padding: 22px 0;">
+        <strong style="font-size: 17px; font-weight: 650; display: block; margin-bottom: 6px;">Vorbești cu arhitectul, nu cu un intermediar.</strong>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(242,239,233,.6);">Suntem trei oameni. Cel cu care te vezi la prima ședință rămâne pe proiect până la finalizare.</p>
+      </div>
+      <div style="border-top: 1px solid rgba(242,239,233,.14); padding: 22px 0;">
+        <strong style="font-size: 17px; font-weight: 650; display: block; margin-bottom: 6px;">Rămânem pe șantier până se termină.</strong>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(242,239,233,.6);">Vizite săptămânale, incluse. Dacă apare o problemă, o vezi tu prima — nu la recepția lucrării.</p>
+      </div>
+      <div style="border-top: 1px solid rgba(242,239,233,.14); border-bottom: 1px solid rgba(242,239,233,.14); padding: 22px 0;">
+        <strong style="font-size: 17px; font-weight: 650; display: block; margin-bottom: 6px;">Costul final ≈ costul estimat.</strong>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(242,239,233,.6);">Diferența medie pe ultimele 20 de proiecte: 6.4%. Îți dăm cifra completă înainte de contract, nu bucată cu bucată.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 CE FACEM -->
+  <section id="services" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12);">
+    <div style="margin-bottom: clamp(36px, 5vh, 64px);">
+      <h2 style="margin: 0; font-weight: 700; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.02em; max-width: 22ch; text-wrap: balance;">Ce facem, pe scurt.</h2>
+    </div>
+    <div style="border-top: 1px solid rgba(242,239,233,.14);">
+      <div style="display: grid; grid-template-columns: minmax(220px, 1fr) 1.3fr; gap: 24px; align-items: baseline; padding: 30px 12px; border-bottom: 1px solid rgba(242,239,233,.14); background: rgba(226,162,59,.06);">
+        <div>
+          <h3 style="margin: 0; font-size: clamp(20px, 2vw, 26px); font-weight: 700;">Locuințe rezidențiale</h3>
+          <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .14em; color: #E2A23B; text-transform: uppercase;">Serviciu principal</span>
+        </div>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.7); text-wrap: pretty;">Case și apartamente, de la teren până la mutare. E ce facem 80% din timp și e cel mai bun test pentru cum lucrăm.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(220px, 1fr) 1.3fr; gap: 24px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14);">
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 600;">Amenajări comerciale</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Cabinete medicale, birouri și retail mic — până în 300 mp. Peste, preferăm să te trimitem la cineva potrivit.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(220px, 1fr) 1.3fr; gap: 24px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14);">
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 600;">Renovări & restaurări</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Case interbelice și apartamente vechi. Lucrăm cu firme cu autorizație de patrimoniu — dacă e cazul, prin toate hârtiile cu tine.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(220px, 1fr) 1.3fr; gap: 24px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14);">
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 600;">Design de interior</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Doar pentru clădiri pe care le-am proiectat noi. Nu preluăm interioare izolate — nu putem controla rezultatul la capăt.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(220px, 1fr) 1.3fr; gap: 24px; align-items: baseline; padding: 26px 12px; border-bottom: 1px solid rgba(242,239,233,.14);">
+        <h3 style="margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 600;">Consultanță</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Ai deja un plan sau un arhitect? O ședință de 90 min, 850 lei. Îți spunem ce am schimba și de ce — sau, dacă e bine, îți spunem asta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 CUM LUCRĂM -->
+  <section id="process" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12);">
+    <div style="margin-bottom: clamp(36px, 5vh, 64px);">
+      <h2 style="margin: 0; font-weight: 700; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.02em; max-width: 24ch; text-wrap: balance;">Cum decurge un proiect cu noi.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: #0F0E0C; border: 1px solid rgba(242,239,233,.14);">
+      <div style="background: #0F0E0C; padding: 40px 26px 32px; outline: 1px solid rgba(242,239,233,.14); border-top: 2px solid #E2A23B;">
+        <h3 style="margin: 0 0 12px; font-size: 20px; font-weight: 650;">Prima ședință</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Vizităm terenul cu tine. Discutăm buget, timp și ce nu îți place la casele actuale. În 7 zile primești o estimare pe hârtie și un calendar cu date exacte.</p>
+      </div>
+      <div style="background: #0F0E0C; padding: 40px 26px 32px; outline: 1px solid rgba(242,239,233,.14); border-top: 2px solid rgba(226,162,59,.55);">
+        <h3 style="margin: 0 0 12px; font-size: 20px; font-weight: 650;">Concept</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Trei variante de plan, cu volume și fațadă. Ne vedem la birou, discutăm, alegi. Fără prezentări cu muzică — doar decizii clare.</p>
+      </div>
+      <div style="background: #0F0E0C; padding: 40px 26px 32px; outline: 1px solid rgba(242,239,233,.14); border-top: 2px solid rgba(226,162,59,.35);">
+        <h3 style="margin: 0 0 12px; font-size: 20px; font-weight: 650;">Autorizații & șantier</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Facem documentația de autorizație și pe cea de execuție. Îți recomandăm 2-3 firme de construcții cu care am mai lucrat.</p>
+      </div>
+      <div style="background: #0F0E0C; padding: 40px 26px 32px; outline: 1px solid rgba(242,239,233,.14); border-top: 2px solid rgba(226,162,59,.2);">
+        <h3 style="margin: 0 0 12px; font-size: 20px; font-weight: 650;">Predare</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: rgba(242,239,233,.65);">Primești un dosar cu planurile as-built, garanțiile și contactele meseriașilor. Primul an de întrebări e gratuit — te descurci mai bine cu casa dacă știi pe cine să suni.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 LUCRĂRI (light) -->
+  <section id="work" style="padding: clamp(64px, 10vh, 120px) clamp(20px, 5vw, 72px); background: #F2EFE9; color: #14120F;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vh, 64px);">
+      <h2 style="margin: 0; font-weight: 700; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.02em; max-width: 22ch; text-wrap: balance;">Câteva proiecte recente.</h2>
+      <p style="margin: 0; font-family: var(--font-ui); font-size: 12.5px; font-weight: 500; letter-spacing: .08em; color: rgba(20,18,15,.5); text-transform: uppercase;">Restul, prin email</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 3vw, 40px);">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="aspect-ratio: 4 / 3; position: relative; background: linear-gradient(135deg, #E5E1D8, #D8D3C6) center/cover; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80" alt="Casă de familie modernă" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <span style="position: absolute; left: 12px; bottom: 12px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; color: #F2EFE9; text-transform: uppercase; background: rgba(15,14,12,.55); padding: 4px 10px; backdrop-filter: blur(6px);">2024 · Snagov</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; border-top: 2px solid #14120F; padding-top: 12px;">
+          <strong style="font-size: 16px; font-weight: 650;">Casă de familie</strong>
+          <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .1em; color: rgba(20,18,15,.55); white-space: nowrap; text-transform: uppercase;">Rezidențial</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="aspect-ratio: 4 / 3; position: relative; background: linear-gradient(135deg, #E5E1D8, #D8D3C6) center/cover; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=80" alt="Cabinet stomatologic amenajare interioară" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <span style="position: absolute; left: 12px; bottom: 12px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; color: #F2EFE9; text-transform: uppercase; background: rgba(15,14,12,.55); padding: 4px 10px; backdrop-filter: blur(6px);">2025 · București</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; border-top: 2px solid #14120F; padding-top: 12px;">
+          <strong style="font-size: 16px; font-weight: 650;">Cabinet stomatologic</strong>
+          <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .1em; color: rgba(20,18,15,.55); white-space: nowrap; text-transform: uppercase;">Amenajare comercială</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="aspect-ratio: 4 / 3; position: relative; background: linear-gradient(135deg, #E5E1D8, #D8D3C6) center/cover; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="Casă interbelică restaurată" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <span style="position: absolute; left: 12px; bottom: 12px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; color: #F2EFE9; text-transform: uppercase; background: rgba(15,14,12,.55); padding: 4px 10px; backdrop-filter: blur(6px);">2024 · Sibiu</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; border-top: 2px solid #14120F; padding-top: 12px;">
+          <strong style="font-size: 16px; font-weight: 650;">Casă interbelică</strong>
+          <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .1em; color: rgba(20,18,15,.55); white-space: nowrap; text-transform: uppercase;">Restaurare</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 CONTACT -->
+  <section id="contact" style="padding: clamp(80px, 14vh, 160px) clamp(20px, 5vw, 72px); border-bottom: 1px solid rgba(242,239,233,.12); text-align: center;">
+    <h2 style="margin: 0 auto; font-weight: 700; font-size: clamp(36px, 5vw, 76px); line-height: 1.03; letter-spacing: -0.03em; max-width: 18ch; text-wrap: balance;">Trimite câteva rânduri despre proiect.</h2>
+    <p style="margin: 28px auto 0; font-size: 17px; line-height: 1.6; color: rgba(242,239,233,.65); max-width: 52ch; text-wrap: pretty;">Îți răspundem în 1-2 zile lucrătoare. Dacă proiectul nu e pentru noi — prea mare, prea departe, timing greșit — îți spunem direct și, dacă putem, te punem în legătură cu un birou care se potrivește.</p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 44px;">
+      <a href="mailto:contact@brandultau.ro" style="font-family: var(--font-ui); background: #E2A23B; color: #0F0E0C; padding: 18px 34px; font-weight: 600; font-size: 16px; letter-spacing: 0;">contact@brandultau.ro</a>
+      <span style="font-family: var(--font-ui); font-size: 12.5px; font-weight: 500; letter-spacing: .1em; color: rgba(242,239,233,.45); text-transform: uppercase;">Sau vino la o cafea la birou</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 28px clamp(20px, 5vw, 72px); font-family: var(--font-ui); font-size: 12.5px; font-weight: 500; letter-spacing: .08em; color: rgba(242,239,233,.45); text-transform: uppercase;">
+    <span style="display: flex; align-items: center; gap: 10px;">
+      <span style="display: flex; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #F2EFE9; display: block;"></span><span style="width: 6px; height: 6px; border-radius: 50%; background: #E2A23B; display: block;"></span></span>
+      © 2026 Brandul tău · Str. Exemplu 12, București
+    </span>
+    <span>12 ani de proiecte, în București și împrejurimi</span>
+  </footer>
+</div>
+</body>
+</html>

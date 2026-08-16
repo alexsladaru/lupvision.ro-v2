@@ -33,9 +33,7 @@
         <!-- ══ HEADER ══ -->
         <header id="hdr">
             <div class="hdr-in">
-                <a href="/" class="logo">
-                    <span>LUP</span><span class="logo-acc">VISION</span>
-                </a>
+                <a href="/" class="logo">&lt;lup vision&gt;</a>
                 <nav id="nav">
                     <div class="nav-isl">
                         <div class="nav-isl-clip">
@@ -138,7 +136,15 @@
                                     class="wst rv"
                                     style="transition-delay: 0.08s"
                                 >
-                                    <div class="wst-n">360°</div>
+                                    <div
+                                        class="wst-n"
+                                        style="
+                                            font-size: 1.3rem;
+                                            line-height: 1.2;
+                                        "
+                                    >
+                                        360°
+                                    </div>
                                     <div class="wst-l">
                                         Proces complet de livrare
                                     </div>
@@ -171,7 +177,15 @@
                                     class="wst rv"
                                     style="transition-delay: 0.24s"
                                 >
-                                    <div class="wst-n">30 zile</div>
+                                    <div
+                                        class="wst-n"
+                                        style="
+                                            font-size: 1.3rem;
+                                            line-height: 1.2;
+                                        "
+                                    >
+                                        30 zile
+                                    </div>
                                     <div class="wst-l">
                                         Suport inclus după lansare
                                     </div>
@@ -467,7 +481,6 @@
                     <div class="pr rv">
                         <div class="pr-name">Landing Page Custom</div>
                         <div class="pr-price">5.500 <em>lei</em></div>
-                        <div class="pr-from">de la · plată unică</div>
                         <div class="pr-divider"></div>
                         <ul class="pr-list">
                             <li>Strategie & structură</li>
@@ -486,10 +499,9 @@
 
                     <!-- Website Business (evidențiat) -->
                     <div class="pr feat rv" style="transition-delay: 0.08s">
-                        <div class="pr-badge">Recomandat</div>
+                        <div class="pr-badge">Cel mai popular</div>
                         <div class="pr-name">Website Business</div>
                         <div class="pr-price">9.500 <em>lei</em></div>
-                        <div class="pr-from">de la · cel mai popular</div>
                         <div class="pr-divider"></div>
                         <ul class="pr-list">
                             <li>Strategie & sitemap</li>
@@ -511,7 +523,6 @@
                     <div class="pr rv" style="transition-delay: 0.16s">
                         <div class="pr-name">Website Premium</div>
                         <div class="pr-price">15.000 <em>lei</em></div>
-                        <div class="pr-from">de la · proiect extins</div>
                         <div class="pr-divider"></div>
                         <ul class="pr-list">
                             <li>Strategie extinsă</li>
@@ -580,42 +591,49 @@
                     </div>
                 </div>
                 <div class="proj-g">
-                    <div class="pj rv">
-                        <div class="pj-type">Platformă programări online</div>
-                        <div class="pj-stage-lbl">Stadiu</div>
-                        <div class="pj-tabs">
-                            <span class="pjt on">Discovery</span>
-                            <span class="pjt on">Design</span>
-                            <span class="pjt">Development</span>
-                            <span class="pjt">Lansare</span>
-                        </div>
-                        <div class="pj-thumb th1">
+                    <div
+                        class="pj rv has-preview"
+                        data-pv-open="previews/landing-01.html"
+                        data-pv-url="brandul-tau.ro"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Deschide previzualizare — Model birou de arhitectură"
+                    >
+                        <div class="pj-thumb th1 has-preview">
                             <div class="pj-bg"></div>
                             <div class="pj-gl"></div>
-                            <div class="pj-mock">
-                                <div class="pm-nav"></div>
-                                <div class="pm-b">
-                                    <div class="pm-r"></div>
-                                    <div class="pm-r"></div>
-                                    <div class="pm-r"></div>
+                            <div class="pj-frame">
+                                <div class="pj-frame-bar">
+                                    <span class="pj-dot"></span>
+                                    <span class="pj-frame-url"
+                                        >brandul-tau.ro</span
+                                    >
                                 </div>
+                                <div class="pj-frame-scr">
+                                    <iframe
+                                        class="pj-frame-if"
+                                        src="previews/landing-01.html"
+                                        loading="lazy"
+                                        title="Preview site — Brandul tău"
+                                        scrolling="no"
+                                        tabindex="-1"
+                                        aria-hidden="true"
+                                    ></iframe>
+                                </div>
+                                <span class="pj-frame-hint">Click pentru a deschide</span>
                             </div>
                         </div>
                         <div class="pj-info">
                             <div class="pj-name">
-                                Cabinet Medical Dr. Ionescu
+                                Model birou de arhitectură
                             </div>
                             <p class="pj-desc">
-                                Platforma de programări online cu dashboard
-                                admin custom și integrare plăți. Pacienții pot
-                                programa consultații 24/7.
+                                Structură editorială pentru un studio boutique
+                                de arhitectură — punct de vedere, servicii,
+                                proces și portofoliu.
                             </p>
-                            <a
-                                href="https://cabinetmedicaldrionescu.ro"
-                                target="_blank"
-                                rel="noopener"
-                                class="pj-lnk"
-                                >cabinetmedicaldrionescu.ro<svg
+                            <span class="pj-lnk pj-lnk-static"
+                                >brandul-tau.ro<svg
                                     width="9"
                                     height="9"
                                     viewBox="0 0 9 9"
@@ -627,46 +645,56 @@
                                 >
                                     <line x1="1" y1="8" x2="8" y2="1" />
                                     <polyline points="3,1 8,1 8,6" /></svg
-                            ></a>
+                            ></span>
                         </div>
                     </div>
 
-                    <div class="pj rv" style="transition-delay: 0.1s">
-                        <div class="pj-type">Site de prezentare</div>
-                        <div class="pj-stage-lbl">Stadiu</div>
-                        <div class="pj-tabs">
-                            <span class="pjt on">Discovery</span>
-                            <span class="pjt on">Design</span>
-                            <span class="pjt on">Development</span>
-                            <span class="pjt">Lansare</span>
-                        </div>
-                        <div class="pj-thumb th2">
+                    <div
+                        class="pj rv has-preview"
+                        data-pv-open="previews/ermacom-landing.html"
+                        data-pv-url="brandul-tau.ro"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Deschide previzualizare — Model transport alimentar"
+                        style="transition-delay: 0.1s"
+                    >
+                        <div class="pj-thumb th2 has-preview">
                             <div class="pj-bg"></div>
                             <div class="pj-gl"></div>
-                            <div class="pj-mock">
-                                <div class="pm-nav"></div>
-                                <div class="pm-b">
-                                    <div class="pm-r"></div>
-                                    <div class="pm-r"></div>
-                                    <div class="pm-r"></div>
+                            <div class="pj-frame">
+                                <div class="pj-frame-bar">
+                                    <span class="pj-dot"></span>
+                                    <span class="pj-frame-url"
+                                        >brandul-tau.ro</span
+                                    >
                                 </div>
+                                <div class="pj-frame-scr">
+                                    <iframe
+                                        class="pj-frame-if"
+                                        src="previews/ermacom-landing.html"
+                                        loading="lazy"
+                                        title="Preview site — Transport alimentar"
+                                        scrolling="no"
+                                        tabindex="-1"
+                                        aria-hidden="true"
+                                    ></iframe>
+                                </div>
+                                <span class="pj-frame-hint"
+                                    >Click pentru a deschide</span
+                                >
                             </div>
                         </div>
                         <div class="pj-info">
                             <div class="pj-name">
-                                Agenție Imobiliară Construct
+                                Model transport alimentar
                             </div>
                             <p class="pj-desc">
-                                Site de prezentare cu listing proprietăți,
-                                filtre avansate și hartă interactivă cu leads
-                                CRM integrat.
+                                Site B2B pentru o firmă de transport frigorific
+                                și logistică — capabilități, servicii,
+                                certificări și formular ofertă.
                             </p>
-                            <a
-                                href="https://construct-imobiliare.ro"
-                                target="_blank"
-                                rel="noopener"
-                                class="pj-lnk"
-                                >construct-imobiliare.ro<svg
+                            <span class="pj-lnk pj-lnk-static"
+                                >brandul-tau.ro<svg
                                     width="9"
                                     height="9"
                                     viewBox="0 0 9 9"
@@ -678,44 +706,54 @@
                                 >
                                     <line x1="1" y1="8" x2="8" y2="1" />
                                     <polyline points="3,1 8,1 8,6" /></svg
-                            ></a>
+                            ></span>
                         </div>
                     </div>
 
-                    <div class="pj rv" style="transition-delay: 0.2s">
-                        <div class="pj-type">Landing Page</div>
-                        <div class="pj-stage-lbl">Stadiu</div>
-                        <div class="pj-tabs">
-                            <span class="pjt on">Discovery</span>
-                            <span class="pjt on">Design</span>
-                            <span class="pjt on">Development</span>
-                            <span class="pjt on">Lansare</span>
-                        </div>
-                        <div class="pj-thumb th3">
+                    <div
+                        class="pj rv has-preview"
+                        data-pv-open="previews/conacul-valsan.html"
+                        data-pv-url="brandul-tau.ro"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Deschide previzualizare — Model conac boutique"
+                        style="transition-delay: 0.2s"
+                    >
+                        <div class="pj-thumb th3 has-preview">
                             <div class="pj-bg"></div>
                             <div class="pj-gl"></div>
-                            <div class="pj-mock">
-                                <div class="pm-nav"></div>
-                                <div class="pm-b">
-                                    <div class="pm-r"></div>
-                                    <div class="pm-r"></div>
-                                    <div class="pm-r"></div>
+                            <div class="pj-frame">
+                                <div class="pj-frame-bar">
+                                    <span class="pj-dot"></span>
+                                    <span class="pj-frame-url"
+                                        >brandul-tau.ro</span
+                                    >
                                 </div>
+                                <div class="pj-frame-scr">
+                                    <iframe
+                                        class="pj-frame-if"
+                                        src="previews/conacul-valsan.html"
+                                        loading="lazy"
+                                        title="Preview site — Conacul Vâlșan"
+                                        scrolling="no"
+                                        tabindex="-1"
+                                        aria-hidden="true"
+                                    ></iframe>
+                                </div>
+                                <span class="pj-frame-hint"
+                                    >Click pentru a deschide</span
+                                >
                             </div>
                         </div>
                         <div class="pj-info">
-                            <div class="pj-name">Brand Cosmetics Naturale</div>
+                            <div class="pj-name">Model conac boutique</div>
                             <p class="pj-desc">
-                                Landing page cu conversie optimizată, A/B
-                                testing și integrare Klaviyo pentru automatizare
-                                email marketing.
+                                Landing editorial pentru o pensiune boutique
+                                de munte — atmosferă, camere, galerie și
+                                rezervare directă.
                             </p>
-                            <a
-                                href="https://brandcosmeticsnaturale.ro"
-                                target="_blank"
-                                rel="noopener"
-                                class="pj-lnk"
-                                >brandcosmeticsnaturale.ro<svg
+                            <span class="pj-lnk pj-lnk-static"
+                                >brandul-tau.ro<svg
                                     width="9"
                                     height="9"
                                     viewBox="0 0 9 9"
@@ -727,7 +765,7 @@
                                 >
                                     <line x1="1" y1="8" x2="8" y2="1" />
                                     <polyline points="3,1 8,1 8,6" /></svg
-                            ></a>
+                            ></span>
                         </div>
                     </div>
                 </div>
@@ -1348,7 +1386,7 @@
                 <div class="cta-big">Hai să vorbim</div>
                 <div class="cta-btn-wrap">
                     <a
-                        href="mailto:contact@lupvision.ro"
+                        href="mailto:office.lupvision@gmail.com"
                         class="btn-blue"
                         style="padding: 13px 24px"
                         >Contactează-ne</a
@@ -1362,9 +1400,7 @@
             <div class="ft-inner">
                 <!-- Coloana verticală logo -->
                 <div class="ft-vert">
-                    <a href="/" class="ft-vert-logo"
-                        ><span>LUP</span><span class="logo-acc">VISION</span></a
-                    >
+                    <a href="/" class="ft-vert-logo">&lt;lup vision&gt;</a>
                 </div>
 
                 <!-- Conținut principal -->
@@ -1390,44 +1426,26 @@
                             <a href="#srvs">Mentenanță & Suport</a>
                         </div>
                         <div class="ft-col">
-                            <div class="ft-col-t">Contact</div>
-                            <a href="mailto:contact@lupvision.ro"
-                                >contact@lupvision.ro</a
-                            >
-                            <a href="tel:+40721034567">+40 721 034 567</a>
-                            <span class="ft-txt"
-                                >Str. Ion Câmpineanu 11<br />010031, București,
-                                România</span
-                            >
-                            <span class="ft-txt"
-                                >Luni–Vineri · 09:00–18:00</span
+                            <div class="ft-col-t">Legal</div>
+                            <a href="termeni.html">Termeni și condiții</a>
+                            <a href="confidentialitate.html"
+                                >Politică de confidențialitate</a
                             >
                         </div>
                         <div class="ft-col">
-                            <div class="ft-col-t">Urmărește-ne</div>
-                            <a
-                                href="https://instagram.com/lupvision.ro"
-                                target="_blank"
-                                rel="noopener"
-                                >Instagram</a
+                            <div class="ft-col-t">Contact</div>
+                            <a href="mailto:office.lupvision@gmail.com"
+                                >office.lupvision@gmail.com</a
                             >
-                            <a
-                                href="https://linkedin.com/company/lupvision"
-                                target="_blank"
-                                rel="noopener"
-                                >LinkedIn</a
+                            <a href="tel:+40774437266">0774 437 266</a>
+                            <a href="tel:+40731304801">0731 304 801</a>
+                            <span class="ft-txt"
+                                >Județ Bacău<br />Localitate Sat
+                                Săucești<br />Str. Trandafirilor 5, cod
+                                607540</span
                             >
-                            <a
-                                href="https://facebook.com/lupvision.ro"
-                                target="_blank"
-                                rel="noopener"
-                                >Facebook</a
-                            >
-                            <a
-                                href="https://behance.net/lupvision"
-                                target="_blank"
-                                rel="noopener"
-                                >Behance</a
+                            <span class="ft-txt"
+                                >Luni–Vineri · 09:00–18:00</span
                             >
                         </div>
                     </div>
@@ -1443,7 +1461,109 @@
             </div>
         </footer>
 
+        <!-- Preview modal — full-screen iframe of project template -->
+        <div class="pv-modal" id="pvModal" aria-hidden="true">
+            <div class="pv-modal-backdrop" data-pv-close></div>
+            <div
+                class="pv-modal-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Previzualizare site"
+            >
+                <div class="pv-modal-bar">
+                    <div class="pv-modal-dots">
+                        <span class="pj-dot"></span>
+                    </div>
+                    <div class="pv-modal-url" id="pvModalUrl"></div>
+                    <button
+                        class="pv-modal-close"
+                        type="button"
+                        data-pv-close
+                        aria-label="Închide previzualizare"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        >
+                            <path d="M6 6l12 12M18 6L6 18" />
+                        </svg>
+                    </button>
+                </div>
+                <iframe
+                    class="pv-modal-if"
+                    id="pvModalIf"
+                    title="Previzualizare site"
+                    src="about:blank"
+                ></iframe>
+            </div>
+        </div>
+
         <script src="lupvision.ro-global.js"></script>
         <script type="module" src="hero-ballpit.js"></script>
+        <script>
+            (function () {
+                var modal = document.getElementById('pvModal');
+                var frame = document.getElementById('pvModalIf');
+                var urlEl = document.getElementById('pvModalUrl');
+                if (!modal || !frame) return;
+
+                function open(src, url) {
+                    frame.src = src;
+                    urlEl.textContent = url || '';
+                    modal.classList.add('is-open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+                function close() {
+                    modal.classList.remove('is-open');
+                    modal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                    setTimeout(function () {
+                        frame.src = 'about:blank';
+                    }, 260);
+                }
+
+                document.addEventListener('click', function (e) {
+                    var opener = e.target.closest('[data-pv-open]');
+                    if (opener) {
+                        e.preventDefault();
+                        open(
+                            opener.getAttribute('data-pv-open'),
+                            opener.getAttribute('data-pv-url')
+                        );
+                        return;
+                    }
+                    if (e.target.closest('[data-pv-close]')) {
+                        close();
+                    }
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (
+                        e.key === 'Escape' &&
+                        modal.classList.contains('is-open')
+                    ) {
+                        close();
+                        return;
+                    }
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        var t = e.target;
+                        if (
+                            t &&
+                            t.getAttribute &&
+                            t.getAttribute('data-pv-open')
+                        ) {
+                            e.preventDefault();
+                            open(
+                                t.getAttribute('data-pv-open'),
+                                t.getAttribute('data-pv-url')
+                            );
+                        }
+                    }
+                });
+            })();
+        </script>
     </body>
 </html>
