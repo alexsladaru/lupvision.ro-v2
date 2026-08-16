@@ -258,6 +258,72 @@ nav {
     left: 50%;
     transform: translateX(-50%);
 }
+/* ── Header entry animation on landing ── */
+@keyframes hdr-drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes nav-link-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.logo {
+    opacity: 0;
+    animation: hdr-drop-in 1.6s var(--expo) 0.25s forwards;
+}
+.hdr-r .btn-blue,
+.mbar {
+    opacity: 0;
+    animation: hdr-drop-in 1.6s var(--expo) 1.35s forwards;
+}
+.nav-isl {
+    opacity: 0;
+    animation: hdr-drop-in 1.7s var(--expo) 0.55s forwards;
+}
+.nav-isl a {
+    opacity: 0;
+    animation: nav-link-in 1s var(--expo) forwards;
+}
+.nav-isl a:nth-of-type(1) {
+    animation-delay: 0.85s;
+}
+.nav-isl a:nth-of-type(2) {
+    animation-delay: 0.95s;
+}
+.nav-isl a:nth-of-type(3) {
+    animation-delay: 1.05s;
+}
+.nav-isl a:nth-of-type(4) {
+    animation-delay: 1.15s;
+}
+.nav-isl a:nth-of-type(5) {
+    animation-delay: 1.25s;
+}
+.nav-isl a:nth-of-type(6) {
+    animation-delay: 1.35s;
+}
+@media (prefers-reduced-motion: reduce) {
+    .logo,
+    .hdr-r .btn-blue,
+    .mbar,
+    .nav-isl,
+    .nav-isl a {
+        animation: none;
+        opacity: 1;
+    }
+}
 /* Insula nav — wrapper cu island + brackets */
 .nav-isl {
     display: flex;
@@ -937,6 +1003,11 @@ nav a.act {
     gap: 28px;
     opacity: 0;
     animation: fu 1.3s var(--expo) 1.5s forwards;
+}
+.hero-btns .btn-blue,
+.hero-btns .btn-gh-dk {
+    padding: 16px 30px;
+    font-size: 15px;
 }
 .btn-bl-lg {
     position: relative;
@@ -1691,8 +1762,7 @@ nav a.act {
     margin-bottom: 24px;
 }
 .pr-divider {
-    height: 1px;
-    background: var(--bdk);
+    height: 0;
     margin-bottom: 24px;
 }
 .pr-list {
@@ -2107,6 +2177,7 @@ nav a.act {
     border-bottom: 1px solid transparent;
     border-image: var(--sec-divider) 1;
     padding: 100px 40px;
+    scroll-margin-top: 74px;
 }
 .projs-in {
     max-width: 1280px;
@@ -2884,6 +2955,7 @@ nav a.act {
     border-bottom: 1px solid transparent;
     border-image: var(--sec-divider) 1;
     padding: 88px 40px;
+    scroll-margin-top: 74px;
 }
 .cta-in {
     max-width: 1280px;
@@ -3366,6 +3438,13 @@ footer {
         flex-direction: column;
         gap: 40px;
     }
+    .whi-l,
+    .whi-r {
+        flex: none;
+        width: 100%;
+        min-height: 0;
+        height: auto;
+    }
     .why-stats {
         flex: none;
         width: 100%;
@@ -3383,6 +3462,19 @@ footer {
     }
     .srvs-g {
         grid-template-columns: repeat(2, 1fr);
+    }
+    /* 2-col: restore border-right on cell 3 (now left col row 2), remove from evens */
+    .srv:nth-child(3n) {
+        border-right: 1px solid var(--bdk);
+    }
+    .srv:nth-child(n + 4):not(:nth-child(3n)) {
+        border-right: 1px solid var(--bdk);
+    }
+    .srv:nth-child(n + 4):not(:nth-child(3n))::before {
+        display: none;
+    }
+    .srv:nth-child(2n) {
+        border-right: none !important;
     }
     .how-g {
         grid-template-columns: 1fr;
@@ -3418,43 +3510,106 @@ footer {
     nav.open {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         position: fixed;
-        inset: 74px 0 0;
+        inset: 74px 0 0 0;
         transform: none;
-        background: var(--dk);
-        padding: 24px 24px 40px;
+        background: rgba(4, 9, 26, 0.18);
+        backdrop-filter: blur(22px) saturate(1.2);
+        -webkit-backdrop-filter: blur(22px) saturate(1.2);
+        padding: 40px 24px 32px;
         z-index: 999;
-        overflow-y: auto;
+        overflow: hidden;
     }
     nav.open .nav-isl {
         flex-direction: column;
-        align-items: stretch;
-        gap: 0;
+        align-items: center;
+        gap: 4px;
         width: 100%;
-        padding: 0;
-        background: transparent;
-        border: none;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
+        max-width: 380px;
+        padding: 32px 20px;
+        background: rgba(4, 9, 26, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px) saturate(1.1);
+        -webkit-backdrop-filter: blur(20px) saturate(1.1);
     }
-    nav.open .nav-isl::before,
-    nav.open .nav-isl::after,
+    /* Corner brackets — start close to the edge, translate out on hover (matches desktop) */
+    nav.open .nav-isl::before {
+        display: block;
+        top: 4px;
+        left: 4px;
+        width: 20px;
+        height: 20px;
+    }
+    nav.open .nav-isl::after {
+        display: block;
+        bottom: 4px;
+        right: 4px;
+        width: 20px;
+        height: 20px;
+    }
     nav.open .nav-isl-clip {
-        display: none;
+        display: block;
     }
     nav.open a {
-        font-size: 1.2rem;
-        font-weight: 700;
+        display: inline-block;
+        width: auto;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--cr2);
+        text-align: center;
+        padding: 14px 20px;
+        border-bottom: none;
+        /* underline strict pe latimea textului */
+        background-image: linear-gradient(#fff, #fff);
+        background-size: 0% 1px;
+        background-repeat: no-repeat;
+        background-position: center bottom 8px;
+        transition:
+            color 0.2s,
+            background-size 0.25s ease;
+    }
+    nav.open a:hover,
+    nav.open a.act {
         color: var(--cr);
-        width: 100%;
-        padding: 20px 4px;
-        border-bottom: 1px solid var(--bdk);
+        background-size: calc(100% - 40px) 1px;
+    }
+    /* Hover on the mobile menu chenar → brackets ies în afară frame-ului */
+    nav.open .nav-isl:hover::before {
+        transform: translate(-12px, -12px);
+        border-color: rgba(255, 255, 255, 0.7);
+    }
+    nav.open .nav-isl:hover::after {
+        transform: translate(12px, 12px);
+        border-color: rgba(255, 255, 255, 0.7);
+    }
+    /* Lock page scroll when mobile menu is open */
+    body:has(nav.open),
+    body.nav-open {
+        overflow: hidden;
+    }
+    html:has(nav.open) {
+        overflow: hidden;
     }
     .hdr-r {
-        display: none;
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    .hdr-r .btn-blue {
+        padding: 7px 14px;
+        font-size: 12px;
     }
     .mbar {
         display: flex;
+    }
+    /* Skip the slow header-entry animation on hamburger breakpoints */
+    .hdr-r .btn-blue,
+    .mbar {
+        animation: none !important;
+        opacity: 1 !important;
     }
     /* Header solid când meniul e deschis (nu se mai văd bilele în banda de sus) */
     header:has(nav.open) {
@@ -3498,6 +3653,13 @@ footer {
     footer {
         padding: 0 18px;
     }
+    .whi-l,
+    .whi-r {
+        flex: none;
+        width: 100%;
+        min-height: 0;
+        height: auto;
+    }
     .why-stats {
         grid-template-columns: 1fr;
         flex: none;
@@ -3505,6 +3667,13 @@ footer {
     }
     .srvs-g {
         grid-template-columns: 1fr;
+    }
+    /* 1-col mobile: no vertical borders */
+    .srv {
+        border-right: none !important;
+    }
+    .srv:nth-child(n + 4):not(:nth-child(3n))::before {
+        display: none;
     }
     .proj-g {
         grid-template-columns: 1fr;

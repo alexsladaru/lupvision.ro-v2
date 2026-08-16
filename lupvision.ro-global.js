@@ -30,13 +30,16 @@
         b[0].style.transform = 'translateY(6.5px) rotate(45deg)';
         b[1].style.opacity = '0';
         b[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+        document.body.classList.add('nav-open');
       } else {
         b.forEach(x => { x.style.transform = ''; x.style.opacity = ''; });
+        document.body.classList.remove('nav-open');
       }
     });
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       nav.classList.remove('open');
       mb.querySelectorAll('span').forEach(x => { x.style.transform = ''; x.style.opacity = ''; });
+      document.body.classList.remove('nav-open');
     }));
   }
 

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -oE '<style id=\\\\\\\\\"pv-overrides\\\\\\\\\">.{50,600}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/conacul-valsan.html\")",
+      "Bash(grep -oE 'style=\"[^\"]*font-size:11px[^\"]*\"[^>]*>[^<]{0,80}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/conacul-valsan.html\")",
+      "Bash(python3)"
+    ]
+  }
+}
