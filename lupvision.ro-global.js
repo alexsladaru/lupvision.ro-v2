@@ -216,13 +216,17 @@
     requestAnimationFrame(tick);
   })();
 
-  /* ── Smooth scroll pentru anchor-uri ── */
+  /* ── Smooth scroll pentru anchor-uri (respecting fixed header offset) ── */
+  const HDR_OFFSET = 74;
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const t = document.querySelector(href);
       if (!t) return;
       e.preventDefault();
-      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const y = t.getBoundingClientRect().top + window.pageYOffset - HDR_OFFSET;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     });
   });
 

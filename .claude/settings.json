@@ -3,7 +3,11 @@
     "allow": [
       "Bash(grep -oE '<style id=\\\\\\\\\"pv-overrides\\\\\\\\\">.{50,600}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/conacul-valsan.html\")",
       "Bash(grep -oE 'style=\"[^\"]*font-size:11px[^\"]*\"[^>]*>[^<]{0,80}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/conacul-valsan.html\")",
-      "Bash(python3)"
+      "Bash(python3)",
+      "Bash(grep -oE 'Capabilit[ăa][țt]i|capabilit[ăa]?[țt]?i|EST\\\\.\\\\s*ANUL[^\"<]{0,30}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/ermacom-landing.html\")",
+      "Bash(grep -oE '.{80}EST\\\\.\\\\s*ANUL[^<]{0,60}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/ermacom-landing.html\")",
+      "Bash(grep -oE 'font-family:var\\\\\\(--mono\\\\\\)\\\\\\)\\\\][^;]*display:none[^;]*|pv-overrides[^<]{0,500}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/conacul-valsan.html\")",
+      "Bash(grep -oE 'document\\\\.\\(open|write|replaceChild|body\\\\.innerHTML|documentElement\\)[^;]{0,60}' \"/Users/alexsladaru/Desktop/Lup Vision/Website-uri/Proiecte/lupvision.ro-v2/previews/conacul-valsan.html\")"
     ]
   }
 }
