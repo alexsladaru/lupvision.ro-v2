@@ -1373,7 +1373,7 @@ nav a.act {
 }
 .srv {
     background: var(--dk);
-    padding: 44px 40px;
+    padding: 40px 34px;
     position: relative;
     border-right: 1px solid var(--bdk);
     --gx: 50%;
@@ -3236,6 +3236,7 @@ footer {
     color: var(--cr2);
     margin-bottom: 12px;
     transition: color 0.2s;
+    overflow-wrap: anywhere;
 }
 .ft-col a:hover {
     color: var(--cr);
@@ -3636,6 +3637,7 @@ footer {
         margin-right: 10px;
     }
     .hdr-r .btn-blue {
+        text-align: center;
         padding: 7px 14px;
         font-size: 12px;
     }
@@ -3722,7 +3724,7 @@ footer {
         min-height: 120vh;
     }
     .why {
-        padding: 56px 18px;
+        padding: 40px 18px;
     }
     footer {
         padding: 0 18px;
@@ -3734,17 +3736,27 @@ footer {
         min-height: 0;
         height: auto;
     }
+    .whi-l {
+        padding: 28px 22px;
+    }
+    .why-top {
+        gap: 20px;
+    }
     .why-stats {
         grid-template-columns: 1fr;
         flex: none;
         width: 100%;
     }
+    .wst {
+        padding: 26px 22px;
+    }
     .srvs-g {
         grid-template-columns: 1fr;
     }
-    /* 1-col mobile: no vertical borders */
+    /* 1-col mobile: no vertical borders + padding mai mic */
     .srv {
         border-right: none !important;
+        padding: 28px 22px;
     }
     .srv:nth-child(n + 4):not(:nth-child(3n))::before {
         display: none;
@@ -3758,10 +3770,16 @@ footer {
     }
     .ft-cols {
         grid-template-columns: 1fr 1fr;
+        gap: 30px 24px;
+        padding: 40px 0;
+        margin-left: 0;
     }
     .ft-bot {
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
+        padding: 22px 0;
+        margin-left: 0;
     }
     .hero-donut-wrap {
         width: min(340px, 100%);
