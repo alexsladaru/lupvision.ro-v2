@@ -256,12 +256,8 @@ function S(e) {
         document.body.addEventListener('pointermove', M);
         document.body.addEventListener('pointerleave', L);
         document.body.addEventListener('click', C);
-
-        document.body.addEventListener('touchstart', TouchStart, { passive: false });
-        document.body.addEventListener('touchmove', TouchMove, { passive: false });
-        document.body.addEventListener('touchend', TouchEnd, { passive: false });
-        document.body.addEventListener('touchcancel', TouchEnd, { passive: false });
-
+        // Fără handlere de touch — blocau scroll-ul paginii pe mobil (preventDefault),
+        // iar interacțiunea cu cursorul nu e necesară (followCursor: false).
         R = true;
       }
     }
@@ -273,12 +269,6 @@ function S(e) {
       document.body.removeEventListener('pointermove', M);
       document.body.removeEventListener('pointerleave', L);
       document.body.removeEventListener('click', C);
-
-      document.body.removeEventListener('touchstart', TouchStart);
-      document.body.removeEventListener('touchmove', TouchMove);
-      document.body.removeEventListener('touchend', TouchEnd);
-      document.body.removeEventListener('touchcancel', TouchEnd);
-
       R = false;
     }
   };
@@ -286,6 +276,7 @@ function S(e) {
 }
 
 function M(e) {
+  if (e.pointerType === 'touch') return;
   A.x = e.clientX;
   A.y = e.clientY;
   processInteraction();
@@ -672,7 +663,6 @@ function createBallpit(e, t = {}) {
   const r = new a();
   let c = false;
 
-  e.style.touchAction = 'none';
   e.style.userSelect = 'none';
   e.style.webkitUserSelect = 'none';
 
