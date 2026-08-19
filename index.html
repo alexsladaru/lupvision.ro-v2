@@ -3,6 +3,28 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Înălțimea reală a viewport-ului → --app-vh (fix centrare hero pe mobil, bara de adrese) -->
+        <script>
+            (function () {
+                var d = document.documentElement;
+                function setVH() {
+                    d.style.setProperty('--app-vh', window.innerHeight + 'px');
+                }
+                setVH();
+                var lastW = window.innerWidth;
+                window.addEventListener(
+                    'resize',
+                    function () {
+                        // doar la schimbare de lățime (rotație), nu la ascunderea barei de adrese
+                        if (window.innerWidth !== lastW) {
+                            lastW = window.innerWidth;
+                            setVH();
+                        }
+                    },
+                    { passive: true }
+                );
+            })();
+        </script>
         <title>Lup Vision - Web design & development</title>
         <meta
             name="description"

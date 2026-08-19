@@ -642,10 +642,13 @@ nav a.act {
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
-    /* Conținutul (h1 + butoane) centrat în raport cu ECRANUL VIZIBIL (100vh),
-       nu cu cele 120vh ale secțiunii → central la deschidere, mai ales pe telefon. */
+    /* Conținutul (h1 + butoane) centrat în raport cu ECRANUL REAL VIZIBIL,
+       nu cu cele 120vh ale secțiunii → central la deschidere, mai ales pe telefon.
+       --app-vh = window.innerHeight (setat din <head>) → corect pe orice mobil,
+       indiferent de bara de adrese; svh/vh sunt fallback. */
     min-height: 100vh;
     min-height: 100svh;
+    min-height: var(--app-vh, 100svh);
     display: flex;
     align-items: center;
     justify-content: center;
